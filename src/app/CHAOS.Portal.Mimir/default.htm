@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title>Mimir</title>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" media="screen"/>
+		<link rel="stylesheet" href="Style/Global.min.css" type="text/css" />
+		
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/knockout/2.2.1/knockout-min.js"></script>
+		<script type="text/javascript" src="Script/koExternalTemplateEngine_all.min.js"></script>
+		<script type="text/javascript" src="Script/PortalClient.min.js"></script>
+		<script type="text/javascript" src="Script/Mimir.js"></script>
+	</head>
+	<body>
+		<h1>Mimir</h1>
+		<div data-bind="template: {name: ContentName(), data: ContentViewModel, if: ContentName}"></div>
+	</body>
+</html>
