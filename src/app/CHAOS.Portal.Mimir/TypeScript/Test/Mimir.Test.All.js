@@ -1,24 +1,3 @@
-var CHAOS;
-(function (CHAOS) {
-    (function (Portal) {
-        (function (Mimir) {
-            var LoginViewModel = (function () {
-                function LoginViewModel() {
-                    this.ServicePath = ko.observable();
-                    this.Email = ko.observable();
-                    this.Password = ko.observable();
-                }
-                LoginViewModel.prototype.Login = function () {
-                    alert("Logging in to " + this.ServicePath());
-                };
-                return LoginViewModel;
-            })();
-            Mimir.LoginViewModel = LoginViewModel;            
-        })(Portal.Mimir || (Portal.Mimir = {}));
-        var Mimir = Portal.Mimir;
-    })(CHAOS.Portal || (CHAOS.Portal = {}));
-    var Portal = CHAOS.Portal;
-})(CHAOS || (CHAOS = {}));
 var TypeAheadBindingHandler = (function () {
     function TypeAheadBindingHandler() { }
     TypeAheadBindingHandler.prototype.init = function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
@@ -82,6 +61,27 @@ var CHAOS;
 (function (CHAOS) {
     (function (Portal) {
         (function (Mimir) {
+            var LoginViewModel = (function () {
+                function LoginViewModel() {
+                    this.ServicePath = ko.observable();
+                    this.Email = ko.observable();
+                    this.Password = ko.observable();
+                }
+                LoginViewModel.prototype.Login = function () {
+                    alert("Logging in to " + this.ServicePath());
+                };
+                return LoginViewModel;
+            })();
+            Mimir.LoginViewModel = LoginViewModel;            
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
             var MainViewModel = (function () {
                 function MainViewModel() {
                     this.ContentName = ko.observable();
@@ -119,3 +119,20 @@ var Woops = (function () {
     }
     return Woops;
 })();
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
+            (function (Test) {
+                QUnit.module("CHAOS.Portal.Mimir");
+                test("Initialize with Login as content", function () {
+                    var viewModel = new Mimir.MainViewModel();
+                    ok(viewModel.ContentName() == "Login", "ContentName is not Login");
+                });
+            })(Mimir.Test || (Mimir.Test = {}));
+            var Test = Mimir.Test;
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));

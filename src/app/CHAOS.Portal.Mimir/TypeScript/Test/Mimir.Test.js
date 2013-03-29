@@ -3,9 +3,10 @@ var CHAOS;
     (function (Portal) {
         (function (Mimir) {
             (function (Test) {
-                test("MainViewModel - Initialize with Login", function () {
+                QUnit.module("CHAOS.Portal.Mimir");
+                test("Initialize with Login as content", function () {
                     var viewModel = new Mimir.MainViewModel();
-                    ok(viewModel.ContentName() != "Login", "ContentName should be Login");
+                    ok(viewModel.ContentName() == "Login", "ContentName is not Login");
                 });
             })(Mimir.Test || (Mimir.Test = {}));
             var Test = Mimir.Test;

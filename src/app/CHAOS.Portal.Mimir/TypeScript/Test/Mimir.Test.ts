@@ -1,14 +1,15 @@
 /// <reference path="../Lib/QUnit.d.ts"/>
-/// <reference path="../../../../../tools/QUnit/qunit-1.11.0.js"/>
 /// <reference path="../Mimir.ts"/>
+/// <reference path="../Woops.ts"/>
 
 module CHAOS.Portal.Mimir.Test
 {
-	test("MainViewModel - Initialize with Login", ()=> 
+	QUnit.module("CHAOS.Portal.Mimir");
+
+	test("Initialize with Login as content", ()=> 
 	{
 		var viewModel = new MainViewModel();
  
-		//Assert
-		ok(viewModel.ContentName() != "Login", "ContentName should be Login");
+		ok(viewModel.ContentName() == "Login", "ContentName is not Login");
 	});
 }
