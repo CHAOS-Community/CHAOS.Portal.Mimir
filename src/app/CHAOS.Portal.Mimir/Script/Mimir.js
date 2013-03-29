@@ -113,9 +113,3 @@ var CHAOS;
     })(CHAOS.Portal || (CHAOS.Portal = {}));
     var Portal = CHAOS.Portal;
 })(CHAOS || (CHAOS = {}));
-var Woops = (function () {
-    function Woops() {
-        this.Value = "ok";
-    }
-    return Woops;
-})();

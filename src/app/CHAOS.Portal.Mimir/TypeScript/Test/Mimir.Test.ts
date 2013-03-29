@@ -1,6 +1,5 @@
 /// <reference path="../Lib/QUnit.d.ts"/>
 /// <reference path="../Mimir.ts"/>
-/// <reference path="../Woops.ts"/>
 
 module CHAOS.Portal.Mimir.Test
 {
@@ -11,5 +10,6 @@ module CHAOS.Portal.Mimir.Test
 		var viewModel = new MainViewModel();
  
 		ok(viewModel.ContentName() == "Login", "ContentName is not Login");
+		ok(viewModel.ContentViewModel() instanceof LoginViewModel, "ContentViewModel is not of type LoginViewModel");
 	});
 }

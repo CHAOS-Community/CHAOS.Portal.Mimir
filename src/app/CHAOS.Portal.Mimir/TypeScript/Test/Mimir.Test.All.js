@@ -113,12 +113,6 @@ var CHAOS;
     })(CHAOS.Portal || (CHAOS.Portal = {}));
     var Portal = CHAOS.Portal;
 })(CHAOS || (CHAOS = {}));
-var Woops = (function () {
-    function Woops() {
-        this.Value = "ok";
-    }
-    return Woops;
-})();
 var CHAOS;
 (function (CHAOS) {
     (function (Portal) {
@@ -128,6 +122,8 @@ var CHAOS;
                 test("Initialize with Login as content", function () {
                     var viewModel = new Mimir.MainViewModel();
                     ok(viewModel.ContentName() == "Login", "ContentName is not Login");
+                    console.log(viewModel.ContentViewModel());
+                    ok(viewModel.ContentViewModel() instanceof Mimir.LoginViewModel, "ContentViewModel is not of type LoginViewModel");
                 });
             })(Mimir.Test || (Mimir.Test = {}));
             var Test = Mimir.Test;

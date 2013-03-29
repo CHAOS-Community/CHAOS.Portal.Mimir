@@ -38,13 +38,6 @@
     <Content Include="TypeScript\Test\default.htm" />
     <Content Include="TypeScript\Test\Mimir.Test.All.js" />
     <Content Include="TypeScript\Test\qunit.css" />
-    <Content Include="TypeScript\Woops.js">
-      <DependentUpon>Woops.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Woops.min.js">
-      <DependentUpon>Woops.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="TypeScript\Woops.ts" />
     <TypeScriptCompile Include="TypeScript\Mimir.Login.ts" />
     <Content Include="TypeScript\Lib\QUnit.d.ts" />
     <Content Include="TypeScript\Mimir.Login.js">
@@ -89,9 +82,6 @@
     </Content>
     <Content Include="TypeScript\Test\Mimir.Test.js.map">
       <DependentUpon>Mimir.Test.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Woops.js.map">
-      <DependentUpon>Woops.ts</DependentUpon>
     </Content>
     <Content Include="TypeScript\Test\Build.bat" />
     <Content Include="TypeScript\Utility.js.map" />
