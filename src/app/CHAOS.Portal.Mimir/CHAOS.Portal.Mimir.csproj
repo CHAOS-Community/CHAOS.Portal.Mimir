@@ -35,6 +35,13 @@
     <Content Include="Script\koExternalTemplateEngine_all.min.js" />
     <Content Include="TypeScript\Lib\PortalClient.d.ts" />
     <Content Include="Script\PortalClient.min.js" />
+    <TypeScriptCompile Include="TypeScript\Mimir.Authentication.ts" />
+    <Content Include="TypeScript\Mimir.Authentication.js">
+      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.Authentication.min.js">
+      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    </Content>
     <Content Include="TypeScript\Test\default.htm" />
     <Content Include="TypeScript\Test\Mimir.Test.All.js" />
     <Content Include="TypeScript\Test\qunit.css" />
@@ -85,6 +92,9 @@
     </Content>
     <Content Include="TypeScript\Test\Build.bat" />
     <Content Include="TypeScript\Utility.js.map" />
+    <Content Include="TypeScript\Mimir.Authentication.js.map">
+      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

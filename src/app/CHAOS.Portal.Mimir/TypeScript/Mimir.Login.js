@@ -3,13 +3,13 @@ var CHAOS;
     (function (Portal) {
         (function (Mimir) {
             var LoginViewModel = (function () {
-                function LoginViewModel() {
-                    this.ServicePath = ko.observable();
+                function LoginViewModel(authentication) {
                     this.Email = ko.observable();
                     this.Password = ko.observable();
+                    this._authentication = authentication;
                 }
                 LoginViewModel.prototype.Login = function () {
-                    alert("Logging in to " + this.ServicePath());
+                    this._authentication.Login(this.Email(), this.Password());
                 };
                 return LoginViewModel;
             })();

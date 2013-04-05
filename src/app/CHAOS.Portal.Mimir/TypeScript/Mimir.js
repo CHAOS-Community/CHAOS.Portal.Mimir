@@ -6,7 +6,8 @@ var CHAOS;
                 function MainViewModel() {
                     this.ContentName = ko.observable();
                     this.ContentViewModel = ko.observable();
-                    this.LoadContent("Login", new Mimir.LoginViewModel());
+                    this._authentication = new Mimir.Authentication();
+                    this.LoadContent("ServiceSelection", new Mimir.ServiceSelectionViewModel(this._authentication));
                 }
                 MainViewModel.prototype.LoadContent = function (templateName, viewModel) {
                     if(viewModel == null) {

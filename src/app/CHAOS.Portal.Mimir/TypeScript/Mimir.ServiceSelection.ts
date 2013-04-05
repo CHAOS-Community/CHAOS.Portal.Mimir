@@ -3,21 +3,15 @@
 
 module CHAOS.Portal.Mimir
 {
-	export class LoginViewModel
+	export class ServiceSelectionViewModel
 	{
-		public Email:KnockoutObservableString = ko.observable();
-		public Password:KnockoutObservableString = ko.observable();
+		public ServicePath:KnockoutObservableString = ko.observable();
 
 		private _authentication: Authentication;
 
 		constructor(authentication:Authentication)
 		{
 			this._authentication = authentication;
-		}
-
-		public Login():void
-		{
-			this._authentication.Login(this.Email(), this.Password());
 		}
 	}
 }

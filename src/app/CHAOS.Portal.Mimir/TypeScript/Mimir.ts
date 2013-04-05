@@ -1,7 +1,8 @@
 /// <reference path="Lib/knockout.d.ts"/>
 /// <reference path="Lib/koExternalTemplateEngine.d.ts"/>
-/// <reference path="Lib/PortalClient.d.ts"/>
 /// <reference path="Utility.ts"/>
+/// <reference path="Mimir.Authentication.ts"/>
+/// <reference path="Mimir.ServiceSelection.ts"/>
 /// <reference path="Mimir.Login.ts"/>
 
 module CHAOS.Portal.Mimir
@@ -11,9 +12,12 @@ module CHAOS.Portal.Mimir
 		public ContentName:KnockoutObservableString = ko.observable();
 		public ContentViewModel:KnockoutObservableAny = ko.observable();
 
+		private _authentication: Authentication;
+
 		constructor()
 		{
-			this.LoadContent("Login", new LoginViewModel());
+			this._authentication = new Authentication();
+			this.LoadContent("ServiceSelection", new ServiceSelectionViewModel(this._authentication));
 		}
 
 		private LoadContent(templateName: string, viewModel?:any): void

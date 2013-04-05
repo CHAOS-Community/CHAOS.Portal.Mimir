@@ -2,14 +2,33 @@ var CHAOS;
 (function (CHAOS) {
     (function (Portal) {
         (function (Mimir) {
+            var Authentication = (function () {
+                function Authentication() { }
+                Authentication.prototype.Login = function (servicePath, email, password) {
+                    this.Client = CHAOS.Portal.Client.Initialize(servicePath);
+                    CHAOS.Portal.Client.EmailPassword.Login(email, password);
+                };
+                return Authentication;
+            })();
+            Mimir.Authentication = Authentication;            
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
             var LoginViewModel = (function () {
-                function LoginViewModel() {
+                function LoginViewModel(authentication) {
                     this.ServicePath = ko.observable();
                     this.Email = ko.observable();
                     this.Password = ko.observable();
+                    this._authentication = authentication;
                 }
                 LoginViewModel.prototype.Login = function () {
-                    alert("Logging in to " + this.ServicePath());
+                    this._authentication.Login(this.ServicePath(), this.Email(), this.Password());
                 };
                 return LoginViewModel;
             })();
@@ -86,7 +105,8 @@ var CHAOS;
                 function MainViewModel() {
                     this.ContentName = ko.observable();
                     this.ContentViewModel = ko.observable();
-                    this.LoadContent("Login", new Mimir.LoginViewModel());
+                    this._authentication = new Mimir.Authentication();
+                    this.LoadContent("Login", new Mimir.LoginViewModel(this._authentication));
                 }
                 MainViewModel.prototype.LoadContent = function (templateName, viewModel) {
                     if(viewModel == null) {
