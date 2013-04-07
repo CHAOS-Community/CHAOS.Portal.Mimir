@@ -7,6 +7,9 @@ var CHAOS;
                     this.ServicePath = ko.observable();
                     this._authentication = authentication;
                 }
+                ServiceSelectionViewModel.prototype.SetPath = function () {
+                    this._authentication.SetServicePath(this.ServicePath());
+                };
                 return ServiceSelectionViewModel;
             })();
             Mimir.ServiceSelectionViewModel = ServiceSelectionViewModel;            
@@ -15,3 +18,4 @@ var CHAOS;
     })(CHAOS.Portal || (CHAOS.Portal = {}));
     var Portal = CHAOS.Portal;
 })(CHAOS || (CHAOS = {}));
+//@ sourceMappingURL=Mimir.ServiceSelection.js.map

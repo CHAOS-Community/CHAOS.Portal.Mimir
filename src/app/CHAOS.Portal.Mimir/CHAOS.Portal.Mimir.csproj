@@ -28,6 +28,8 @@
       <DependentUpon>Global.css</DependentUpon>
     </Content>
     <Content Include="Template\Login.html" />
+    <Content Include="Template\Overview.html" />
+    <Content Include="Template\ServiceSelection.html" />
     <Content Include="TypeScript\Lib\bootstrap.d.ts" />
     <Content Include="TypeScript\Lib\jquery.d.ts" />
     <Content Include="TypeScript\Lib\knockout.d.ts" />
@@ -41,6 +43,27 @@
     </Content>
     <Content Include="TypeScript\Mimir.Authentication.min.js">
       <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="TypeScript\Mimir.ServiceSelection.ts" />
+    <TypeScriptCompile Include="TypeScript\Mimir.Navigation.ts" />
+    <Content Include="TypeScript\Mimir.Navigation.js">
+      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.Navigation.min.js">
+      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="TypeScript\Mimir.Overview.ts" />
+    <Content Include="TypeScript\Mimir.Overview.js">
+      <DependentUpon>Mimir.Overview.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.Overview.min.js">
+      <DependentUpon>Mimir.Overview.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.ServiceSelection.js">
+      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.ServiceSelection.min.js">
+      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
     </Content>
     <Content Include="TypeScript\Test\default.htm" />
     <Content Include="TypeScript\Test\Mimir.Test.All.js" />
@@ -94,6 +117,12 @@
     <Content Include="TypeScript\Utility.js.map" />
     <Content Include="TypeScript\Mimir.Authentication.js.map">
       <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.Navigation.js.map">
+      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
+    </Content>
+    <Content Include="TypeScript\Mimir.ServiceSelection.js.map">
+      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

@@ -13,5 +13,10 @@ module CHAOS.Portal.Mimir
 		{
 			this._authentication = authentication;
 		}
+
+		public SetPath():void
+		{
+			this._authentication.SetServicePath(this.ServicePath());
+		}
 	}
 }

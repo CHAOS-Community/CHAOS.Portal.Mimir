@@ -4,18 +4,22 @@ var CHAOS;
         (function (Mimir) {
             var MainViewModel = (function () {
                 function MainViewModel() {
+                    var _this = this;
                     this.ContentName = ko.observable();
                     this.ContentViewModel = ko.observable();
                     this._authentication = new Mimir.Authentication();
                     this.LoadContent("ServiceSelection", new Mimir.ServiceSelectionViewModel(this._authentication));
+                    this._authentication.ServicePathSet.subscribe(function (newValue) {
+                        return _this.LoadContent("Login", new Mimir.LoginViewModel(_this._authentication));
+                    }, this);
+                    this._authentication.IsLoggedIn.subscribe(function (newValue) {
+                        return _this.LoadContent("Overview", new Mimir.OverviewViewModel());
+                    }, this);
                 }
-                MainViewModel.prototype.LoadContent = function (templateName, viewModel) {
-                    if(viewModel == null) {
-                        viewModel = this;
-                    }
+                MainViewModel.prototype.LoadContent = function (viewName, viewModel) {
                     this.ContentName(null);
                     this.ContentViewModel(viewModel);
-                    this.ContentName(templateName);
+                    this.ContentName(viewName);
                 };
                 return MainViewModel;
             })();
@@ -34,3 +38,4 @@ var CHAOS;
     })(CHAOS.Portal || (CHAOS.Portal = {}));
     var Portal = CHAOS.Portal;
 })(CHAOS || (CHAOS = {}));
+//@ sourceMappingURL=Mimir.js.map

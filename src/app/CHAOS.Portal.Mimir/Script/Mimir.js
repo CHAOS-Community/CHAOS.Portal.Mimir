@@ -3,10 +3,26 @@ var CHAOS;
     (function (Portal) {
         (function (Mimir) {
             var Authentication = (function () {
-                function Authentication() { }
-                Authentication.prototype.Login = function (servicePath, email, password) {
+                function Authentication() {
+                    this.IsLoggedIn = ko.observable(false);
+                    this.ServicePathSet = ko.observable(false);
+                }
+                Authentication.prototype.SetServicePath = function (servicePath) {
+                    var _this = this;
                     this.Client = CHAOS.Portal.Client.Initialize(servicePath);
-                    CHAOS.Portal.Client.EmailPassword.Login(email, password);
+                    this.Client.SessionAuthenticated().Add(function (data) {
+                        return _this.IsLoggedIn(true);
+                    });
+                    this.ServicePathSet(true);
+                };
+                Authentication.prototype.Login = function (email, password) {
+                    if(this.Client.HasSession()) {
+                        CHAOS.Portal.Client.EmailPassword.Login(email, password);
+                    } else {
+                        this.Client.SessionAcquired().Add(function (session) {
+                            return CHAOS.Portal.Client.EmailPassword.Login(email, password);
+                        });
+                    }
                 };
                 return Authentication;
             })();
@@ -22,17 +38,84 @@ var CHAOS;
         (function (Mimir) {
             var LoginViewModel = (function () {
                 function LoginViewModel(authentication) {
-                    this.ServicePath = ko.observable();
                     this.Email = ko.observable();
                     this.Password = ko.observable();
                     this._authentication = authentication;
                 }
                 LoginViewModel.prototype.Login = function () {
-                    this._authentication.Login(this.ServicePath(), this.Email(), this.Password());
+                    this._authentication.Login(this.Email(), this.Password());
                 };
                 return LoginViewModel;
             })();
             Mimir.LoginViewModel = LoginViewModel;            
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
+            var Navigator = (function () {
+                function Navigator(updatedCallback) {
+                    this._updatedCallback = updatedCallback;
+                }
+                Navigator._viewViewModelMappings = null;
+                Navigator.prototype.GetCurrentViewName = function () {
+                    return this._currentViewName;
+                };
+                Navigator.prototype.GetCurrentViewModel = function () {
+                    return this._currentViewModel;
+                };
+                Navigator.RegistreView = function RegistreView(name, viewModelCreator) {
+                    this._viewViewModelMappings[name] = viewModelCreator;
+                }
+                Navigator.prototype.NavigateTo = function (name) {
+                    if(Navigator._viewViewModelMappings[name] === undefined) {
+                        throw "View " + name + " not registrered";
+                    }
+                    this._currentViewName = name;
+                    this._currentViewModel = Navigator._viewViewModelMappings[name]();
+                    this._updatedCallback();
+                };
+                return Navigator;
+            })();
+            Mimir.Navigator = Navigator;            
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
+            var OverviewViewModel = (function () {
+                function OverviewViewModel() { }
+                return OverviewViewModel;
+            })();
+            Mimir.OverviewViewModel = OverviewViewModel;            
+        })(Portal.Mimir || (Portal.Mimir = {}));
+        var Mimir = Portal.Mimir;
+    })(CHAOS.Portal || (CHAOS.Portal = {}));
+    var Portal = CHAOS.Portal;
+})(CHAOS || (CHAOS = {}));
+var CHAOS;
+(function (CHAOS) {
+    (function (Portal) {
+        (function (Mimir) {
+            var ServiceSelectionViewModel = (function () {
+                function ServiceSelectionViewModel(authentication) {
+                    this.ServicePath = ko.observable();
+                    this._authentication = authentication;
+                }
+                ServiceSelectionViewModel.prototype.SetPath = function () {
+                    this._authentication.SetServicePath(this.ServicePath());
+                };
+                return ServiceSelectionViewModel;
+            })();
+            Mimir.ServiceSelectionViewModel = ServiceSelectionViewModel;            
         })(Portal.Mimir || (Portal.Mimir = {}));
         var Mimir = Portal.Mimir;
     })(CHAOS.Portal || (CHAOS.Portal = {}));
@@ -103,18 +186,22 @@ var CHAOS;
         (function (Mimir) {
             var MainViewModel = (function () {
                 function MainViewModel() {
+                    var _this = this;
                     this.ContentName = ko.observable();
                     this.ContentViewModel = ko.observable();
                     this._authentication = new Mimir.Authentication();
-                    this.LoadContent("Login", new Mimir.LoginViewModel(this._authentication));
+                    this.LoadContent("ServiceSelection", new Mimir.ServiceSelectionViewModel(this._authentication));
+                    this._authentication.ServicePathSet.subscribe(function (newValue) {
+                        return _this.LoadContent("Login", new Mimir.LoginViewModel(_this._authentication));
+                    }, this);
+                    this._authentication.IsLoggedIn.subscribe(function (newValue) {
+                        return _this.LoadContent("Overview", new Mimir.OverviewViewModel());
+                    }, this);
                 }
-                MainViewModel.prototype.LoadContent = function (templateName, viewModel) {
-                    if(viewModel == null) {
-                        viewModel = this;
-                    }
+                MainViewModel.prototype.LoadContent = function (viewName, viewModel) {
                     this.ContentName(null);
                     this.ContentViewModel(viewModel);
-                    this.ContentName(templateName);
+                    this.ContentName(viewName);
                 };
                 return MainViewModel;
             })();

@@ -4,6 +4,7 @@
 /// <reference path="Mimir.Authentication.ts"/>
 /// <reference path="Mimir.ServiceSelection.ts"/>
 /// <reference path="Mimir.Login.ts"/>
+/// <reference path="Mimir.Overview.ts"/>
 
 module CHAOS.Portal.Mimir
 {
@@ -18,16 +19,16 @@ module CHAOS.Portal.Mimir
 		{
 			this._authentication = new Authentication();
 			this.LoadContent("ServiceSelection", new ServiceSelectionViewModel(this._authentication));
+
+			this._authentication.ServicePathSet.subscribe((newValue: bool) => this.LoadContent("Login", new LoginViewModel(this._authentication)), this);
+			this._authentication.IsLoggedIn.subscribe((newValue: bool) => this.LoadContent("Overview", new OverviewViewModel()), this);
 		}
 
-		private LoadContent(templateName: string, viewModel?:any): void
+		private LoadContent(viewName:string, viewModel:any):void
 		{
-			if (viewModel == null) 
-				viewModel = this;
-
 			this.ContentName(null);
 			this.ContentViewModel(viewModel);
-			this.ContentName(templateName);
+			this.ContentName(viewName);
 		}
 	}
 
