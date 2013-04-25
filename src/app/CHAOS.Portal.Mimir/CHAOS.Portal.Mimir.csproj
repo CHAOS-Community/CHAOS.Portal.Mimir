@@ -21,108 +21,98 @@
     <UpgradeBackupLocation />
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="App\durandal\amd\almond-custom.js" />
+    <Content Include="App\durandal\amd\r.js" />
+    <Content Include="App\durandal\amd\require.js" />
+    <Content Include="App\durandal\amd\text.js" />
+    <Content Include="App\durandal\app.js" />
+    <Content Include="App\durandal\composition.js" />
+    <Content Include="App\durandal\events.js" />
+    <Content Include="App\durandal\http.js" />
+    <Content Include="App\durandal\messageBox.html" />
+    <Content Include="App\durandal\messageBox.js" />
+    <Content Include="App\durandal\modalDialog.js" />
+    <Content Include="App\durandal\plugins\router.js" />
+    <Content Include="App\durandal\system.js" />
+    <Content Include="App\durandal\transitions\entrance.js" />
+    <Content Include="App\durandal\viewEngine.js" />
+    <Content Include="App\durandal\viewLocator.js" />
+    <Content Include="App\durandal\viewModel.js" />
+    <Content Include="App\durandal\viewModelBinder.js" />
+    <Content Include="App\durandal\widget.js" />
+    <TypeScriptCompile Include="App\Main.ts" />
+    <Content Include="App\Main.js">
+      <DependentUpon>Main.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\Portal.ts" />
+    <Content Include="App\Portal.js">
+      <DependentUpon>Portal.ts</DependentUpon>
+    </Content>
+    <Content Include="App\TypeScriptDefinitions\durandal.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\require.d.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Shell.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Overview.ts" />
+    <TypeScriptCompile Include="App\viewmodels\MetadataSchemas.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Login.ts" />
+    <Content Include="App\viewmodels\Login.js">
+      <DependentUpon>Login.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\MetadataSchemas.js">
+      <DependentUpon>MetadataSchemas.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Overview.js">
+      <DependentUpon>Overview.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\ServiceSelection.ts" />
+    <Content Include="App\viewmodels\ServiceSelection.js">
+      <DependentUpon>ServiceSelection.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Shell.js">
+      <DependentUpon>Shell.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\Users.ts" />
+    <Content Include="App\viewmodels\Users.js">
+      <DependentUpon>Users.ts</DependentUpon>
+    </Content>
+    <Content Include="App\views\Login.html" />
+    <Content Include="App\views\MetadataSchemas.html" />
+    <Content Include="App\views\Overview.html" />
+    <Content Include="App\views\ServiceSelection.html" />
+    <Content Include="App\views\Shell.html" />
+    <Content Include="App\views\Users.html" />
     <Content Include="default.htm" />
-    <Content Include="Script\Mimir.js" />
-    <Content Include="Script\Mimir.min.js" />
     <Content Include="Style\Global.min.css">
       <DependentUpon>Global.css</DependentUpon>
     </Content>
-    <Content Include="Template\Login.html" />
-    <Content Include="Template\Overview.html" />
-    <Content Include="Template\ServiceSelection.html" />
-    <Content Include="TypeScript\Lib\bootstrap.d.ts" />
-    <Content Include="TypeScript\Lib\jquery.d.ts" />
-    <Content Include="TypeScript\Lib\knockout.d.ts" />
-    <Content Include="TypeScript\Lib\koExternalTemplateEngine.d.ts" />
-    <Content Include="Script\koExternalTemplateEngine_all.min.js" />
-    <Content Include="TypeScript\Lib\PortalClient.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\bootstrap.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\jquery.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\knockout.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\PortalClient.d.ts" />
     <Content Include="Script\PortalClient.min.js" />
-    <TypeScriptCompile Include="TypeScript\Mimir.Authentication.ts" />
-    <Content Include="TypeScript\Mimir.Authentication.js">
-      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.Authentication.min.js">
-      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="TypeScript\Mimir.ServiceSelection.ts" />
-    <TypeScriptCompile Include="TypeScript\Mimir.Navigation.ts" />
-    <Content Include="TypeScript\Mimir.Navigation.js">
-      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.Navigation.min.js">
-      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="TypeScript\Mimir.Overview.ts" />
-    <Content Include="TypeScript\Mimir.Overview.js">
-      <DependentUpon>Mimir.Overview.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.Overview.min.js">
-      <DependentUpon>Mimir.Overview.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.ServiceSelection.js">
-      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.ServiceSelection.min.js">
-      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Test\default.htm" />
-    <Content Include="TypeScript\Test\Mimir.Test.All.js" />
-    <Content Include="TypeScript\Test\qunit.css" />
-    <TypeScriptCompile Include="TypeScript\Mimir.Login.ts" />
-    <Content Include="TypeScript\Lib\QUnit.d.ts" />
-    <Content Include="TypeScript\Mimir.Login.js">
-      <DependentUpon>Mimir.Login.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.Login.min.js">
-      <DependentUpon>Mimir.Login.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Mimir.min.js">
-      <DependentUpon>Mimir.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="TypeScript\Test\Mimir.Test.ts" />
-    <Content Include="TypeScript\Test\Mimir.Test.js">
-      <DependentUpon>Mimir.Test.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Test\Mimir.Test.min.js">
-      <DependentUpon>Mimir.Test.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Utility.js">
-      <DependentUpon>Utility.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Utility.min.js">
-      <DependentUpon>Utility.ts</DependentUpon>
-    </Content>
-    <Content Include="TypeScript\Utility.ts" />
-    <TypeScriptCompile Include="TypeScript\Mimir.ts" />
-    <Content Include="TypeScript\Mimir.js">
-      <DependentUpon>Mimir.ts</DependentUpon>
-    </Content>
     <Content Include="Style\Global.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TypeScript\Build.bat" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="TypeScript\Mimir.Login.js.map">
-      <DependentUpon>Mimir.Login.ts</DependentUpon>
+    <Content Include="App\viewmodels\Shell.js.map">
+      <DependentUpon>Shell.ts</DependentUpon>
     </Content>
-    <Content Include="TypeScript\Mimir.js.map">
-      <DependentUpon>Mimir.ts</DependentUpon>
+    <Content Include="App\Main.js.map">
+      <DependentUpon>Main.ts</DependentUpon>
     </Content>
-    <Content Include="TypeScript\Test\Mimir.Test.js.map">
-      <DependentUpon>Mimir.Test.ts</DependentUpon>
+    <Content Include="App\viewmodels\MetadataSchemas.js.map">
+      <DependentUpon>MetadataSchemas.ts</DependentUpon>
     </Content>
-    <Content Include="TypeScript\Test\Build.bat" />
-    <Content Include="TypeScript\Utility.js.map" />
-    <Content Include="TypeScript\Mimir.Authentication.js.map">
-      <DependentUpon>Mimir.Authentication.ts</DependentUpon>
+    <Content Include="App\viewmodels\Users.js.map">
+      <DependentUpon>Users.ts</DependentUpon>
     </Content>
-    <Content Include="TypeScript\Mimir.Navigation.js.map">
-      <DependentUpon>Mimir.Navigation.ts</DependentUpon>
+    <Content Include="App\viewmodels\Overview.js.map">
+      <DependentUpon>Overview.ts</DependentUpon>
     </Content>
-    <Content Include="TypeScript\Mimir.ServiceSelection.js.map">
-      <DependentUpon>Mimir.ServiceSelection.ts</DependentUpon>
+    <Content Include="App\viewmodels\ServiceSelection.js.map">
+      <DependentUpon>ServiceSelection.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Login.js.map">
+      <DependentUpon>Login.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -131,6 +121,7 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -163,9 +154,8 @@
     <TypeScriptSourceMap> --sourcemap</TypeScriptSourceMap>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>call $(ProjectDir)TypeScript\Build.bat
-call $(ProjectDir)TypeScript\Test\Build.bat
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="BeforeBuild">
     <Message Text="Compiling TypeScript files" />

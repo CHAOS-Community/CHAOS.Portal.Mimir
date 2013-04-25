@@ -1,0 +1,12 @@
+﻿<h1>Mimir</h1>
+<div id="Menu" data-bind="visible: IsAuthenticated">
+	<ul class="nav nav-tabs nav-stacked" data-bind="foreach: Router.visibleRoutes">
+		<li data-bind="css: { active: isActive }">
+			<a data-bind="attr: { href: hash }, text: name"></a>
+		</li>
+	</ul>
+</div>
+<div id="Content" data-bind="compose: { model: Router.activeItem, afterCompose: Router.afterCompose, transition: 'entrance' }"></div>
+<div id="Footer">
+	<a href="http://chaos-community.org/" target="_blank" class="muted">CHAOS</a>
+</div>

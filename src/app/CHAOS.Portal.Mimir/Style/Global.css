@@ -1,5 +1,21 @@
-﻿body 
+﻿html, body 
 {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
+}
+
+#Menu
+{
+	float: left;
+	margin-right: 30px;
+}
+
+#Content 
+{
+	
+}
+
+#Footer 
+{
+	clear: left;
 }
