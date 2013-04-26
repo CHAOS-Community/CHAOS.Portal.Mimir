@@ -49,6 +49,7 @@
       <DependentUpon>Portal.ts</DependentUpon>
     </Content>
     <Content Include="App\TypeScriptDefinitions\durandal.d.ts" />
+    <Content Include="App\TypeScriptDefinitions\jquery.cookie.d.ts" />
     <Content Include="App\TypeScriptDefinitions\require.d.ts" />
     <TypeScriptCompile Include="App\viewmodels\Shell.ts" />
     <TypeScriptCompile Include="App\viewmodels\Overview.ts" />
@@ -113,6 +114,9 @@
     </Content>
     <Content Include="App\viewmodels\Login.js.map">
       <DependentUpon>Login.ts</DependentUpon>
+    </Content>
+    <Content Include="App\Portal.js.map">
+      <DependentUpon>Portal.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

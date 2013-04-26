@@ -1,10 +1,12 @@
-﻿<h1>Mimir</h1>
-<div id="Menu" data-bind="visible: IsAuthenticated">
-	<ul class="nav nav-tabs nav-stacked" data-bind="foreach: Router.visibleRoutes">
+﻿<div id="Menu" class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Mimir</a>
+	<ul class="nav" data-bind="foreach: Router.visibleRoutes">
 		<li data-bind="css: { active: isActive }">
 			<a data-bind="attr: { href: hash }, text: name"></a>
 		</li>
 	</ul>
+  </div>
 </div>
 <div id="Content" data-bind="compose: { model: Router.activeItem, afterCompose: Router.afterCompose, transition: 'entrance' }"></div>
 <div id="Footer">

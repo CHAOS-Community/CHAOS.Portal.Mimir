@@ -14,6 +14,8 @@ function SchemaGetComplated(response:CHAOS.Portal.Client.IPortalResponse):void
 	if (response.Error != null)
 		throw response.Error.Message;
 
+	Schemas.removeAll();
+
 	for (var i: number = 0; i < response.Result.Results.length; i++)
 		Schemas.push(response.Result.Results[i]);
 }

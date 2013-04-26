@@ -8,6 +8,7 @@ define(["require", "exports"], function(require, exports) {
         if(response.Error != null) {
             throw response.Error.Message;
         }
+        exports.Schemas.removeAll();
         for(var i = 0; i < response.Result.Results.length; i++) {
             exports.Schemas.push(response.Result.Results[i]);
         }
