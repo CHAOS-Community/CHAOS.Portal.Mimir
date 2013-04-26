@@ -11,10 +11,16 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
     }
     exports.activate = activate;
     exports.ServicePath = ko.observable("https://");
+    exports.IsWorking = ko.observable(false);
     function SetServicePath() {
+        exports.IsWorking(true);
         _portal.Initialize(exports.ServicePath());
-        $.cookie("ServicePath", exports.ServicePath());
-        _router.navigateTo("#Login");
+        _portal.Client().SessionAcquired().Add(SessionAcquired);
     }
     exports.SetServicePath = SetServicePath;
+    function SessionAcquired() {
+        $.cookie("ServicePath", exports.ServicePath());
+        _portal.Client().SessionAcquired().Remove(SessionAcquired);
+        _router.navigateTo("#Login");
+    }
 })

@@ -1,5 +1,13 @@
 ﻿<h2>Metadata Schemas</h2>
-<p>Metadata schemas management here</p>
-<div data-bind="foreach: Schemas">
-	<p data-bind="text: Name"></p>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Schemas">
+		<li data-bind="css: { active: $data  == $parent.ActiveSchema}">
+			<a href="#" data-bind="text: Name, click: $parent.SetActiveSchema"></a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveSchema">
+		<h3 data-bind="text:Name"></h3>
+		<h4 data-bind="text:Guid"></h4>
+		<textarea id="MetadataSchemaXml" data-bind="value: SchemaXml"></textarea>
+	</div>
 </div>

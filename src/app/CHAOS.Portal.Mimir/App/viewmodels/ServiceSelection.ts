@@ -15,12 +15,18 @@ export function activate()
 }
 
 export var ServicePath:KnockoutObservableString = ko.observable("https://");
+export var IsWorking:KnockoutObservableBool = ko.observable(false);
 
 export function SetServicePath()
 {
+	IsWorking(true);
 	_portal.Initialize(ServicePath());
+	_portal.Client().SessionAcquired().Add(SessionAcquired);
+}
 
+function SessionAcquired():void
+{
 	$.cookie("ServicePath", ServicePath());
-
+	_portal.Client().SessionAcquired().Remove(SessionAcquired);
 	_router.navigateTo("#Login");
 }

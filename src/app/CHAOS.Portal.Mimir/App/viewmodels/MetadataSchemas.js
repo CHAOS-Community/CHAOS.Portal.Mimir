@@ -1,16 +1,30 @@
 define(["require", "exports"], function(require, exports) {
     exports.Schemas = ko.observableArray();
+    exports.ActiveSchema = ko.observable();
     function activate() {
-        CHAOS.Portal.Client.MetadataSchema.Get().WithCallback(SchemaGetComplated);
+        exports.ActiveSchema(null);
+        exports.Schemas.removeAll();
+        var deferred = $.Deferred();
+        CHAOS.Portal.Client.MetadataSchema.Get().WithCallback(function (response) {
+            SchemaGetCompleted(response);
+            deferred.resolve();
+        });
+        return deferred.promise();
     }
     exports.activate = activate;
-    function SchemaGetComplated(response) {
+    function SchemaGetCompleted(response) {
         if(response.Error != null) {
             throw response.Error.Message;
         }
-        exports.Schemas.removeAll();
         for(var i = 0; i < response.Result.Results.length; i++) {
             exports.Schemas.push(response.Result.Results[i]);
         }
+        if(exports.Schemas().length > 0) {
+            exports.ActiveSchema(exports.Schemas()[0]);
+        }
     }
+    function SetActiveSchema(schema) {
+        exports.ActiveSchema(schema);
+    }
+    exports.SetActiveSchema = SetActiveSchema;
 })
