@@ -1,0 +1,14 @@
+﻿<h2>Metadata Schemas</h2>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Items">
+		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
+			<a href="#" data-bind="click: $parent.SetActiveItem">
+				<span data-bind="text: Name"></span> - <span data-bind="text: ID"></span>
+			</a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveItem">
+		<h3 data-bind="text: ID"></h3>
+		<input type="text" data-bind="value: Name"/>
+	</div>
+</div>

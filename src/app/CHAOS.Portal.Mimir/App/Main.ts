@@ -29,6 +29,7 @@ define(require =>
         router.mapNav('Overview');
         router.mapNav('Users');
         router.mapNav('MetadataSchemas');
+        router.mapNav('ObjectTypes');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
  
         app.adaptToDevice();

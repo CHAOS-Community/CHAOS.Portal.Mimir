@@ -15,6 +15,7 @@ define(function (require) {
         router.mapNav('Overview');
         router.mapNav('Users');
         router.mapNav('MetadataSchemas');
+        router.mapNav('ObjectTypes');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');
