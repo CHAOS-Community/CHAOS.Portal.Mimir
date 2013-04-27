@@ -6,6 +6,7 @@ requirejs.config({
 define(function (require) {
     var app = require('durandal/app'), viewLocator = require('durandal/viewLocator'), system = require('durandal/system'), router = require('durandal/plugins/router'), portal = require("Portal");
     system.debug(true);
+    app.title = "Mimir";
     app.start().then(function () {
         viewLocator.useConvention();
         router.useConvention();
@@ -14,7 +15,7 @@ define(function (require) {
         router.mapNav('Overview');
         router.mapNav('Users');
         router.mapNav('MetadataSchemas');
-        router.mapRoute("", 'viewmodels/Overview', "Overview", false);
+        router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');
     });

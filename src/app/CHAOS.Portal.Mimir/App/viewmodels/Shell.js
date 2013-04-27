@@ -7,6 +7,7 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
     exports.IsAuthenticated = _portal.IsAuthenticated;
     function activate() {
         exports.Router.guardRoute = GuardRoute;
+        exports.Router.handleInvalidRoute = HandleInvalidRoute;
         return exports.Router.activate('ServiceSelection');
     }
     exports.activate = activate;
@@ -15,5 +16,8 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
             return "#/ServiceSelection";
         }
         return true;
+    }
+    function HandleInvalidRoute(route, params) {
+        _router.navigateTo("#/NotFound");
     }
 })

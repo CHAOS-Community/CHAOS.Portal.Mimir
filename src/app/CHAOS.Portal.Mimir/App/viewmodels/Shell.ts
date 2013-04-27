@@ -10,6 +10,7 @@ export var IsAuthenticated = _portal.IsAuthenticated;
 export function activate():JQueryPromise
 {
 	Router.guardRoute = GuardRoute;
+	Router.handleInvalidRoute = HandleInvalidRoute;
 
 	return Router.activate('ServiceSelection');
 }
@@ -21,4 +22,9 @@ function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any
 		return "#/ServiceSelection";
 	}
 	return true;
+}
+
+function HandleInvalidRoute(route: _router.IRouteInfo, params:any):void
+{
+	_router.navigateTo("#/NotFound");
 }
