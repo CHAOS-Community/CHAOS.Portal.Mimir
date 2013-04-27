@@ -26,8 +26,7 @@ function SchemaGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
 		throw response.Error.Message;
 
 	for (var i: number = 0; i < response.Result.Results.length; i++)
-	Schemas.push(response.Result.Results[i]);
-
+		Schemas.push(response.Result.Results[i]);
 
 	if (Schemas().length > 0)
 		ActiveSchema(Schemas()[0]);

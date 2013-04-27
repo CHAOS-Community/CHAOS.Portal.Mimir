@@ -1,2 +1,13 @@
 ﻿<h2>Users</h2>
-<p>Users management here</p>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Users">
+		<li data-bind="css: { active: $data == $parent.ActiveUser() }">
+			<a href="#" data-bind="text: Email, click: $parent.SetActiveUser"></a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveUser">
+		<h3 data-bind="text: Email"></h3>
+		<h4 data-bind="text: Guid"></h4>
+		<input type="text" data-bind="value: SystemPermissions"/>
+	</div>
+</div>

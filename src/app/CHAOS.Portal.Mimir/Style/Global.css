@@ -10,6 +10,13 @@ body
 	padding: 20px;
 }
 
+textarea
+ {
+    resize: none;
+}
+
+/* Shell */
+
 #Menu
 {
 	
@@ -25,8 +32,10 @@ body
 	
 }
 
+/* Metadata schema */
+
 #MetadataSchemaXml 
 {
-	width: 500px;
+	width: 800px;
 	height: 300px;
 }
