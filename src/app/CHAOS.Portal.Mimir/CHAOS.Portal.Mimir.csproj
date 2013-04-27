@@ -94,26 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
-    <Content Include="App\viewmodels\Shell.js.map">
-      <DependentUpon>Shell.ts</DependentUpon>
-    </Content>
     <Content Include="App\Main.js.map">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\MetadataSchemas.js.map">
-      <DependentUpon>MetadataSchemas.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\Users.js.map">
       <DependentUpon>Users.ts</DependentUpon>
-    </Content>
-    <Content Include="App\viewmodels\Overview.js.map">
-      <DependentUpon>Overview.ts</DependentUpon>
-    </Content>
-    <Content Include="App\viewmodels\ServiceSelection.js.map">
-      <DependentUpon>ServiceSelection.ts</DependentUpon>
-    </Content>
-    <Content Include="App\viewmodels\Login.js.map">
-      <DependentUpon>Login.ts</DependentUpon>
     </Content>
     <Content Include="App\Portal.js.map">
       <DependentUpon>Portal.ts</DependentUpon>

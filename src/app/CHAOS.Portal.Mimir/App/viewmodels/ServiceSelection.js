@@ -21,6 +21,6 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
     function SessionAcquired() {
         $.cookie("ServicePath", exports.ServicePath());
         _portal.Client().SessionAcquired().Remove(SessionAcquired);
-        _router.navigateTo("#Login");
+        _router.navigateTo("#/Login");
     }
 })

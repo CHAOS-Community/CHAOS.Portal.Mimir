@@ -25,6 +25,6 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
         $.cookie("Email", exports.Email());
         $.cookie("Password", exports.Password());
         _portal.Client().SessionAuthenticated().Remove(SessionAuthenticated);
-        _router.navigateTo("#Overview");
+        _router.navigateTo("#");
     }
 })

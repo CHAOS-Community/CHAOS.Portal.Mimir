@@ -35,5 +35,5 @@ function SessionAuthenticated():void
 	$.cookie("Password", Password());
 	_portal.Client().SessionAuthenticated().Remove(SessionAuthenticated);
 
-	_router.navigateTo("#Overview");
+	_router.navigateTo("#");
 }

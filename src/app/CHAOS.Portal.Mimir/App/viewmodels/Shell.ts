@@ -9,5 +9,16 @@ export var IsAuthenticated = _portal.IsAuthenticated;
 
 export function activate():JQueryPromise
 {
+	Router.guardRoute = GuardRoute;
+
 	return Router.activate('ServiceSelection');
+}
+
+function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any):any
+{
+	if(!IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name != "ServiceSelection")
+	{
+		return "#/ServiceSelection";
+	}
+	return true;
 }

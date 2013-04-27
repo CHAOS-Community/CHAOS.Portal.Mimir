@@ -6,7 +6,14 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
     exports.Router = _router;
     exports.IsAuthenticated = _portal.IsAuthenticated;
     function activate() {
+        exports.Router.guardRoute = GuardRoute;
         return exports.Router.activate('ServiceSelection');
     }
     exports.activate = activate;
+    function GuardRoute(routeInfo, parameters, instance) {
+        if(!exports.IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name != "ServiceSelection") {
+            return "#/ServiceSelection";
+        }
+        return true;
+    }
 })

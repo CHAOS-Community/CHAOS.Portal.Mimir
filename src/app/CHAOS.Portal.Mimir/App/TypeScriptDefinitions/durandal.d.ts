@@ -454,6 +454,9 @@ declare module "durandal/plugins/router" {
       * This should not normally be overwritten. But advanced users can override this to completely transform the developer's routeInfo input into the final version used to configure the router.
       */
     export var handleInvalidRoute: (route: IRouteInfo, parameters: any) => void;
+
+
+	export var guardRoute: (routeInfo: IRouteInfo, parameters: any, instance:any) => any;
     /**
       * Once the router is required, you can call router.mapAuto(). This is the most basic configuration option. When you call this function (with no parameters) it tells the router to directly correlate route parameters to module names in the viewmodels folder.
       */

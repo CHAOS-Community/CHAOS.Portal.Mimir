@@ -28,5 +28,5 @@ function SessionAcquired():void
 {
 	$.cookie("ServicePath", ServicePath());
 	_portal.Client().SessionAcquired().Remove(SessionAcquired);
-	_router.navigateTo("#Login");
+	_router.navigateTo("#/Login");
 }
