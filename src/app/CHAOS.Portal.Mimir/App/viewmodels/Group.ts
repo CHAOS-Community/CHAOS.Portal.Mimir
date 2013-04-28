@@ -52,3 +52,12 @@ export function SaveActiveItem():void
 	else
 		CHAOS.Portal.Client.Group.Update(ActiveItem().Guid, ActiveItem().Name, ActiveItem().SystemPermission);
 }
+
+export function DeleteActiveItem():void
+{
+	if(ActiveItem().Guid != "")
+		CHAOS.Portal.Client.Group.Delete(ActiveItem().Guid);
+
+	Items.remove(ActiveItem());
+	ActiveItem(Items().length == 0 ? null : Items()[0]);
+}

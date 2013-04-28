@@ -46,4 +46,12 @@ define(["require", "exports"], function(require, exports) {
         }
     }
     exports.SaveActiveItem = SaveActiveItem;
+    function DeleteActiveItem() {
+        if(exports.ActiveItem().Guid != "") {
+            CHAOS.Portal.Client.Group.Delete(exports.ActiveItem().Guid);
+        }
+        exports.Items.remove(exports.ActiveItem());
+        exports.ActiveItem(exports.Items().length == 0 ? null : exports.Items()[0]);
+    }
+    exports.DeleteActiveItem = DeleteActiveItem;
 })
