@@ -23,8 +23,27 @@ define(["require", "exports"], function(require, exports) {
             SetActiveItem(exports.Items()[0]);
         }
     }
-    function SetActiveItem(schema) {
-        exports.ActiveItem(schema);
+    function SetActiveItem(item) {
+        exports.ActiveItem(item);
     }
     exports.SetActiveItem = SetActiveItem;
+    function CreateItem() {
+        var item = {
+            Name: "NewItem",
+            DateCreated: 0,
+            Guid: "",
+            SystemPermission: 0
+        };
+        exports.Items.push(item);
+        exports.ActiveItem(item);
+    }
+    exports.CreateItem = CreateItem;
+    function SaveActiveItem() {
+        if(exports.ActiveItem().Guid == "") {
+            CHAOS.Portal.Client.Group.Create(exports.ActiveItem().Name, exports.ActiveItem().SystemPermission);
+        } else {
+            CHAOS.Portal.Client.Group.Update(exports.ActiveItem().Guid, exports.ActiveItem().Name, exports.ActiveItem().SystemPermission);
+        }
+    }
+    exports.SaveActiveItem = SaveActiveItem;
 })

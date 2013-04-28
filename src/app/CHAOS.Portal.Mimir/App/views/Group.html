@@ -1,4 +1,7 @@
 ﻿<h2>Group</h2>
+<button class="btn btn-success" data-bind="click: CreateItem">Add new group</button>
+<br/>
+<br/>
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs" data-bind="foreach: Items">
 		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
@@ -9,7 +12,32 @@
 	</ul>
 	<div class="tab-content" data-bind="with: ActiveItem">
 		<h3 data-bind="text: Name"></h3>
-		<h4 data-bind="text: Guid"></h4>
-		<input type="text" data-bind="value: SystemPermission"/>
+		<form class="form-horizontal" data-bind="submit: $parent.SaveActiveItem">
+			<div class="control-group">
+				<label class="control-label">Guid:</label>
+				<div class="controls" data-bind="text: Guid"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Created:</label>
+				<div class="controls" data-bind="text: new Date(DateCreated * 1000)"></div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="Name" data-bind="value: Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="SystemPermission">System Permission:</label>
+				<div class="controls">
+					<input type="text" id="SystemPermission" placeholder="System Permission" data-bind="value: SystemPermission"/>
+				</div>
+			</div>
+			<div class="form-horizontal">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary">Update</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

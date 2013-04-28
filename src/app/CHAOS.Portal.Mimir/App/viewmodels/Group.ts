@@ -32,7 +32,23 @@ function ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
 		SetActiveItem(Items()[0]);
 }
 
-export function SetActiveItem(schema:any):void
+export function SetActiveItem(item:any):void
 {
-	ActiveItem(schema);
+	ActiveItem(item);
+}
+
+export function CreateItem():void
+{
+	var item = { Name: "NewItem", DateCreated: 0, Guid: "", SystemPermission: 0 };
+
+	Items.push(item);
+	ActiveItem(item);
+}
+
+export function SaveActiveItem():void
+{
+	if(ActiveItem().Guid == "")
+		CHAOS.Portal.Client.Group.Create(ActiveItem().Name, ActiveItem().SystemPermission);
+	else
+		CHAOS.Portal.Client.Group.Update(ActiveItem().Guid, ActiveItem().Name, ActiveItem().SystemPermission);
 }
