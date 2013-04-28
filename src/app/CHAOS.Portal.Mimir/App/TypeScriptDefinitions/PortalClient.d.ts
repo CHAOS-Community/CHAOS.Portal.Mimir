@@ -97,6 +97,12 @@ module CHAOS.Portal.Client {
         static Get(pageIndex?: number, pageSize?: number, serviceCaller?: IServiceCaller): ICallState;
         static GetCurrent(serviceCaller?: IServiceCaller): ICallState;
     }
+    class Group {
+        static Get(serviceCaller?: IServiceCaller): ICallState;
+        static Create(name: string, systemPermission: number, serviceCaller?: IServiceCaller): ICallState;
+        static Update(guid: string, newName: string, newSystemPermission?: number, serviceCaller?: IServiceCaller): ICallState;
+        static Delete(guid: string, serviceCaller?: IServiceCaller): ICallState;
+    }
     class View {
         static Get(view: string, query?: string, sort?: string, pageIndex?: number, pageSize?: number, serviceCaller?: IServiceCaller): ICallState;
         static List(serviceCaller?: IServiceCaller): ICallState;
@@ -119,12 +125,27 @@ module CHAOS.Portal.Client {
     class Folder {
         static Get(id?: number, folderTypeID?: number, parentID?: number, serviceCaller?: IServiceCaller): ICallState;
     }
+    class FolderType {
+        static Get(name?: string, serviceCaller?: IServiceCaller): ICallState;
+    }
+    class Format {
+        static Get(name?: string, serviceCaller?: IServiceCaller): ICallState;
+    }
+    class FormatType {
+        static Get(name?: string, serviceCaller?: IServiceCaller): ICallState;
+    }
+    class Language {
+        static Get(name?: string, languageCode?: string, serviceCaller?: IServiceCaller): ICallState;
+    }
     class Object {
         static Create(guid: string, objectTypeID: number, folderID: number, serviceCaller?: IServiceCaller): ICallState;
         static Get(query?: string, sort?: string, accessPointGUID?: string, pageIndex?: number, pageSize?: number, includeMetadata?: bool, includeFiles?: bool, includeObjectRelations?: bool, includeAccessPoints?: bool, serviceCaller?: IServiceCaller): ICallState;
         static GetByFolderID(folderID: number, includeChildFolders?: bool, sort?: string, accessPointGUID?: string, pageIndex?: number, pageSize?: number, includeMetadata?: bool, includeFiles?: bool, includeObjectRelations?: bool, includeAccessPoints?: bool, serviceCaller?: IServiceCaller): ICallState;
         static GetByObjectGUID(objectGUID: string, accessPointGUID?: string, includeMetadata?: bool, includeFiles?: bool, includeObjectRelations?: bool, includeAccessPoints?: bool, serviceCaller?: IServiceCaller): ICallState;
         static SetPublishSettings(objectGUID: string, accessPointGUID: string, startDate: Date, endDate: Date, serviceCaller?: IServiceCaller): ICallState;
+    }
+    class ObjectRelationType {
+        static Get(value?: string, serviceCaller?: IServiceCaller): ICallState;
     }
     class Metadata {
         static Set(objectGUID: string, metadataSchemaGUID: string, languageCode: string, revisionID: number, metadataXML: string, serviceCaller?: IServiceCaller): ICallState;

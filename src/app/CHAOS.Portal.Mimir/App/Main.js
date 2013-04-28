@@ -14,8 +14,14 @@ define(function (require) {
         router.mapRoute('Login', null, null, false);
         router.mapNav('Overview');
         router.mapNav('Users');
+        router.mapNav('Group');
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
+        router.mapNav('ObjectRelationType');
+        router.mapNav('FolderType');
+        router.mapNav('FormatType');
+        router.mapNav('Format');
+        router.mapNav('Language');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');
