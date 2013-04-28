@@ -1,4 +1,10 @@
-﻿<div id="Menu" class="navbar">
+﻿<div data-bind="foreach: Notifications.Notifications">
+	<div class="alert">
+		<button type="button" class="close" data-dismiss="alert" data-bind="click: $parent.Notifications.RemoveNotification">&times;</button>
+		<p data-bind="text: Text"></p>
+	</div>
+</div>
+<div id="Menu" class="navbar">
   <div class="navbar-inner">
     <a class="brand" href="#">Mimir</a>
 	<ul class="nav" data-bind="foreach: Router.visibleRoutes">

@@ -1,4 +1,6 @@
-define(["require", "exports"], function(require, exports) {
+define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
+    var _notification = ___notification__;
+
     exports.Items = ko.observableArray();
     exports.ActiveItem = ko.observable();
     function activate() {
@@ -48,10 +50,15 @@ define(["require", "exports"], function(require, exports) {
     exports.SaveActiveItem = SaveActiveItem;
     function DeleteActiveItem() {
         if(exports.ActiveItem().Guid != "") {
-            CHAOS.Portal.Client.Group.Delete(exports.ActiveItem().Guid);
+            CHAOS.Portal.Client.Group.Delete(exports.ActiveItem().Guid).WithCallback(DeleteCompleted);
         }
         exports.Items.remove(exports.ActiveItem());
         exports.ActiveItem(exports.Items().length == 0 ? null : exports.Items()[0]);
     }
     exports.DeleteActiveItem = DeleteActiveItem;
+    function DeleteCompleted(response) {
+        if(response.Error != null) {
+            _notification.AddNotification("Delete group failed: " + response.Error.Message);
+        }
+    }
 })

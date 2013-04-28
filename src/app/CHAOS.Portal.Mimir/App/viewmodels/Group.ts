@@ -2,6 +2,8 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
+import _notification = module("Notification");
+
 export var Items: KnockoutObservableArray = ko.observableArray();
 export var ActiveItem: KnockoutObservableAny = ko.observable();
 
@@ -56,8 +58,14 @@ export function SaveActiveItem():void
 export function DeleteActiveItem():void
 {
 	if(ActiveItem().Guid != "")
-		CHAOS.Portal.Client.Group.Delete(ActiveItem().Guid);
+		CHAOS.Portal.Client.Group.Delete(ActiveItem().Guid).WithCallback(DeleteCompleted);
 
 	Items.remove(ActiveItem());
 	ActiveItem(Items().length == 0 ? null : Items()[0]);
+}
+
+function DeleteCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+{
+	if (response.Error != null)
+		_notification.AddNotification("Delete group failed: " + response.Error.Message);
 }

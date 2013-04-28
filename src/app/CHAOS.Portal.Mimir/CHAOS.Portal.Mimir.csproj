@@ -45,6 +45,10 @@
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\Portal.ts" />
+    <TypeScriptCompile Include="App\Notification.ts" />
+    <Content Include="App\Notification.js">
+      <DependentUpon>Notification.ts</DependentUpon>
+    </Content>
     <Content Include="App\Portal.js">
       <DependentUpon>Portal.ts</DependentUpon>
     </Content>

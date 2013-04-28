@@ -3,9 +3,11 @@
 
 import _router =  module("durandal/plugins/router");
 import _portal = module("Portal");
+import _notification = module("Notification");
 
 export var Router = _router;
 export var IsAuthenticated = _portal.IsAuthenticated;
+export var Notifications = _notification;
 
 export function activate():JQueryPromise
 {
@@ -23,6 +25,7 @@ function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any
 	}
 	return true;
 }
+
 
 function HandleInvalidRoute(route: _router.IRouteInfo, params:any):void
 {
