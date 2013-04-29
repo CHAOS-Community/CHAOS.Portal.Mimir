@@ -1,30 +1,38 @@
-define(["require", "exports", "durandal/plugins/router", "Portal"], function(require, exports, ___router__, ___portal__) {
+define(["require", "exports", "durandal/plugins/router"], function(require, exports, ___router__) {
     var _router = ___router__;
 
-    var _portal = ___portal__;
-
-    function activate() {
-        var email = $.cookie("Email");
-        var password = $.cookie("Password");
-        if(email != null) {
-            exports.Email(email);
-            exports.Password(password);
+    
+    var Login = (function () {
+        function Login() {
+            this.Email = ko.observable("");
+            this.Password = ko.observable("");
+            this.CanEdit = ko.observable(true);
+            this.InvalidCredentials = ko.observable(false);
         }
-    }
-    exports.activate = activate;
-    exports.Email = ko.observable("");
-    exports.Password = ko.observable("");
-    exports.IsWorking = ko.observable(false);
-    function Login() {
-        exports.IsWorking(true);
-        _portal.Client().SessionAuthenticated().Add(SessionAuthenticated);
-        CHAOS.Portal.Client.EmailPassword.Login(exports.Email(), exports.Password());
-    }
-    exports.Login = Login;
-    function SessionAuthenticated() {
-        $.cookie("Email", exports.Email());
-        $.cookie("Password", exports.Password());
-        _portal.Client().SessionAuthenticated().Remove(SessionAuthenticated);
-        _router.navigateTo("#");
-    }
+        Login.prototype.activate = function () {
+            var email = $.cookie("Email");
+            var password = $.cookie("Password");
+            if(email != null) {
+                this.Email(email);
+                this.Password(password);
+            }
+        };
+        Login.prototype.Login = function () {
+            this.CanEdit(false);
+            this.InvalidCredentials(false);
+            CHAOS.Portal.Client.EmailPassword.Login(this.Email(), this.Password()).WithCallback(this.SessionAuthenticated, this);
+        };
+        Login.prototype.SessionAuthenticated = function (response) {
+            if(response.Error == null) {
+                $.cookie("Email", this.Email());
+                $.cookie("Password", this.Password());
+                _router.navigateTo("#");
+            } else {
+                this.InvalidCredentials(true);
+                this.CanEdit(true);
+            }
+        };
+        return Login;
+    })();
+    exports.Login = Login;    
 })

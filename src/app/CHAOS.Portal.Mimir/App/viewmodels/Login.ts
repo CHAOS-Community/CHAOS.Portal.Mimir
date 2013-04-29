@@ -6,34 +6,45 @@
 import _router =  module("durandal/plugins/router");
 import _portal =  module("Portal");
 
-export function activate()
+export class Login
 {
-	var email = $.cookie("Email");
-	var password = $.cookie("Password");
+	public Email: KnockoutObservableString = ko.observable("");
+	public Password: KnockoutObservableString = ko.observable("");
+	public CanEdit:KnockoutObservableBool = ko.observable(true);
+	public InvalidCredentials:KnockoutObservableBool = ko.observable(false);
 
-	if (email != null)
+	public activate():void
 	{
-		Email(email);
-		Password(password);
+		var email = $.cookie("Email");
+		var password = $.cookie("Password");
+
+		if (email != null)
+		{
+			this.Email(email);
+			this.Password(password);
+		}
 	}
-}
 
-export var Email: KnockoutObservableString = ko.observable("");
-export var Password: KnockoutObservableString = ko.observable("");
-export var IsWorking:KnockoutObservableBool = ko.observable(false);
+	public Login():void
+	{
+		this.CanEdit(false);
+		this.InvalidCredentials(false);
+		CHAOS.Portal.Client.EmailPassword.Login(this.Email(), this.Password()).WithCallback(this.SessionAuthenticated, this);
+	}
 
-export function Login()
-{
-	IsWorking(true);
-	_portal.Client().SessionAuthenticated().Add(SessionAuthenticated);
-	CHAOS.Portal.Client.EmailPassword.Login(Email(), Password());
-}
+	private SessionAuthenticated(response:CHAOS.Portal.Client.IPortalResponse):void
+	{
+		if(response.Error == null)
+		{
+			$.cookie("Email", this.Email());
+			$.cookie("Password", this.Password());
 
-function SessionAuthenticated():void
-{
-	$.cookie("Email", Email());
-	$.cookie("Password", Password());
-	_portal.Client().SessionAuthenticated().Remove(SessionAuthenticated);
-
-	_router.navigateTo("#");
+			_router.navigateTo("#");
+		}
+		else
+		{
+			this.InvalidCredentials(true);
+			this.CanEdit(true);
+		}
+	}
 }

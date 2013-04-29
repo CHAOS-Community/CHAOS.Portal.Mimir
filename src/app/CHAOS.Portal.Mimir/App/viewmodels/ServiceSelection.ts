@@ -6,27 +6,36 @@
 import _router =  module("durandal/plugins/router");
 import _portal =  module("Portal");
 
-export function activate()
+export class ServiceSelection
 {
-	var cookieValue = $.cookie("ServicePath");
+	public ServicePath:KnockoutObservableString = ko.observable("https://");
+	public CanEdit:KnockoutObservableBool = ko.observable(true);
+	private _listener: () => void;
 
-	if (cookieValue != null)
-		ServicePath(cookieValue);
-}
+	constructor()
+	{
+		this._listener = () => this.SessionAcquired();
+	}
+	
+	public activate():void
+	{
+		var cookieValue = $.cookie("ServicePath");
 
-export var ServicePath:KnockoutObservableString = ko.observable("https://");
-export var IsWorking:KnockoutObservableBool = ko.observable(false);
+		if (cookieValue != null)
+			this.ServicePath(cookieValue);
+	}
 
-export function SetServicePath()
-{
-	IsWorking(true);
-	_portal.Initialize(ServicePath());
-	_portal.Client().SessionAcquired().Add(SessionAcquired);
-}
+	public SetServicePath()
+	{
+		this.CanEdit(false);
+		_portal.Initialize(this.ServicePath());
+		_portal.Client().SessionAcquired().Add(this._listener);
+	}
 
-function SessionAcquired():void
-{
-	$.cookie("ServicePath", ServicePath());
-	_portal.Client().SessionAcquired().Remove(SessionAcquired);
-	_router.navigateTo("#/Login");
+	public SessionAcquired():void
+	{
+		$.cookie("ServicePath", this.ServicePath());
+		_portal.Client().SessionAcquired().Remove(this._listener);
+		_router.navigateTo("#/Login");
+	}
 }

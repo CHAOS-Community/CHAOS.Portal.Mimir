@@ -22,6 +22,19 @@ define(require =>
 	app.start().then(() => 
 	{
         viewLocator.useConvention();
+
+		var defImpl = router.getActivatableInstance; //default Implementation
+		router.getActivatableInstance = function (routeInfo, params, module) 
+		{
+			var functionName = routeInfo.name; //whatever convention to be used
+			if (typeof module[functionName] == 'function')
+			{
+				var instance = new module[functionName]();
+				instance.__moduleId__ = module.__moduleId__;
+				return instance;
+			}
+			else return defImpl(routeInfo, params, module);
+		}
         
         router.useConvention();
         router.mapRoute('ServiceSelection', null, null, false);

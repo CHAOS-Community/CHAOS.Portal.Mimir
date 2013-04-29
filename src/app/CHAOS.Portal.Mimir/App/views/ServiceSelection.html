@@ -1,5 +1,14 @@
 ﻿<h2>Service Selection</h2>
-<form data-bind="submit: SetServicePath, enable: !IsWorking()">
-	<input type="text" placeholder="Service path" data-bind="value: ServicePath"/><br/>
-	<input type="submit" class="btn btn-primary" value="Continue"/>
+<form class="form-horizontal" data-bind="submit: SetServicePath">
+	<div class="control-group">
+		<label class="control-label" for="ServicePath">Service Path:</label>
+		<div class="controls">
+			<input id="ServicePath" type="text" placeholder="https://api.domain.com/" title="Full service path including protocol" pattern="https?://.+\..+" data-bind="value: ServicePath, enable: CanEdit" class="input-xlarge" required/>
+		</div>
+	</div>
+	<div class="control-group">
+		<div class="controls">
+			<input type="submit" class="btn" value="Select Service" data-bind="enable: CanEdit"/>
+		</div>
+	</div>
 </form>

@@ -9,6 +9,17 @@ define(function (require) {
     app.title = "Mimir";
     app.start().then(function () {
         viewLocator.useConvention();
+        var defImpl = router.getActivatableInstance;
+        router.getActivatableInstance = function (routeInfo, params, module) {
+            var functionName = routeInfo.name;
+            if(typeof module[functionName] == 'function') {
+                var instance = new module[functionName]();
+                instance.__moduleId__ = module.__moduleId__;
+                return instance;
+            } else {
+                return defImpl(routeInfo, params, module);
+            }
+        };
         router.useConvention();
         router.mapRoute('ServiceSelection', null, null, false);
         router.mapRoute('Login', null, null, false);
