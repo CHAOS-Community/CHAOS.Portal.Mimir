@@ -3,69 +3,50 @@
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
 import _notification = module("Notification");
+import _itemListPage = module("ItemListPage");
 
-export var Items: KnockoutObservableArray = ko.observableArray();
-export var ActiveItem: KnockoutObservableAny = ko.observable();
-
-export function activate()
+export class Group extends _itemListPage.ViewModel
 {
-	ActiveItem(null);
-	Items.removeAll();
+	public CreateItem():GroupItem
+	{
+		var item = new GroupItem();
+		item.Name("New Group");
+		return item;
+	}
 
-	var deferred = $.Deferred();
+	public ApplyDataToItem(item:GroupItem, data:any):void
+	{
+		item.Guid(data.Guid);
+		item.Name(data.Name);
+		item.SystemPermission(data.SystemPermission);
+		item.DateCreated(new Date(data.DateCreated * 1000));
+	}
 
-	CHAOS.Portal.Client.Group.Get().WithCallback(response => {
-															ItemsGetCompleted(response);
-															deferred.resolve();
-														});
+	public GetItems():CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.Group.Get();
+	}
 
-	return deferred.promise();
+	public SaveItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
+	}
+
+	public SaveNewItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
+	}
+
+	public DeleteItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.Group.Delete(item.Guid());
+	}
 }
 
-function ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+export class GroupItem extends _itemListPage.Item
 {
-	if (response.Error != null)
-		throw response.Error.Message;
-
-	for (var i: number = 0; i < response.Result.Results.length; i++)
-		Items.push(response.Result.Results[i]);
-
-	if (Items().length > 0)
-		SetActiveItem(Items()[0]);
-}
-
-export function SetActiveItem(item:any):void
-{
-	ActiveItem(item);
-}
-
-export function CreateItem():void
-{
-	var item = { Name: "NewItem", DateCreated: 0, Guid: "", SystemPermission: 0 };
-
-	Items.push(item);
-	ActiveItem(item);
-}
-
-export function SaveActiveItem():void
-{
-	if(ActiveItem().Guid == "")
-		CHAOS.Portal.Client.Group.Create(ActiveItem().Name, ActiveItem().SystemPermission);
-	else
-		CHAOS.Portal.Client.Group.Update(ActiveItem().Guid, ActiveItem().Name, ActiveItem().SystemPermission);
-}
-
-export function DeleteActiveItem():void
-{
-	if(ActiveItem().Guid != "")
-		CHAOS.Portal.Client.Group.Delete(ActiveItem().Guid).WithCallback(DeleteCompleted);
-
-	Items.remove(ActiveItem());
-	ActiveItem(Items().length == 0 ? null : Items()[0]);
-}
-
-function DeleteCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
-{
-	if (response.Error != null)
-		_notification.AddNotification("Delete group failed: " + response.Error.Message);
+	public Guid:KnockoutObservableString = ko.observable("");
+	public Name:KnockoutObservableString = ko.observable("");
+	public SystemPermission:KnockoutObservableNumber = ko.observable(0);
+	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
 }

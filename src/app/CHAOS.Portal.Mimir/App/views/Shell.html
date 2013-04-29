@@ -1,5 +1,5 @@
 ﻿<div data-bind="foreach: Notifications.Notifications">
-	<div class="alert">
+	<div class="alert" data-bind="css: {'alert-error': IsError}">
 		<button type="button" class="close" data-dismiss="alert" data-bind="click: $parent.Notifications.RemoveNotification">&times;</button>
 		<p data-bind="text: Text"></p>
 	</div>

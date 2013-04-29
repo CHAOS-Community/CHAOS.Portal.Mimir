@@ -41,6 +41,10 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <TypeScriptCompile Include="App\Main.ts" />
+    <TypeScriptCompile Include="App\ItemListPage.ts" />
+    <Content Include="App\ItemListPage.js">
+      <DependentUpon>ItemListPage.ts</DependentUpon>
+    </Content>
     <Content Include="App\Main.js">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>

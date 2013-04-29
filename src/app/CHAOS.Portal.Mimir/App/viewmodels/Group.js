@@ -1,64 +1,55 @@
-define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
-    var _notification = ___notification__;
+var __extends = this.__extends || function (d, b) {
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
+    
+    var _itemListPage = ___itemListPage__;
 
-    exports.Items = ko.observableArray();
-    exports.ActiveItem = ko.observable();
-    function activate() {
-        exports.ActiveItem(null);
-        exports.Items.removeAll();
-        var deferred = $.Deferred();
-        CHAOS.Portal.Client.Group.Get().WithCallback(function (response) {
-            ItemsGetCompleted(response);
-            deferred.resolve();
-        });
-        return deferred.promise();
-    }
-    exports.activate = activate;
-    function ItemsGetCompleted(response) {
-        if(response.Error != null) {
-            throw response.Error.Message;
+    var Group = (function (_super) {
+        __extends(Group, _super);
+        function Group() {
+            _super.apply(this, arguments);
+
         }
-        for(var i = 0; i < response.Result.Results.length; i++) {
-            exports.Items.push(response.Result.Results[i]);
-        }
-        if(exports.Items().length > 0) {
-            SetActiveItem(exports.Items()[0]);
-        }
-    }
-    function SetActiveItem(item) {
-        exports.ActiveItem(item);
-    }
-    exports.SetActiveItem = SetActiveItem;
-    function CreateItem() {
-        var item = {
-            Name: "NewItem",
-            DateCreated: 0,
-            Guid: "",
-            SystemPermission: 0
+        Group.prototype.CreateItem = function () {
+            var item = new GroupItem();
+            item.Name("New Group");
+            return item;
         };
-        exports.Items.push(item);
-        exports.ActiveItem(item);
-    }
-    exports.CreateItem = CreateItem;
-    function SaveActiveItem() {
-        if(exports.ActiveItem().Guid == "") {
-            CHAOS.Portal.Client.Group.Create(exports.ActiveItem().Name, exports.ActiveItem().SystemPermission);
-        } else {
-            CHAOS.Portal.Client.Group.Update(exports.ActiveItem().Guid, exports.ActiveItem().Name, exports.ActiveItem().SystemPermission);
+        Group.prototype.ApplyDataToItem = function (item, data) {
+            item.Guid(data.Guid);
+            item.Name(data.Name);
+            item.SystemPermission(data.SystemPermission);
+            item.DateCreated(new Date(data.DateCreated * 1000));
+        };
+        Group.prototype.GetItems = function () {
+            return CHAOS.Portal.Client.Group.Get();
+        };
+        Group.prototype.SaveItem = function (item) {
+            return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
+        };
+        Group.prototype.SaveNewItem = function (item) {
+            return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
+        };
+        Group.prototype.DeleteItem = function (item) {
+            return CHAOS.Portal.Client.Group.Delete(item.Guid());
+        };
+        return Group;
+    })(_itemListPage.ViewModel);
+    exports.Group = Group;    
+    var GroupItem = (function (_super) {
+        __extends(GroupItem, _super);
+        function GroupItem() {
+            _super.apply(this, arguments);
+
+            this.Guid = ko.observable("");
+            this.Name = ko.observable("");
+            this.SystemPermission = ko.observable(0);
+            this.DateCreated = ko.observable(new Date(Date.now()));
         }
-    }
-    exports.SaveActiveItem = SaveActiveItem;
-    function DeleteActiveItem() {
-        if(exports.ActiveItem().Guid != "") {
-            CHAOS.Portal.Client.Group.Delete(exports.ActiveItem().Guid).WithCallback(DeleteCompleted);
-        }
-        exports.Items.remove(exports.ActiveItem());
-        exports.ActiveItem(exports.Items().length == 0 ? null : exports.Items()[0]);
-    }
-    exports.DeleteActiveItem = DeleteActiveItem;
-    function DeleteCompleted(response) {
-        if(response.Error != null) {
-            _notification.AddNotification("Delete group failed: " + response.Error.Message);
-        }
-    }
+        return GroupItem;
+    })(_itemListPage.Item);
+    exports.GroupItem = GroupItem;    
 })
