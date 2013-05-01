@@ -1,14 +1,51 @@
 ﻿<h2>Object Types</h2>
+<button class="btn btn-success" data-bind="click: AddNewItem">
+	<i class="icon-plus-sign icon-white"></i> 
+	Add new object type
+</button>
+<br/>
+<br/>
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs" data-bind="foreach: Items">
 		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
-			<a href="#" data-bind="click: $parent.SetActiveItem">
-				<span data-bind="text: Name"></span> - <span data-bind="text: ID"></span>
+			<a href="#" data-bind="click: SetAsActive">
+				<span data-bind="text: Name"></span> 
+				(<span data-bind="text: ID"></span>)
+				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
 			</a>
 		</li>
 	</ul>
 	<div class="tab-content" data-bind="with: ActiveItem">
-		<h3 data-bind="text: ID"></h3>
-		<input type="text" data-bind="value: Name"/>
+		<h3 data-bind="text: Name"></h3>
+		<form class="form-horizontal" data-bind="submit: Save">
+			<div class="control-group">
+				<label class="control-label">ID:</label>
+				<div class="controls">
+					<p data-bind="text: ID"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="Name" data-bind="value: Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" data-bind="visible: !IsClientsideItem()">
+						<i class="icon-ok-sign icon-white"></i>
+						Update
+					</button>
+					<button type="submit" class="btn btn-success" data-bind="visible: IsClientsideItem">
+						<i class="icon-plus-sign icon-white"></i>
+						Create
+					</button>
+					<button type="button" class="btn btn-danger" data-bind="click: Delete">
+						<i class="icon-remove-sign icon-white"></i>
+						Delete
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

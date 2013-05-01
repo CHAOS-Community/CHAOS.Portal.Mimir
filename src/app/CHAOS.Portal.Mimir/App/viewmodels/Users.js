@@ -29,10 +29,10 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             return _super.prototype._SaveItem.call(this, item);
         };
         Users.prototype._SaveNewItem = function (item) {
-            return _super.prototype._SaveItem.call(this, item);
+            return _super.prototype._SaveNewItem.call(this, item);
         };
         Users.prototype._DeleteItem = function (item) {
-            return _super.prototype._SaveItem.call(this, item);
+            return _super.prototype._DeleteItem.call(this, item);
         };
         return Users;
     })(_itemListPage.ViewModel);
@@ -43,7 +43,7 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             _super.apply(this, arguments);
 
             this.Guid = ko.observable("");
-            this.Email = ko.observable("");
+            this.Email = ko.observable("new@user.com");
             this.SystemPermissions = ko.observable(0);
         }
         return UserItem;

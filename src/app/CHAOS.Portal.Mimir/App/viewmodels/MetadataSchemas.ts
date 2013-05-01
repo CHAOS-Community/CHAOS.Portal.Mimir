@@ -2,37 +2,51 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-export var Schemas: KnockoutObservableArray = ko.observableArray();
-export var ActiveSchema: KnockoutObservableAny = ko.observable();
+import _notification = module("Notification");
+import _itemListPage = module("ItemListPage");
 
-export function activate()
+export class MetadataSchemas extends _itemListPage.ViewModel
 {
-	ActiveSchema(null);
-	Schemas.removeAll();
+	public _ItemTypeName:string = "metadata schema";
 
-	var deferred = $.Deferred();
+	public _CreateItem():MetadataSchemaItem
+	{
+		return new MetadataSchemaItem();
+	}
 
-	CHAOS.Portal.Client.MetadataSchema.Get().WithCallback(response => {
-															SchemaGetCompleted(response);
-															deferred.resolve();
-														});
+	public _ApplyDataToItem(item:MetadataSchemaItem, data:any):void
+	{
+		item.Guid(data.Guid);
+		item.Name(data.Name);
+		item.SchemaXml(data.SchemaXml);
+		item.DateCreated(new Date(data.DateCreated * 1000));
+	}
 
-	return deferred.promise();
+	public _GetItems():CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.MetadataSchema.Get();
+	}
+
+	public _SaveItem(item:MetadataSchemaItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.MetadataSchema.Update(item.Name(), item.SchemaXml(), item.Guid());
+	}
+
+	public _SaveNewItem(item:MetadataSchemaItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.MetadataSchema.Create(item.Name(), item.SchemaXml());
+	}
+
+	public _DeleteItem(item:MetadataSchemaItem):CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.MetadataSchema.Delete(item.Guid());
+	}
 }
 
-function SchemaGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+export class MetadataSchemaItem extends _itemListPage.Item
 {
-	if (response.Error != null)
-		throw response.Error.Message;
-
-	for (var i: number = 0; i < response.Result.Results.length; i++)
-		Schemas.push(response.Result.Results[i]);
-
-	if (Schemas().length > 0)
-		ActiveSchema(Schemas()[0]);
-}
-
-export function SetActiveSchema(schema:any):void
-{
-	ActiveSchema(schema);
+	public Guid:KnockoutObservableString = ko.observable("");
+	public Name:KnockoutObservableString = ko.observable("New Schema");
+	public SchemaXml:KnockoutObservableString = ko.observable("");
+	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
 }

@@ -1,5 +1,8 @@
 ﻿<h2>Group</h2>
-<button class="btn btn-success" data-bind="click: AddNewItem">Add new group</button>
+<button class="btn btn-success" data-bind="click: AddNewItem">
+	<i class="icon-plus-sign icon-white"></i> 
+	Add new group
+</button>
 <br/>
 <br/>
 <div class="tabbable tabs-left">
@@ -7,6 +10,7 @@
 		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
 			<a href="#" data-bind="click: SetAsActive">
 				<span data-bind="text: Name"></span>
+				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
 			</a>
 		</li>
 	</ul>
@@ -15,11 +19,15 @@
 		<form class="form-horizontal" data-bind="submit: Save">
 			<div class="control-group">
 				<label class="control-label">Guid:</label>
-				<div class="controls" data-bind="text: Guid"></div>
+				<div class="controls">
+					<p data-bind="text: Guid"></p>
+				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label">Created:</label>
-				<div class="controls" data-bind="text: DateCreated"></div>
+				<div class="controls">
+					<p data-bind="text: DateCreated"></p>
+				</div>
 			</div>
 			<div class="control-group">
 				<label class="control-label" for="Name">Name:</label>
@@ -35,8 +43,18 @@
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<button type="submit" class="btn btn-primary">Update</button>
-					<button type="button" class="btn btn-danger" data-bind="click: Delete">Delete</button>
+					<button type="submit" class="btn btn-primary" data-bind="visible: !IsClientsideItem()">
+						<i class="icon-ok-sign icon-white"></i>
+						Update
+					</button>
+					<button type="submit" class="btn btn-success" data-bind="visible: IsClientsideItem">
+						<i class="icon-plus-sign icon-white"></i>
+						Create
+					</button>
+					<button type="button" class="btn btn-danger" data-bind="click: Delete">
+						<i class="icon-remove-sign icon-white"></i>
+						Delete
+					</button>
 				</div>
 			</div>
 		</form>

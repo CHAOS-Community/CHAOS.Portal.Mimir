@@ -129,32 +129,43 @@ export class ViewModel
 
 	public _CreateItem():Item
 	{
+		_notification.AddNotification("CreateItem not implemented", true);
 		throw "CreateItem not implemented";
+		return null;
 	}
 
 	public _ApplyDataToItem(item:Item, data:any):void
 	{
+		_notification.AddNotification("ConvertItem not implemented", true);
 		throw "ConvertItem not implemented";
 	}
 
 	public _GetItems():CHAOS.Portal.Client.ICallState
 	{
+		_notification.AddNotification("GetItems not implemented", true);
 		throw "GetItems not implemented";
+		return null;
 	}
 
 	public _SaveItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
+		_notification.AddNotification("SaveItem not implemented", true);
 		throw "SaveItem not implemented";
+		return null;
 	}
 
 	public _SaveNewItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
+		_notification.AddNotification("SaveNewItem not implemented", true);
 		throw "SaveNewItem not implemented";
+		return null;
 	}
 
 	public _DeleteItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
+		_notification.AddNotification("DeleteItem not implemented", true);
 		throw "DeleteItem not implemented";
+		return null;
 	}
 }
 

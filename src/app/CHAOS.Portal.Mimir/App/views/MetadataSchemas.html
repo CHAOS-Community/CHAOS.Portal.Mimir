@@ -1,14 +1,62 @@
 ﻿<h2>Metadata Schemas</h2>
+<button class="btn btn-success" data-bind="click: AddNewItem">
+	<i class="icon-plus-sign icon-white"></i> 
+	Add new schema
+</button>
+<br/>
+<br/>
 <div class="tabbable tabs-left">
-	<ul class="nav nav-tabs" data-bind="foreach: Schemas">
-		<li data-bind="css: { active: $data == $parent.ActiveSchema()}">
-			<a href="#" data-bind="text: Name, click: $parent.SetActiveSchema"></a>
+	<ul class="nav nav-tabs" data-bind="foreach: Items">
+		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
+			<a href="#" data-bind="click: SetAsActive">
+				<span data-bind="text: Name"></span>
+				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
+			</a>
 		</li>
 	</ul>
-	<div class="tab-content" data-bind="with: ActiveSchema">
-		<h3 data-bind="text:Name"></h3>
-		<h4 data-bind="text:Guid"></h4>
-		<h5 data-bind="text: new Date(DateCreated * 1000)"></h5>
-		<textarea id="MetadataSchemaXml" data-bind="value: SchemaXml"></textarea>
+	<div class="tab-content" data-bind="with: ActiveItem">
+		<h3 data-bind="text: Name"></h3>
+		<form class="form-horizontal" data-bind="submit: Save">
+			<div class="control-group">
+				<label class="control-label">Guid:</label>
+				<div class="controls">
+					<p data-bind="text: Guid"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Created:</label>
+				<div class="controls">
+					<p data-bind="text: DateCreated"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="Name" data-bind="value: Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="SchemaXml">Schema Xml:</label>
+				<div class="controls">
+					<textarea id="SchemaXml" placeholder="Schema Xml" data-bind="value: SchemaXml"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" data-bind="visible: !IsClientsideItem()">
+						<i class="icon-ok-sign icon-white"></i>
+						Update
+					</button>
+					<button type="submit" class="btn btn-success" data-bind="visible: IsClientsideItem">
+						<i class="icon-plus-sign icon-white"></i>
+						Create
+					</button>
+					<button type="button" class="btn btn-danger" data-bind="click: Delete">
+						<i class="icon-remove-sign icon-white"></i>
+						Delete
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

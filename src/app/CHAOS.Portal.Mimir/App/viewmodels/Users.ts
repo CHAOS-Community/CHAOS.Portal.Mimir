@@ -33,18 +33,18 @@ export class Users extends _itemListPage.ViewModel
 
 	public _SaveNewItem(item:UserItem):CHAOS.Portal.Client.ICallState
 	{
-		return super._SaveItem(item);
+		return super._SaveNewItem(item);
 	}
 
 	public _DeleteItem(item:UserItem):CHAOS.Portal.Client.ICallState
 	{
-		return super._SaveItem(item);
+		return super._DeleteItem(item);
 	}
 }
 
 export class UserItem extends _itemListPage.Item
 {
 	public Guid:KnockoutObservableString = ko.observable("");
-	public Email:KnockoutObservableString = ko.observable("");
+	public Email:KnockoutObservableString = ko.observable("new@user.com");
 	public SystemPermissions:KnockoutObservableNumber = ko.observable(0);
 }

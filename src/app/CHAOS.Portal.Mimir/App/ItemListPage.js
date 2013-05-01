@@ -107,22 +107,33 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             }
         };
         ViewModel.prototype._CreateItem = function () {
+            _notification.AddNotification("CreateItem not implemented", true);
             throw "CreateItem not implemented";
+            return null;
         };
         ViewModel.prototype._ApplyDataToItem = function (item, data) {
+            _notification.AddNotification("ConvertItem not implemented", true);
             throw "ConvertItem not implemented";
         };
         ViewModel.prototype._GetItems = function () {
+            _notification.AddNotification("GetItems not implemented", true);
             throw "GetItems not implemented";
+            return null;
         };
         ViewModel.prototype._SaveItem = function (item) {
+            _notification.AddNotification("SaveItem not implemented", true);
             throw "SaveItem not implemented";
+            return null;
         };
         ViewModel.prototype._SaveNewItem = function (item) {
+            _notification.AddNotification("SaveNewItem not implemented", true);
             throw "SaveNewItem not implemented";
+            return null;
         };
         ViewModel.prototype._DeleteItem = function (item) {
+            _notification.AddNotification("DeleteItem not implemented", true);
             throw "DeleteItem not implemented";
+            return null;
         };
         return ViewModel;
     })();

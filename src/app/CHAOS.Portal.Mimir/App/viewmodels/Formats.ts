@@ -2,37 +2,55 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-export var Items: KnockoutObservableArray = ko.observableArray();
-export var ActiveItem: KnockoutObservableAny = ko.observable();
+import _notification = module("Notification");
+import _itemListPage = module("ItemListPage");
 
-export function activate()
+export class Formats extends _itemListPage.ViewModel
 {
-	ActiveItem(null);
-	Items.removeAll();
+	public _ItemTypeName:string = "format";
 
-	var deferred = $.Deferred();
+	public _CreateItem():FormatItem
+	{
+		return new FormatItem();
+	}
 
-	CHAOS.Portal.Client.Format.Get().WithCallback(response => {
-															ItemsGetCompleted(response);
-															deferred.resolve();
-														});
+	public _ApplyDataToItem(item:FormatItem, data:any):void
+	{
+		item.ID(data.ID);
+		item.Name(data.Name);
+		item.FormatCategoryID(data.FormatCategoryID);
+		item.FormatXml(data.FormatXml);
+		item.MimeType(data.MimeType);
+		item.Extension(data.Extension);
+	}
 
-	return deferred.promise();
+	public _GetItems():CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.Format.Get();
+	}
+
+	public _SaveItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._SaveItem(item);
+	}
+
+	public _SaveNewItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._SaveNewItem(item);
+	}
+
+	public _DeleteItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._DeleteItem(item);
+	}
 }
 
-function ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+export class FormatItem extends _itemListPage.Item
 {
-	if (response.Error != null)
-		throw response.Error.Message;
-
-	for (var i: number = 0; i < response.Result.Results.length; i++)
-		Items.push(response.Result.Results[i]);
-
-	if (Items().length > 0)
-		SetActiveItem(Items()[0]);
-}
-
-export function SetActiveItem(schema:any):void
-{
-	ActiveItem(schema);
+	public ID:KnockoutObservableNumber = ko.observable();
+	public Name:KnockoutObservableString = ko.observable("New Format");
+	public FormatCategoryID:KnockoutObservableNumber = ko.observable();
+	public FormatXml:KnockoutObservableString = ko.observable();
+	public MimeType:KnockoutObservableString = ko.observable();
+	public Extension:KnockoutObservableString = ko.observable();
 }

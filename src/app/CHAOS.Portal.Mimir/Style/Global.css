@@ -32,10 +32,25 @@ textarea
 	
 }
 
+/* Horizontal forms */
+
+div.control-group div.controls p 
+{
+	padding-top: 5px;
+}
+
 /* Metadata schema */
 
-#MetadataSchemaXml 
+#SchemaXml 
 {
 	width: 800px;
 	height: 300px;
+}
+
+/* Format */
+
+#FormatXml 
+{
+	width: 500px;
+	height: 100px;
 }

@@ -17,12 +17,20 @@ export class ServiceSelection
 		this._listener = () => this.SessionAcquired();
 	}
 	
-	public activate():void
+	public activate(info:any):void
 	{
-		var cookieValue = $.cookie("ServicePath");
+		if(info.path)
+		{
+			this.ServicePath(info.path);
+			this.SetServicePath();
+		}
+		else
+		{
+			var cookieValue = $.cookie("ServicePath");
 
-		if (cookieValue != null)
-			this.ServicePath(cookieValue);
+			if (cookieValue != null)
+				this.ServicePath(cookieValue);
+		}
 	}
 
 	public SetServicePath()

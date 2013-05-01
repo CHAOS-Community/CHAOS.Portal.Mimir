@@ -1,18 +1,75 @@
-﻿<h2>Formats</h2>
+﻿<h2>Metadata Schemas</h2>
+<button class="btn btn-success" data-bind="click: AddNewItem">
+	<i class="icon-plus-sign icon-white"></i> 
+	Add new schema
+</button>
+<br/>
+<br/>
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs" data-bind="foreach: Items">
 		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
-			<a href="#" data-bind="click: $parent.SetActiveItem">
-				<span data-bind="text: Name"></span>
+			<a href="#" data-bind="click: SetAsActive">
+				<span data-bind="text: Name"></span> 
+				(<span data-bind="text: ID"></span>)
+				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
 			</a>
 		</li>
 	</ul>
 	<div class="tab-content" data-bind="with: ActiveItem">
 		<h3 data-bind="text: Name"></h3>
-		<h4 data-bind="text: ID"></h4>
-		<h4 data-bind="text: FormatCategoryID"></h4>
-		<h4 data-bind="text: MimeType"></h4>
-		<h4 data-bind="Extension: MimeType"></h4>
-		<textArea data-bind="value: FormatXml"></textArea>
+		<form class="form-horizontal" data-bind="submit: Save">
+			<div class="control-group">
+				<label class="control-label">ID:</label>
+				<div class="controls">
+					<p data-bind="text: ID"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="FormatCategoryID">Format Category ID:</label>
+				<div class="controls">
+					<input type="text" id="FormatCategoryID" placeholder="Format Category ID" data-bind="value: FormatCategoryID"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="Name" data-bind="value: Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="MimeType">Mime Type:</label>
+				<div class="controls">
+					<input type="text" id="MimeType" placeholder="Mime Type" data-bind="value: MimeType"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Extension">Extension:</label>
+				<div class="controls">
+					<input type="text" id="Extension" placeholder="Extension" data-bind="value: Extension"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="FormatXml">Format Xml:</label>
+				<div class="controls">
+					<textarea id="FormatXml" placeholder="Format Xml" data-bind="value: FormatXml"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary" data-bind="visible: !IsClientsideItem()">
+						<i class="icon-ok-sign icon-white"></i>
+						Update
+					</button>
+					<button type="submit" class="btn btn-success" data-bind="visible: IsClientsideItem">
+						<i class="icon-plus-sign icon-white"></i>
+						Create
+					</button>
+					<button type="button" class="btn btn-danger" data-bind="click: Delete">
+						<i class="icon-remove-sign icon-white"></i>
+						Delete
+					</button>
+				</div>
+			</div>
+		</form>
 	</div>
 </div>

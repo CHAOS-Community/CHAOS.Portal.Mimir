@@ -12,10 +12,15 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
                 return _this.SessionAcquired();
             };
         }
-        ServiceSelection.prototype.activate = function () {
-            var cookieValue = $.cookie("ServicePath");
-            if(cookieValue != null) {
-                this.ServicePath(cookieValue);
+        ServiceSelection.prototype.activate = function (info) {
+            if(info.path) {
+                this.ServicePath(info.path);
+                this.SetServicePath();
+            } else {
+                var cookieValue = $.cookie("ServicePath");
+                if(cookieValue != null) {
+                    this.ServicePath(cookieValue);
+                }
             }
         };
         ServiceSelection.prototype.SetServicePath = function () {

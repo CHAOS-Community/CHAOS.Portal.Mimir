@@ -15,7 +15,7 @@ define(["require", "exports", "durandal/plugins/router", "Portal", "Notification
     }
     exports.activate = activate;
     function GuardRoute(routeInfo, parameters, instance) {
-        if(!exports.IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name != "ServiceSelection") {
+        if(!exports.IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1) {
             return "#/ServiceSelection";
         }
         return true;

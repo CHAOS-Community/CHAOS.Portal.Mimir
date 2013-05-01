@@ -63,25 +63,16 @@
     <TypeScriptCompile Include="App\viewmodels\Overview.ts" />
     <TypeScriptCompile Include="App\viewmodels\MetadataSchemas.ts" />
     <TypeScriptCompile Include="App\viewmodels\Login.ts" />
-    <TypeScriptCompile Include="App\viewmodels\Group.ts" />
-    <TypeScriptCompile Include="App\viewmodels\FolderType.ts" />
-    <Content Include="App\viewmodels\FolderType.js">
-      <DependentUpon>FolderType.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="App\viewmodels\Format.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Groups.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Formats.ts" />
     <Content Include="App\viewmodels\Format.js">
-      <DependentUpon>Format.ts</DependentUpon>
+      <DependentUpon>Formats.ts</DependentUpon>
     </Content>
-    <TypeScriptCompile Include="App\viewmodels\FormatType.ts" />
-    <Content Include="App\viewmodels\FormatType.js">
-      <DependentUpon>FormatType.ts</DependentUpon>
+    <Content Include="App\viewmodels\Formats.js">
+      <DependentUpon>Formats.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\Group.js">
-      <DependentUpon>Group.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="App\viewmodels\Language.ts" />
-    <Content Include="App\viewmodels\Language.js">
-      <DependentUpon>Language.ts</DependentUpon>
+    <Content Include="App\viewmodels\Groups.js">
+      <DependentUpon>Groups.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\Login.js">
       <DependentUpon>Login.ts</DependentUpon>
@@ -94,10 +85,6 @@
       <DependentUpon>NotFound.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\viewmodels\ObjectTypes.ts" />
-    <TypeScriptCompile Include="App\viewmodels\ObjectRelationType.ts" />
-    <Content Include="App\viewmodels\ObjectRelationType.js">
-      <DependentUpon>ObjectRelationType.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\ObjectTypes.js">
       <DependentUpon>ObjectTypes.ts</DependentUpon>
     </Content>
@@ -115,15 +102,11 @@
     <Content Include="App\viewmodels\Users.js">
       <DependentUpon>Users.ts</DependentUpon>
     </Content>
-    <Content Include="App\views\FolderType.html" />
-    <Content Include="App\views\Format.html" />
-    <Content Include="App\views\FormatType.html" />
-    <Content Include="App\views\Group.html" />
-    <Content Include="App\views\Language.html" />
+    <Content Include="App\views\Formats.html" />
+    <Content Include="App\views\Groups.html" />
     <Content Include="App\views\Login.html" />
     <Content Include="App\views\MetadataSchemas.html" />
     <Content Include="App\views\NotFound.html" />
-    <Content Include="App\views\ObjectRelationType.html" />
     <Content Include="App\views\ObjectTypes.html" />
     <Content Include="App\views\Overview.html" />
     <Content Include="App\views\ServiceSelection.html" />
@@ -145,9 +128,6 @@
     <Content Include="App\Main.js.map">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\Users.js.map">
-      <DependentUpon>Users.ts</DependentUpon>
-    </Content>
     <Content Include="App\Portal.js.map">
       <DependentUpon>Portal.ts</DependentUpon>
     </Content>
@@ -166,9 +146,6 @@
     <Content Include="App\viewmodels\Shell.js.map">
       <DependentUpon>Shell.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\Group.js.map">
-      <DependentUpon>Group.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\NotFound.js.map">
       <DependentUpon>NotFound.ts</DependentUpon>
     </Content>
@@ -178,23 +155,20 @@
     <Content Include="App\Notification.js.map">
       <DependentUpon>Notification.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\Language.js.map">
-      <DependentUpon>Language.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\Format.js.map">
-      <DependentUpon>Format.ts</DependentUpon>
+      <DependentUpon>Formats.ts</DependentUpon>
     </Content>
     <Content Include="App\ItemListPage.js.map">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\FormatType.js.map">
-      <DependentUpon>FormatType.ts</DependentUpon>
+    <Content Include="App\viewmodels\Formats.js.map">
+      <DependentUpon>Formats.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\ObjectRelationType.js.map">
-      <DependentUpon>ObjectRelationType.ts</DependentUpon>
+    <Content Include="App\viewmodels\Users.js.map">
+      <DependentUpon>Users.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\FolderType.js.map">
-      <DependentUpon>FolderType.ts</DependentUpon>
+    <Content Include="App\viewmodels\Groups.js.map">
+      <DependentUpon>Groups.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
