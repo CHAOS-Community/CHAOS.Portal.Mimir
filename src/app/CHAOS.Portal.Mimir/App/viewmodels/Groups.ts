@@ -5,16 +5,16 @@
 import _notification = module("Notification");
 import _itemListPage = module("ItemListPage");
 
-export class Group extends _itemListPage.ViewModel
+export class Groups extends _itemListPage.ViewModel
 {
-	public CreateItem():GroupItem
+	public _ItemTypeName:string = "group";
+
+	public _CreateItem():GroupItem
 	{
-		var item = new GroupItem();
-		item.Name("New Group");
-		return item;
+		return new GroupItem();
 	}
 
-	public ApplyDataToItem(item:GroupItem, data:any):void
+	public _ApplyDataToItem(item:GroupItem, data:any):void
 	{
 		item.Guid(data.Guid);
 		item.Name(data.Name);
@@ -22,22 +22,22 @@ export class Group extends _itemListPage.ViewModel
 		item.DateCreated(new Date(data.DateCreated * 1000));
 	}
 
-	public GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems():CHAOS.Portal.Client.ICallState
 	{
 		return CHAOS.Portal.Client.Group.Get();
 	}
 
-	public SaveItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item:GroupItem):CHAOS.Portal.Client.ICallState
 	{
 		return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
 	}
 
-	public SaveNewItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item:GroupItem):CHAOS.Portal.Client.ICallState
 	{
 		return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
 	}
 
-	public DeleteItem(item:GroupItem):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item:GroupItem):CHAOS.Portal.Client.ICallState
 	{
 		return CHAOS.Portal.Client.Group.Delete(item.Guid());
 	}
@@ -46,7 +46,7 @@ export class Group extends _itemListPage.ViewModel
 export class GroupItem extends _itemListPage.Item
 {
 	public Guid:KnockoutObservableString = ko.observable("");
-	public Name:KnockoutObservableString = ko.observable("");
+	public Name:KnockoutObservableString = ko.observable("New Group");
 	public SystemPermission:KnockoutObservableNumber = ko.observable(0);
 	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
 }

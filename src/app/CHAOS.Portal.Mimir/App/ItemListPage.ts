@@ -16,7 +16,7 @@ export class ViewModel
 
 		var deferred = $.Deferred();
 
-		this.GetItems().WithCallback(response =>	{
+		this._GetItems().WithCallback(response =>	{
 														this.ItemsGetCompleted(response);
 														deferred.resolve();
 													});
@@ -24,67 +24,91 @@ export class ViewModel
 		return deferred.promise();
 	}
 
-	public ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
-	{
-		if (response.Error != null)
-		{
-			_notification.AddNotification("Failed to get items: " + response.Error.Message, true);
-			return;
-		}
-
-		for (var i: number = 0; i < response.Result.Results.length; i++)
-		{
-			var item = this.CreateItem();
-			this.ApplyDataToItem(item, response.Result.Results[i]);
-			this.Items.push(item);
-		}
-
-		if (this.Items().length > 0)
-			this.SetActiveItem(this.Items()[0]);
-	}
-
 	public SetActiveItem(item: Item):void
 	{
 		this.ActiveItem(item);
 	}
 
-	public AddNewItem():void
-	{
-		var item = this.CreateItem();
-		item.IsClientsideItem(true);
-		this.Items.push(item);
-		this.SetActiveItem(item);
-	}
-
 	public SaveActiveItem():void
 	{
-		var item = this.ActiveItem();
-
-		if(item.IsClientsideItem())
-			this.SaveNewItem(item).WithCallback(response => this.CreateItemCallback(response, item), this);
-		else
-			this.SaveItem(item).WithCallback(this.UpdateItemCallback, this);
+		this.SaveItem(this.ActiveItem());
 	}
 
 	public DeleteActiveItem():void
 	{
-		var item = this.ActiveItem();
+		this.DeleteItem(this.ActiveItem());
+	}
 
+	public CreateItem(isClientside:bool, setAsActive:bool = false, data:any = null):Item
+	{
+		var item = this.SetCallbacksOnItem(this._CreateItem());
+		item.IsClientsideItem(isClientside);
+
+		if(setAsActive)
+			this.SetActiveItem(item);
+
+		if(data != null)
+			this._ApplyDataToItem(item, data);
+
+		this.Items.push(item);
+
+		return item;
+	}
+
+	public AddNewItem():void
+	{
+		this.CreateItem(true, true);
+	}
+
+	public SaveItem(item:Item):void
+	{
+		if(item.IsClientsideItem())
+			this._SaveNewItem(item).WithCallback(response => this.CreateItemCallback(response, item), this);
+		else
+			this._SaveItem(item).WithCallback(this.UpdateItemCallback, this);
+	}
+
+	public DeleteItem(item:Item):void
+	{
 		this.Items.remove(item);
 
-		this.ActiveItem(this.Items().length == 0 ? null : this.Items()[0]);
+		if(this.ActiveItem() == item)
+			this.ActiveItem(this.Items().length == 0 ? null : this.Items()[0]);
 
 		if(!item.IsClientsideItem())
-			this.DeleteItem(item).WithCallback(this.DeleteItemCallback, this);
+			this._DeleteItem(item).WithCallback(this.DeleteItemCallback, this);
+	}
+
+	private SetCallbacksOnItem(item:Item):Item
+	{
+		item.Save = () => this.SaveItem(item);
+		item.Delete = () => this.DeleteItem(item);
+		item.SetAsActive = () => this.SetActiveItem(item);
+		return item;
+	}
+
+	public ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+	{
+		if (response.Error != null)
+		{
+			_notification.AddNotification("Failed to get " + this._ItemTypeName + "s: " + response.Error.Message, true);
+			return;
+		}
+
+		for (var i: number = 0; i < response.Result.Results.length; i++)
+			this.CreateItem(false, false, response.Result.Results[i]);
+
+		if (this.Items().length > 0)
+			this.SetActiveItem(this.Items()[0]);
 	}
 
 	public CreateItemCallback(response:CHAOS.Portal.Client.IPortalResponse, item:Item):void
 	{
 		if(response.Error != null)
-			_notification.AddNotification("Create item failed: " + response.Error.Message, true);
+			_notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true);
 		else
 		{
-			this.ApplyDataToItem(item, response.Result.Results[0]);
+			this._ApplyDataToItem(item, response.Result.Results[0]);
 			item.IsClientsideItem(false);
 		}
 	}
@@ -92,41 +116,43 @@ export class ViewModel
 	public UpdateItemCallback(response:CHAOS.Portal.Client.IPortalResponse):void
 	{
 		if(response.Error != null)
-			_notification.AddNotification("Update item failed: " + response.Error.Message, true);
+			_notification.AddNotification("Update " + this._ItemTypeName + " failed: " + response.Error.Message, true);
 	}
 
 	public DeleteItemCallback(response:CHAOS.Portal.Client.IPortalResponse):void
 	{
 		if(response.Error != null)
-			_notification.AddNotification("Delete item failed: " + response.Error.Message, true);
+			_notification.AddNotification("Delete " + this._ItemTypeName + " failed: " + response.Error.Message, true);
 	}
 
-	public CreateItem():Item
+	public _ItemTypeName:string = "item";
+
+	public _CreateItem():Item
 	{
 		throw "CreateItem not implemented";
 	}
 
-	public ApplyDataToItem(item:Item, data:any):void
+	public _ApplyDataToItem(item:Item, data:any):void
 	{
 		throw "ConvertItem not implemented";
 	}
 
-	public GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems():CHAOS.Portal.Client.ICallState
 	{
 		throw "GetItems not implemented";
 	}
 
-	public SaveItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
 		throw "SaveItem not implemented";
 	}
 
-	public SaveNewItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
 		throw "SaveNewItem not implemented";
 	}
 
-	public DeleteItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item:Item):CHAOS.Portal.Client.ICallState
 	{
 		throw "DeleteItem not implemented";
 	}
@@ -135,4 +161,7 @@ export class ViewModel
 export class Item
 {
 	public IsClientsideItem: KnockoutObservableBool = ko.observable(false);
+	public Save: () => void;
+	public Delete: () => void;
+	public SetAsActive: () => void;
 }

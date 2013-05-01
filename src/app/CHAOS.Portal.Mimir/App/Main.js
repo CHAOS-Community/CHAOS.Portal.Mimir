@@ -26,10 +26,10 @@ define(function (require) {
         router.mapRoute('NotFound', null, null, false);
         router.mapNav('Overview');
         router.mapNav('Users');
-        router.mapNav('Group');
+        router.mapNav('Groups');
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
-        router.mapNav('Format');
+        router.mapNav('Formats');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');

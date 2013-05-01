@@ -2,37 +2,49 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-export var Users: KnockoutObservableArray = ko.observableArray();
-export var ActiveUser: KnockoutObservableAny = ko.observable();
+import _notification = module("Notification");
+import _itemListPage = module("ItemListPage");
 
-export function activate()
+export class Users extends _itemListPage.ViewModel
 {
-	ActiveUser(null);
-	Users.removeAll();
+	public _ItemTypeName:string = "user";
 
-	var deferred = $.Deferred();
+	public _CreateItem():UserItem
+	{
+		return new UserItem();
+	}
 
-	CHAOS.Portal.Client.User.Get().WithCallback(response => {
-																UserGetCompleted(response);
-																deferred.resolve();
-															});
+	public _ApplyDataToItem(item:UserItem, data:any):void
+	{
+		item.Guid(data.Guid);
+		item.Email(data.Email);
+		item.SystemPermissions(data.SystemPermissions);
+	}
 
-	return deferred.promise();
+	public _GetItems():CHAOS.Portal.Client.ICallState
+	{
+		return CHAOS.Portal.Client.User.Get()
+	}
+
+	public _SaveItem(item:UserItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._SaveItem(item);
+	}
+
+	public _SaveNewItem(item:UserItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._SaveItem(item);
+	}
+
+	public _DeleteItem(item:UserItem):CHAOS.Portal.Client.ICallState
+	{
+		return super._SaveItem(item);
+	}
 }
 
-function UserGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+export class UserItem extends _itemListPage.Item
 {
-	if (response.Error != null)
-		throw response.Error.Message;
-
-	for (var i: number = 0; i < response.Result.Results.length; i++)
-		Users.push(response.Result.Results[i]);
-
-	if (Users().length > 0)
-		ActiveUser(Users()[0]);
-}
-
-export function SetActiveUser(user:any):void
-{
-	ActiveUser(user);
+	public Guid:KnockoutObservableString = ko.observable("");
+	public Email:KnockoutObservableString = ko.observable("");
+	public SystemPermissions:KnockoutObservableNumber = ko.observable(0);
 }

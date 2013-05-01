@@ -175,6 +175,27 @@
     <Content Include="App\viewmodels\ObjectTypes.js.map">
       <DependentUpon>ObjectTypes.ts</DependentUpon>
     </Content>
+    <Content Include="App\Notification.js.map">
+      <DependentUpon>Notification.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Language.js.map">
+      <DependentUpon>Language.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Format.js.map">
+      <DependentUpon>Format.ts</DependentUpon>
+    </Content>
+    <Content Include="App\ItemListPage.js.map">
+      <DependentUpon>ItemListPage.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\FormatType.js.map">
+      <DependentUpon>FormatType.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\ObjectRelationType.js.map">
+      <DependentUpon>ObjectRelationType.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\FolderType.js.map">
+      <DependentUpon>FolderType.ts</DependentUpon>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -7,45 +7,44 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
     
     var _itemListPage = ___itemListPage__;
 
-    var Group = (function (_super) {
-        __extends(Group, _super);
-        function Group() {
+    var Groups = (function (_super) {
+        __extends(Groups, _super);
+        function Groups() {
             _super.apply(this, arguments);
 
+            this._ItemTypeName = "group";
         }
-        Group.prototype.CreateItem = function () {
-            var item = new GroupItem();
-            item.Name("New Group");
-            return item;
+        Groups.prototype._CreateItem = function () {
+            return new GroupItem();
         };
-        Group.prototype.ApplyDataToItem = function (item, data) {
+        Groups.prototype._ApplyDataToItem = function (item, data) {
             item.Guid(data.Guid);
             item.Name(data.Name);
             item.SystemPermission(data.SystemPermission);
             item.DateCreated(new Date(data.DateCreated * 1000));
         };
-        Group.prototype.GetItems = function () {
+        Groups.prototype._GetItems = function () {
             return CHAOS.Portal.Client.Group.Get();
         };
-        Group.prototype.SaveItem = function (item) {
+        Groups.prototype._SaveItem = function (item) {
             return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
         };
-        Group.prototype.SaveNewItem = function (item) {
+        Groups.prototype._SaveNewItem = function (item) {
             return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
         };
-        Group.prototype.DeleteItem = function (item) {
+        Groups.prototype._DeleteItem = function (item) {
             return CHAOS.Portal.Client.Group.Delete(item.Guid());
         };
-        return Group;
+        return Groups;
     })(_itemListPage.ViewModel);
-    exports.Group = Group;    
+    exports.Groups = Groups;    
     var GroupItem = (function (_super) {
         __extends(GroupItem, _super);
         function GroupItem() {
             _super.apply(this, arguments);
 
             this.Guid = ko.observable("");
-            this.Name = ko.observable("");
+            this.Name = ko.observable("New Group");
             this.SystemPermission = ko.observable(0);
             this.DateCreated = ko.observable(new Date(Date.now()));
         }

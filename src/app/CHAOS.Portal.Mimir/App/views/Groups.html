@@ -5,14 +5,14 @@
 <div class="tabbable tabs-left">
 	<ul class="nav nav-tabs" data-bind="foreach: Items">
 		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
-			<a href="#" data-bind="click: function () { $parent.SetActiveItem($data) }">
+			<a href="#" data-bind="click: SetAsActive">
 				<span data-bind="text: Name"></span>
 			</a>
 		</li>
 	</ul>
 	<div class="tab-content" data-bind="with: ActiveItem">
 		<h3 data-bind="text: Name"></h3>
-		<form class="form-horizontal" data-bind="submit: function () { $parent.SaveActiveItem($data) }">
+		<form class="form-horizontal" data-bind="submit: Save">
 			<div class="control-group">
 				<label class="control-label">Guid:</label>
 				<div class="controls" data-bind="text: Guid"></div>
@@ -36,7 +36,7 @@
 			<div class="control-group">
 				<div class="controls">
 					<button type="submit" class="btn btn-primary">Update</button>
-					<button type="button" class="btn btn-danger" data-bind="click: function () { $parent.DeleteActiveItem($data) }">Delete</button>
+					<button type="button" class="btn btn-danger" data-bind="click: Delete">Delete</button>
 				</div>
 			</div>
 		</form>

@@ -1,30 +1,52 @@
-define(["require", "exports"], function(require, exports) {
-    exports.Users = ko.observableArray();
-    exports.ActiveUser = ko.observable();
-    function activate() {
-        exports.ActiveUser(null);
-        exports.Users.removeAll();
-        var deferred = $.Deferred();
-        CHAOS.Portal.Client.User.Get().WithCallback(function (response) {
-            UserGetCompleted(response);
-            deferred.resolve();
-        });
-        return deferred.promise();
-    }
-    exports.activate = activate;
-    function UserGetCompleted(response) {
-        if(response.Error != null) {
-            throw response.Error.Message;
+var __extends = this.__extends || function (d, b) {
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
+    
+    var _itemListPage = ___itemListPage__;
+
+    var Users = (function (_super) {
+        __extends(Users, _super);
+        function Users() {
+            _super.apply(this, arguments);
+
+            this._ItemTypeName = "user";
         }
-        for(var i = 0; i < response.Result.Results.length; i++) {
-            exports.Users.push(response.Result.Results[i]);
+        Users.prototype._CreateItem = function () {
+            return new UserItem();
+        };
+        Users.prototype._ApplyDataToItem = function (item, data) {
+            item.Guid(data.Guid);
+            item.Email(data.Email);
+            item.SystemPermissions(data.SystemPermissions);
+        };
+        Users.prototype._GetItems = function () {
+            return CHAOS.Portal.Client.User.Get();
+        };
+        Users.prototype._SaveItem = function (item) {
+            return _super.prototype._SaveItem.call(this, item);
+        };
+        Users.prototype._SaveNewItem = function (item) {
+            return _super.prototype._SaveItem.call(this, item);
+        };
+        Users.prototype._DeleteItem = function (item) {
+            return _super.prototype._SaveItem.call(this, item);
+        };
+        return Users;
+    })(_itemListPage.ViewModel);
+    exports.Users = Users;    
+    var UserItem = (function (_super) {
+        __extends(UserItem, _super);
+        function UserItem() {
+            _super.apply(this, arguments);
+
+            this.Guid = ko.observable("");
+            this.Email = ko.observable("");
+            this.SystemPermissions = ko.observable(0);
         }
-        if(exports.Users().length > 0) {
-            exports.ActiveUser(exports.Users()[0]);
-        }
-    }
-    function SetActiveUser(user) {
-        exports.ActiveUser(user);
-    }
-    exports.SetActiveUser = SetActiveUser;
+        return UserItem;
+    })(_itemListPage.Item);
+    exports.UserItem = UserItem;    
 })

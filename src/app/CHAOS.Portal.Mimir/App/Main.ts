@@ -42,14 +42,10 @@ define(require =>
         router.mapRoute('NotFound', null, null, false);
         router.mapNav('Overview');
         router.mapNav('Users');
-        router.mapNav('Group');
+        router.mapNav('Groups');
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
-		//router.mapNav('ObjectRelationType');
-        //router.mapNav('FolderType');
-        //router.mapNav('FormatType');
-        router.mapNav('Format');
-        //router.mapNav('Language');
+        router.mapNav('Formats');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
  
         app.adaptToDevice();
