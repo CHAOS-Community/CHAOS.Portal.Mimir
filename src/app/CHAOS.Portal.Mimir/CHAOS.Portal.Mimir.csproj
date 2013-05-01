@@ -65,9 +65,6 @@
     <TypeScriptCompile Include="App\viewmodels\Login.ts" />
     <TypeScriptCompile Include="App\viewmodels\Groups.ts" />
     <TypeScriptCompile Include="App\viewmodels\Formats.ts" />
-    <Content Include="App\viewmodels\Format.js">
-      <DependentUpon>Formats.ts</DependentUpon>
-    </Content>
     <Content Include="App\viewmodels\Formats.js">
       <DependentUpon>Formats.ts</DependentUpon>
     </Content>
@@ -112,7 +109,7 @@
     <Content Include="App\views\ServiceSelection.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\Users.html" />
-    <Content Include="default.htm" />
+    <Content Include="default.html" />
     <Content Include="Style\Global.min.css">
       <DependentUpon>Global.css</DependentUpon>
     </Content>
@@ -155,9 +152,6 @@
     <Content Include="App\Notification.js.map">
       <DependentUpon>Notification.ts</DependentUpon>
     </Content>
-    <Content Include="App\viewmodels\Format.js.map">
-      <DependentUpon>Formats.ts</DependentUpon>
-    </Content>
     <Content Include="App\ItemListPage.js.map">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
@@ -194,7 +188,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>46232</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:4809/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -19,7 +19,7 @@ export function activate():JQueryPromise
 
 function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any):any
 {
-	if(!IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1)
+	if(!_portal.HasSession() && routeInfo.name.indexOf("ServiceSelection") == -1 || !IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1)
 	{
 		return "#/ServiceSelection";
 	}

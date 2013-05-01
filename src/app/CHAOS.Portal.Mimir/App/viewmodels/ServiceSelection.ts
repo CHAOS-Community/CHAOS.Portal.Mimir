@@ -5,17 +5,12 @@
 
 import _router =  module("durandal/plugins/router");
 import _portal =  module("Portal");
+import _notification = module("Notification");
 
 export class ServiceSelection
 {
 	public ServicePath:KnockoutObservableString = ko.observable("https://");
 	public CanEdit:KnockoutObservableBool = ko.observable(true);
-	private _listener: () => void;
-
-	constructor()
-	{
-		this._listener = () => this.SessionAcquired();
-	}
 	
 	public activate(info:any):void
 	{
@@ -37,13 +32,20 @@ export class ServiceSelection
 	{
 		this.CanEdit(false);
 		_portal.Initialize(this.ServicePath());
-		_portal.Client().SessionAcquired().Add(this._listener);
+		CHAOS.Portal.Client.Session.Create().WithCallback(this.SessionCreated, this);
 	}
 
-	public SessionAcquired():void
+	public SessionCreated(response:CHAOS.Portal.Client.IPortalResponse):void
 	{
-		$.cookie("ServicePath", this.ServicePath());
-		_portal.Client().SessionAcquired().Remove(this._listener);
-		_router.navigateTo("#/Login");
+		if(response.Error != null)
+		{
+			_notification.AddNotification("Could not create session: " + response.Error.Message, true);
+			this.CanEdit(true);
+		}
+		else
+		{
+			$.cookie("ServicePath", this.ServicePath());
+			_router.navigateTo("#/Login");
+		}
 	}
 }

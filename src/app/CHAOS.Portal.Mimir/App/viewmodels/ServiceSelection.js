@@ -1,16 +1,14 @@
-define(["require", "exports", "durandal/plugins/router", "Portal"], function(require, exports, ___router__, ___portal__) {
+define(["require", "exports", "durandal/plugins/router", "Portal", "Notification"], function(require, exports, ___router__, ___portal__, ___notification__) {
     var _router = ___router__;
 
     var _portal = ___portal__;
 
+    var _notification = ___notification__;
+
     var ServiceSelection = (function () {
         function ServiceSelection() {
-            var _this = this;
             this.ServicePath = ko.observable("https://");
             this.CanEdit = ko.observable(true);
-            this._listener = function () {
-                return _this.SessionAcquired();
-            };
         }
         ServiceSelection.prototype.activate = function (info) {
             if(info.path) {
@@ -26,12 +24,16 @@ define(["require", "exports", "durandal/plugins/router", "Portal"], function(req
         ServiceSelection.prototype.SetServicePath = function () {
             this.CanEdit(false);
             _portal.Initialize(this.ServicePath());
-            _portal.Client().SessionAcquired().Add(this._listener);
+            CHAOS.Portal.Client.Session.Create().WithCallback(this.SessionCreated, this);
         };
-        ServiceSelection.prototype.SessionAcquired = function () {
-            $.cookie("ServicePath", this.ServicePath());
-            _portal.Client().SessionAcquired().Remove(this._listener);
-            _router.navigateTo("#/Login");
+        ServiceSelection.prototype.SessionCreated = function (response) {
+            if(response.Error != null) {
+                _notification.AddNotification("Could not create session: " + response.Error.Message, true);
+                this.CanEdit(true);
+            } else {
+                $.cookie("ServicePath", this.ServicePath());
+                _router.navigateTo("#/Login");
+            }
         };
         return ServiceSelection;
     })();
