@@ -26,7 +26,7 @@ define(["require", "exports", "durandal/plugins/router"], function(require, expo
             if(response.Error == null) {
                 $.cookie("Email", this.Email());
                 $.cookie("Password", this.Password());
-                _router.navigateTo("#");
+                _router.navigateTo("#/");
             } else {
                 this.InvalidCredentials(true);
                 this.CanEdit(true);

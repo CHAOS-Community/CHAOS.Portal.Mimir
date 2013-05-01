@@ -39,7 +39,7 @@ export class Login
 			$.cookie("Email", this.Email());
 			$.cookie("Password", this.Password());
 
-			_router.navigateTo("#");
+			_router.navigateTo("#/");
 		}
 		else
 		{
