@@ -4,6 +4,7 @@
 import _router =  module("durandal/plugins/router");
 import _portal = module("Portal");
 import _notification = module("Notification");
+import _state = module("State");
 
 export var Router = _router;
 export var IsAuthenticated = _portal.IsAuthenticated;
@@ -21,6 +22,9 @@ function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any
 {
 	if(!_portal.HasSession() && routeInfo.name.indexOf("ServiceSelection") == -1 || !IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1)
 	{
+		if(routeInfo.name != "Login")
+			_state.LastRedirectedFromURL("#/" + routeInfo.url);
+
 		return "#/ServiceSelection";
 	}
 	return true;

@@ -5,6 +5,7 @@
 
 import _router =  module("durandal/plugins/router");
 import _portal =  module("Portal");
+import _state = module("State");
 
 export class Login
 {
@@ -39,7 +40,10 @@ export class Login
 			$.cookie("Email", this.Email());
 			$.cookie("Password", this.Password());
 
-			_router.navigateTo("#/");
+			if(_state.LastRedirectedFromURL() != null)
+				_router.navigateTo(_state.LastRedirectedFromURL());
+			else
+				_router.navigateTo("#/");
 		}
 		else
 		{

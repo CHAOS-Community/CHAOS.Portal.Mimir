@@ -1,7 +1,9 @@
-define(["require", "exports", "durandal/plugins/router"], function(require, exports, ___router__) {
+define(["require", "exports", "durandal/plugins/router", "State"], function(require, exports, ___router__, ___state__) {
     var _router = ___router__;
 
     
+    var _state = ___state__;
+
     var Login = (function () {
         function Login() {
             this.Email = ko.observable("");
@@ -26,7 +28,11 @@ define(["require", "exports", "durandal/plugins/router"], function(require, expo
             if(response.Error == null) {
                 $.cookie("Email", this.Email());
                 $.cookie("Password", this.Password());
-                _router.navigateTo("#/");
+                if(_state.LastRedirectedFromURL() != null) {
+                    _router.navigateTo(_state.LastRedirectedFromURL());
+                } else {
+                    _router.navigateTo("#/");
+                }
             } else {
                 this.InvalidCredentials(true);
                 this.CanEdit(true);

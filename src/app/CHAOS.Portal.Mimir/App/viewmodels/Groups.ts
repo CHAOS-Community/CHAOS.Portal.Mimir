@@ -14,7 +14,7 @@ export class Groups extends _itemListPage.ViewModel
 		return new GroupItem();
 	}
 
-	public _ApplyDataToItem(item:GroupItem, data:any):void
+	public _ApplyDataToItem(item: GroupItem, data: any): void
 	{
 		item.Guid(data.Guid);
 		item.Name(data.Name);

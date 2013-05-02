@@ -60,6 +60,10 @@
     <Content Include="App\Portal.js">
       <DependentUpon>Portal.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\State.ts" />
+    <Content Include="App\State.js">
+      <DependentUpon>State.ts</DependentUpon>
+    </Content>
     <Content Include="App\TypeScriptDefinitions\ace.d.ts" />
     <Content Include="App\TypeScriptDefinitions\durandal.d.ts" />
     <Content Include="App\TypeScriptDefinitions\jquery.cookie.d.ts" />
@@ -171,6 +175,9 @@
     </Content>
     <Content Include="App\KnockoutBindings.js.map">
       <DependentUpon>KnockoutBindings.ts</DependentUpon>
+    </Content>
+    <Content Include="App\State.js.map">
+      <DependentUpon>State.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
