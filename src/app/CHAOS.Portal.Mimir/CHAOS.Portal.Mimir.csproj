@@ -45,6 +45,10 @@
     <Content Include="App\ItemListPage.js">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\KnockoutBindings.ts" />
+    <Content Include="App\KnockoutBindings.js">
+      <DependentUpon>KnockoutBindings.ts</DependentUpon>
+    </Content>
     <Content Include="App\Main.js">
       <DependentUpon>Main.ts</DependentUpon>
     </Content>
@@ -56,6 +60,7 @@
     <Content Include="App\Portal.js">
       <DependentUpon>Portal.ts</DependentUpon>
     </Content>
+    <Content Include="App\TypeScriptDefinitions\ace.d.ts" />
     <Content Include="App\TypeScriptDefinitions\durandal.d.ts" />
     <Content Include="App\TypeScriptDefinitions\jquery.cookie.d.ts" />
     <Content Include="App\TypeScriptDefinitions\require.d.ts" />
@@ -109,7 +114,7 @@
     <Content Include="App\views\ServiceSelection.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\Users.html" />
-    <Content Include="default.html" />
+    <Content Include="default.htm" />
     <Content Include="Style\Global.min.css">
       <DependentUpon>Global.css</DependentUpon>
     </Content>
@@ -163,6 +168,9 @@
     </Content>
     <Content Include="App\viewmodels\Groups.js.map">
       <DependentUpon>Groups.ts</DependentUpon>
+    </Content>
+    <Content Include="App\KnockoutBindings.js.map">
+      <DependentUpon>KnockoutBindings.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

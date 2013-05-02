@@ -38,7 +38,8 @@
 			<div class="control-group">
 				<label class="control-label" for="SchemaXml">Schema Xml:</label>
 				<div class="controls">
-					<textarea id="SchemaXml" placeholder="Schema Xml" data-bind="value: SchemaXml"/>
+					<div id="SchemaXml" data-bind="ace: { value: SchemaXml, theme: 'ace/theme/monokai', mode: 'ace/mode/xml' }">
+					</div>
 				</div>
 			</div>
 			<div class="control-group">
