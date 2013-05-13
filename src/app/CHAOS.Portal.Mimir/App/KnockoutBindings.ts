@@ -26,7 +26,9 @@ class AceBindingHandler implements KnockoutBindingHandler
 
 	public update(element: any, valueAccessor: () => any, allBindingsAccessor: () => any, viewModel: any, bindingContext: KnockoutBindingContext): void
 	{
-		
+		var editor = ace.edit(element);
+		var value = valueAccessor();
+		editor.setValue(ko.utils.unwrapObservable(value.value));
 	}
 }
 

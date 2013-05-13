@@ -74,6 +74,10 @@
     <TypeScriptCompile Include="App\viewmodels\Login.ts" />
     <TypeScriptCompile Include="App\viewmodels\Groups.ts" />
     <TypeScriptCompile Include="App\viewmodels\Formats.ts" />
+    <TypeScriptCompile Include="App\viewmodels\ClientSettings.ts" />
+    <Content Include="App\viewmodels\ClientSettings.js">
+      <DependentUpon>ClientSettings.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\Formats.js">
       <DependentUpon>Formats.ts</DependentUpon>
     </Content>
@@ -108,6 +112,7 @@
     <Content Include="App\viewmodels\Users.js">
       <DependentUpon>Users.ts</DependentUpon>
     </Content>
+    <Content Include="App\views\ClientSettings.html" />
     <Content Include="App\views\Formats.html" />
     <Content Include="App\views\Groups.html" />
     <Content Include="App\views\Login.html" />
@@ -178,6 +183,9 @@
     </Content>
     <Content Include="App\State.js.map">
       <DependentUpon>State.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\ClientSettings.js.map">
+      <DependentUpon>ClientSettings.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

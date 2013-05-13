@@ -47,6 +47,14 @@ div.control-group div.controls p
 	height: 300px;
 }
 
+/* ClientSettings schema */
+
+#ClientSettings #Settings 
+{
+	width: 800px;
+	height: 300px;
+}
+
 /* Format */
 
 #FormatXml 

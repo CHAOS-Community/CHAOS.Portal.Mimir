@@ -1,0 +1,42 @@
+﻿<div id="ClientSettings">
+	<h2>Client Settings</h2>
+	<form class="form-horizontal" data-bind="submit: Save">
+		<div class="control-group">
+			<label class="control-label">Created:</label>
+			<div class="controls">
+				<p data-bind="text: DateCreated"></p>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="Guid">Guid:</label>
+			<div class="controls">
+				<input type="text" id="Guid" placeholder="00000000-0000-0000-0000-000000000000" data-bind="value: Guid" class="input-xlarge"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="Name">Name:</label>
+			<div class="controls">
+				<input type="text" id="Name" placeholder="My Client" data-bind="value: Name"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="Settings">Settings:</label>
+			<div class="controls">
+				<div id="Settings" data-bind="ace: { value: Settings, theme: 'ace/theme/monokai', mode: 'ace/mode/xml' }">
+				</div>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="button" class="btn" data-bind="click: Get">
+					<i class="icon-info-sign icon-white"></i>
+					Get
+				</button>
+				<button type="submit" class="btn btn-primary">
+					<i class="icon-ok-sign icon-white"></i>
+					Update
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

@@ -30,6 +30,7 @@ define(function (require) {
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
         router.mapNav('Formats');
+        router.mapNav('ClientSettings');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');

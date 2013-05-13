@@ -13,6 +13,9 @@ var AceBindingHandler = (function () {
         });
     };
     AceBindingHandler.prototype.update = function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+        var editor = ace.edit(element);
+        var value = valueAccessor();
+        editor.setValue(ko.utils.unwrapObservable(value.value));
     };
     return AceBindingHandler;
 })();
