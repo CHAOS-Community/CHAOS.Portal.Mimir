@@ -1,14 +1,7 @@
-﻿<h2>Group</h2>
-<div class="tabbable tabs-left">
-	<ul class="nav nav-tabs" data-bind="foreach: Items">
-		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
-			<a href="#" data-bind="click: SetAsActive">
-				<span data-bind="text: Name"></span>
-				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
-			</a>
-		</li>
-	</ul>
-	<div class="tab-content" data-bind="with: ActiveItem">
-		<h3 data-bind="text: Name"></h3>
-	</div>
-</div>
+﻿<h2>Views</h2>
+<ul data-bind="foreach: Items">
+	<li>
+		<span data-bind="text: Name"></span>
+	</li>
+</ul>
+<p class="text-info">These are the names of the views available from this service.</p>

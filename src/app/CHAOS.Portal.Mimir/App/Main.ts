@@ -46,8 +46,8 @@ define(require =>
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
         router.mapNav('Formats');
+		router.mapNav('Views');
         router.mapNav('ClientSettings');
-        router.mapNav('Views');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
  
         app.adaptToDevice();

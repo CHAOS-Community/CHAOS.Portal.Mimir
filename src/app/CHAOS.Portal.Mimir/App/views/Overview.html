@@ -2,6 +2,17 @@
 <p>
 	Welcome to mimir. Use the navigation at the top to manage the CHAOS service.
 </p>
-<p>
-	<strong>NB! Many things are not implemented server side yet.</strong>
-</p>
+<div class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label">Current Session Guid:</label>
+		<div class="controls">
+			<p data-bind="text: SessionGuid"></p>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">Current User Guid:</label>
+		<div class="controls">
+			<p data-bind="text: UserGuid"></p>
+		</div>
+	</div>
+</div>
