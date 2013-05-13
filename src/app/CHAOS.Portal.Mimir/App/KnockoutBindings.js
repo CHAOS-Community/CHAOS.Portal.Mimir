@@ -5,7 +5,6 @@ var AceBindingHandler = (function () {
         var value = valueAccessor();
         editor.setTheme(value.theme);
         editor.getSession().setMode(value.mode);
-        editor.setValue(ko.utils.unwrapObservable(value.value));
         editor.getSession().setUseWrapMode(true);
         editor.setShowPrintMargin(false);
         editor.getSession().getDocument().on("change", function (d) {

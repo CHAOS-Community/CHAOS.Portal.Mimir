@@ -47,6 +47,7 @@ define(require =>
         router.mapNav('ObjectTypes');
         router.mapNav('Formats');
         router.mapNav('ClientSettings');
+        router.mapNav('Views');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
  
         app.adaptToDevice();
