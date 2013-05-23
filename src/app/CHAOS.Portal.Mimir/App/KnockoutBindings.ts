@@ -9,6 +9,15 @@ interface KnockoutBindingHandlers
 	typeahead: KnockoutBindingHandler;
 }
 
+module AceAjax
+{
+	interface Editor
+	{
+		IsUpdating: bool;
+	}
+}
+
+
 class AceBindingHandler implements KnockoutBindingHandler
 {
 	public init(element: any, valueAccessor: () => any, allBindingsAccessor: () => any, viewModel: any, bindingContext: KnockoutBindingContext): void
@@ -20,14 +29,32 @@ class AceBindingHandler implements KnockoutBindingHandler
 		editor.getSession().setMode(value.mode);
 		editor.getSession().setUseWrapMode(true);
 		editor.setShowPrintMargin(false);
-		editor.getSession().getDocument().on("change", d => value.value(editor.getValue()));
+
+		editor.IsUpdating = false;
+		editor.getSession().getDocument().on("change", d =>
+		{
+			if(!editor.IsUpdating)
+			{
+				editor.IsUpdating = true;
+				value.value(editor.getValue());
+				editor.IsUpdating = false;
+			}
+		});
 	}
 
 	public update(element: any, valueAccessor: () => any, allBindingsAccessor: () => any, viewModel: any, bindingContext: KnockoutBindingContext): void
 	{
 		var editor = ace.edit(element);
 		var value = valueAccessor();
-		editor.setValue(ko.utils.unwrapObservable(value.value));
+
+		if(!editor.IsUpdating)
+		{
+			editor.IsUpdating = true;
+			editor.setValue(ko.utils.unwrapObservable(value.value));
+			editor.clearSelection();
+			editor.IsUpdating = false;
+		}
+		
 	}
 }
 

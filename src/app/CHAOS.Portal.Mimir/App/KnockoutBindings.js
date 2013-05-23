@@ -7,14 +7,24 @@ var AceBindingHandler = (function () {
         editor.getSession().setMode(value.mode);
         editor.getSession().setUseWrapMode(true);
         editor.setShowPrintMargin(false);
+        editor.IsUpdating = false;
         editor.getSession().getDocument().on("change", function (d) {
-            return value.value(editor.getValue());
+            if(!editor.IsUpdating) {
+                editor.IsUpdating = true;
+                value.value(editor.getValue());
+                editor.IsUpdating = false;
+            }
         });
     };
     AceBindingHandler.prototype.update = function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
         var editor = ace.edit(element);
         var value = valueAccessor();
-        editor.setValue(ko.utils.unwrapObservable(value.value));
+        if(!editor.IsUpdating) {
+            editor.IsUpdating = true;
+            editor.setValue(ko.utils.unwrapObservable(value.value));
+            editor.clearSelection();
+            editor.IsUpdating = false;
+        }
     };
     return AceBindingHandler;
 })();
