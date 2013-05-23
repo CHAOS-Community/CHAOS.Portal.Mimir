@@ -56,7 +56,15 @@ div.control-group div.controls p, div.control-group div.controls span
 	height: 300px;
 }
 
-/* ClientSettings schema */
+/* Formats */
+
+#FormatXml 
+{
+	width: 500px;
+	height: 200px;
+}
+
+/* ClientSettings */
 
 #ClientSettings #Settings 
 {
