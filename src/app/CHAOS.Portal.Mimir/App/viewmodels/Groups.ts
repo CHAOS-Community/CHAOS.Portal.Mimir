@@ -18,7 +18,7 @@ export class Groups extends _itemListPage.ViewModel
 	{
 		item.Guid(data.Guid);
 		item.Name(data.Name);
-		item.SystemPermission(data.SystemPermission);
+		item.SystemPermissions(data.SystemPermission);
 		item.DateCreated(new Date(data.DateCreated * 1000));
 	}
 
@@ -29,12 +29,12 @@ export class Groups extends _itemListPage.ViewModel
 
 	public _SaveItem(item:GroupItem):CHAOS.Portal.Client.ICallState
 	{
-		return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
+		return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermissions());
 	}
 
 	public _SaveNewItem(item:GroupItem):CHAOS.Portal.Client.ICallState
 	{
-		return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
+		return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermissions());
 	}
 
 	public _DeleteItem(item:GroupItem):CHAOS.Portal.Client.ICallState
@@ -47,6 +47,6 @@ export class GroupItem extends _itemListPage.Item
 {
 	public Guid:KnockoutObservableString = ko.observable("");
 	public Name:KnockoutObservableString = ko.observable("New Group");
-	public SystemPermission:KnockoutObservableNumber = ko.observable(0);
+	public SystemPermissions:KnockoutObservableNumber = ko.observable(0);
 	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
 }

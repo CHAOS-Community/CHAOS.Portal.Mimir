@@ -20,17 +20,17 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
         Groups.prototype._ApplyDataToItem = function (item, data) {
             item.Guid(data.Guid);
             item.Name(data.Name);
-            item.SystemPermission(data.SystemPermission);
+            item.SystemPermissions(data.SystemPermission);
             item.DateCreated(new Date(data.DateCreated * 1000));
         };
         Groups.prototype._GetItems = function () {
             return CHAOS.Portal.Client.Group.Get();
         };
         Groups.prototype._SaveItem = function (item) {
-            return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermission());
+            return CHAOS.Portal.Client.Group.Update(item.Guid(), item.Name(), item.SystemPermissions());
         };
         Groups.prototype._SaveNewItem = function (item) {
-            return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermission());
+            return CHAOS.Portal.Client.Group.Create(item.Name(), item.SystemPermissions());
         };
         Groups.prototype._DeleteItem = function (item) {
             return CHAOS.Portal.Client.Group.Delete(item.Guid());
@@ -45,7 +45,7 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
 
             this.Guid = ko.observable("");
             this.Name = ko.observable("New Group");
-            this.SystemPermission = ko.observable(0);
+            this.SystemPermissions = ko.observable(0);
             this.DateCreated = ko.observable(new Date(Date.now()));
         }
         return GroupItem;

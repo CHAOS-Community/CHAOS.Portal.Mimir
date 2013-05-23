@@ -13,6 +13,7 @@ define(require =>
 		viewLocator = require('durandal/viewLocator'),
 		system = require('durandal/system'),
 		router = require('durandal/plugins/router'),
+		widget = require("durandal/widget"),
 		portal = require("Portal");
 
 	system.debug(true);
@@ -23,17 +24,17 @@ define(require =>
 	{
         viewLocator.useConvention();
 
-		var defImpl = router.getActivatableInstance; //default Implementation
+		var defaultImplementation = router.getActivatableInstance;
 		router.getActivatableInstance = function (routeInfo, params, module) 
 		{
-			var functionName = routeInfo.name; //whatever convention to be used
+			var functionName = routeInfo.name;
 			if (typeof module[functionName] == 'function')
 			{
 				var instance = new module[functionName]();
 				instance.__moduleId__ = module.__moduleId__;
 				return instance;
 			}
-			else return defImpl(routeInfo, params, module);
+			else return defaultImplementation(routeInfo, params, module);
 		}
         
         router.useConvention();
@@ -49,6 +50,10 @@ define(require =>
 		router.mapNav('Views');
         router.mapNav('ClientSettings');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
+
+		widget.convertKindToModuleId = kind => "Widgets/" + kind + "/controller";
+		widget.convertKindToViewId = kind => "Widgets/" + kind + "/view";
+		widget.registerKind('PermissionEditor')
  
         app.adaptToDevice();
         app.setRoot('viewmodels/Shell', 'entrance');

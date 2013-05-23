@@ -1,0 +1,9 @@
+﻿<div class="PermissionEditor">
+	<!-- ko foreach: Permissions-->
+		<label style="display: inline">
+			<span data-bind="text: Name"></span>
+			<input type="checkbox" data-bind="checked: Value"/>
+		</label>
+	<!--/ko-->
+	<input type="text" class="input-mini" title="Permission bits as a number" pattern="[0-9]+" data-bind="value: Value"/>
+</div>

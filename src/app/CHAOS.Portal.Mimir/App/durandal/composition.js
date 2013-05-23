@@ -269,7 +269,13 @@
                 system.acquire(settings.model).then(function (module) {
                     if (typeof (module) == 'function') {
                         settings.model = new module(element, settings);
-                    } else {
+                    }
+                    else if (typeof module[settings.kind] == 'function')
+                    {
+                    	settings.model = new module[settings.kind](element, settings);
+					}
+                    else
+                    {
                         settings.model = module;
                     }
 

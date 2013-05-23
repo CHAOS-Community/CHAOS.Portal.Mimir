@@ -38,7 +38,7 @@
 			<div class="control-group">
 				<label class="control-label" for="SystemPermission">System Permission:</label>
 				<div class="controls">
-					<input type="text" id="SystemPermission" placeholder="System Permission" data-bind="value: SystemPermission"/>
+					<div data-bind="PermissionEditor: { Names: ['Create Group', 'Create Subscription', 'Manage', 'User Manager'], Value: SystemPermissions }"></div>
 				</div>
 			</div>
 			<div class="control-group">

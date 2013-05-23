@@ -34,9 +34,18 @@ textarea
 
 /* Horizontal forms */
 
-div.control-group div.controls p 
+div.control-group div.controls p, div.control-group div.controls span
 {
 	padding-top: 5px;
+}
+
+/*  PermissionEditor */
+
+.PermissionEditor input
+{
+	padding-top: 5px;
+	margin-top: 0px;
+	margin-right: 10px;
 }
 
 /* Metadata schema */
