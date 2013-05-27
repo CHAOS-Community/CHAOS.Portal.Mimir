@@ -3,8 +3,9 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
-    
+define(["require", "exports", "Notification", "ItemListPage"], function(require, exports, ___notification__, ___itemListPage__) {
+    var _notification = ___notification__;
+
     var _itemListPage = ___itemListPage__;
 
     var Groups = (function (_super) {
@@ -41,13 +42,38 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
     var GroupItem = (function (_super) {
         __extends(GroupItem, _super);
         function GroupItem() {
-            _super.apply(this, arguments);
-
+            var _this = this;
+                _super.call(this);
             this.Guid = ko.observable("");
             this.Name = ko.observable("New Group");
             this.SystemPermissions = ko.observable(0);
             this.DateCreated = ko.observable(new Date(Date.now()));
+            this.Users = ko.observableArray();
+            this.Guid.subscribe(function () {
+                return _this.GetUsers();
+            });
         }
+        GroupItem.prototype.GetUsers = function () {
+            var _this = this;
+            if(this.Guid() == "") {
+                return;
+            }
+            setTimeout(function () {
+                return _this.GetUsersInner();
+            }, 100);
+        };
+        GroupItem.prototype.GetUsersInner = function () {
+            var _this = this;
+            CHAOS.Portal.Client.User.Get(null, this.Guid()).WithCallback(function (response) {
+                if(response.Error != null) {
+                    _notification.AddNotification("Failed to get users for group: " + response.Error.Message, true);
+                    return;
+                }
+                for(var i = 0; i < response.Result.Results.length; i++) {
+                    _this.Users.push(response.Result.Results[i]);
+                }
+            });
+        };
         return GroupItem;
     })(_itemListPage.Item);
     exports.GroupItem = GroupItem;    

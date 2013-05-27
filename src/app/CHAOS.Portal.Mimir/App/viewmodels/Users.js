@@ -23,16 +23,16 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             item.SystemPermissions(data.SystemPermissions);
         };
         Users.prototype._GetItems = function () {
-            return CHAOS.Portal.Client.User.Get();
+            return CHAOS.Portal.Client.User.Get(null, null);
         };
         Users.prototype._SaveItem = function (item) {
-            return _super.prototype._SaveItem.call(this, item);
+            return CHAOS.Portal.Client.User.Update(item.Guid(), item.Email(), item.SystemPermissions());
         };
         Users.prototype._SaveNewItem = function (item) {
-            return _super.prototype._SaveNewItem.call(this, item);
+            return CHAOS.Portal.Client.User.Create(null, item.Email());
         };
         Users.prototype._DeleteItem = function (item) {
-            return _super.prototype._DeleteItem.call(this, item);
+            return CHAOS.Portal.Client.User.Delete(item.Guid());
         };
         return Users;
     })(_itemListPage.ViewModel);

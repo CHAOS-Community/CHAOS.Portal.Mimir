@@ -18,7 +18,6 @@ export class Login
 	{
 		var email = $.cookie("Email");
 		var password = $.cookie("Password");
-
 		if (email != null)
 		{
 			this.Email(email);

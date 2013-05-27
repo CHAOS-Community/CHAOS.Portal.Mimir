@@ -23,22 +23,22 @@ export class Users extends _itemListPage.ViewModel
 
 	public _GetItems():CHAOS.Portal.Client.ICallState
 	{
-		return CHAOS.Portal.Client.User.Get()
+		return CHAOS.Portal.Client.User.Get(null, null);
 	}
 
 	public _SaveItem(item:UserItem):CHAOS.Portal.Client.ICallState
 	{
-		return super._SaveItem(item);
+		return CHAOS.Portal.Client.User.Update(item.Guid(), item.Email(), item.SystemPermissions());
 	}
 
 	public _SaveNewItem(item:UserItem):CHAOS.Portal.Client.ICallState
 	{
-		return super._SaveNewItem(item);
+		return CHAOS.Portal.Client.User.Create(null, item.Email());
 	}
 
 	public _DeleteItem(item:UserItem):CHAOS.Portal.Client.ICallState
 	{
-		return super._DeleteItem(item);
+		return CHAOS.Portal.Client.User.Delete(item.Guid());
 	}
 }
 
