@@ -112,6 +112,10 @@
     <Content Include="App\viewmodels\Users.js">
       <DependentUpon>Users.ts</DependentUpon>
     </Content>
+    <Content Include="App\viewmodels\Views.js">
+      <DependentUpon>Views.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Views.ts" />
     <Content Include="App\views\ClientSettings.html" />
     <Content Include="App\views\Formats.html" />
     <Content Include="App\views\Groups.html" />
@@ -123,6 +127,10 @@
     <Content Include="App\views\ServiceSelection.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\Users.html" />
+    <Content Include="App\views\Views.html" />
+    <Content Include="App\Widgets\PermissionEditor\controller.js" />
+    <Content Include="App\Widgets\PermissionEditor\controller.ts" />
+    <Content Include="App\Widgets\PermissionEditor\view.html" />
     <Content Include="default.htm" />
     <Content Include="Style\Global.min.css">
       <DependentUpon>Global.css</DependentUpon>
