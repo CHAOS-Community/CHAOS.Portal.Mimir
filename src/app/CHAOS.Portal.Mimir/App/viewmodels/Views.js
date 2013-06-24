@@ -14,6 +14,15 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
 
             this._ItemTypeName = "view";
         }
+        Views.prototype.Open = function (view) {
+            var parameters = {
+            };
+            parameters["query"] = "";
+            parameters["view"] = view.Name();
+            parameters["pageIndex"] = 0;
+            parameters["pageSize"] = 5;
+            window.open(CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller().GetServiceCallUri("View/Get", parameters, true, "xml"), "_blank");
+        };
         Views.prototype._CreateItem = function () {
             return new ViewItem();
         };

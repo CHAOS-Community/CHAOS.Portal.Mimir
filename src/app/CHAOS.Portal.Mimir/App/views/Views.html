@@ -1,7 +1,24 @@
 ﻿<h2>Views</h2>
-<ul data-bind="foreach: Items">
-	<li>
-		<span data-bind="text: Name"></span>
-	</li>
-</ul>
-<p class="text-info">These are the names of the views available from this service.</p>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Items">
+		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
+			<a href="#" data-bind="click: SetAsActive">
+				<span data-bind="text: Name"></span>
+				<i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
+			</a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveItem">
+		<h3 data-bind="text: Name"></h3>
+		<form class="form-horizontal" data-bind="submit: Save">
+			<div class="control-group">
+				<div class="controls">
+					<button type="button" class="btn" data-bind="click: $parent.Open">
+						<i class="icon-question-sign"></i>
+						Open
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

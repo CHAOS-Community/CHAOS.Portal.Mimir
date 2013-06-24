@@ -7,7 +7,18 @@ import _itemListPage = module("ItemListPage");
 
 export class Views extends _itemListPage.ViewModel
 {
-	public _ItemTypeName:string = "view";
+    public _ItemTypeName: string = "view";
+
+    public Open(view: ViewItem): void
+    {
+        var parameters = {};
+        parameters["query"] = "";
+        parameters["view"] = view.Name();
+        parameters["pageIndex"] = 0;
+        parameters["pageSize"] = 5;
+
+        window.open(CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller().GetServiceCallUri("View/Get", parameters, true, "xml"), "_blank");
+    }
 
 	public _CreateItem():ViewItem
 	{
