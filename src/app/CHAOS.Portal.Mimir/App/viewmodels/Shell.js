@@ -9,8 +9,9 @@ define(["require", "exports", "durandal/plugins/router", "Portal", "Notification
 
     exports.Router = _router;
     exports.IsAuthenticated = _portal.IsAuthenticated;
-    exports.Notifications = _notification;
+    exports.Notifications = null;
     function activate() {
+        exports.Notifications = _notification;
         exports.Router.guardRoute = GuardRoute;
         exports.Router.handleInvalidRoute = HandleInvalidRoute;
         return exports.Router.activate('ServiceSelection');

@@ -3,8 +3,9 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
-    
+define(["require", "exports", "Notification", "ItemListPage"], function(require, exports, ___notification__, ___itemListPage__) {
+    var _notification = ___notification__;
+
     var _itemListPage = ___itemListPage__;
 
     var Users = (function (_super) {
@@ -40,12 +41,42 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
     var UserItem = (function (_super) {
         __extends(UserItem, _super);
         function UserItem() {
-            _super.apply(this, arguments);
-
+            var _this = this;
+                _super.call(this);
             this.Guid = ko.observable("");
             this.Email = ko.observable("new@user.com");
             this.SystemPermissions = ko.observable(0);
+            this.FolderId = ko.observable("Loading");
+            this.Guid.subscribe(function () {
+                return setTimeout(function () {
+                    return _this.GetFolderId();
+                }, 200);
+            });
         }
+        UserItem.prototype.GetFolderId = function () {
+            var _this = this;
+            CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), false).WithCallback(function (response) {
+                if(response.Error != null) {
+                    _notification.AddNotification("Failed to get users folder: " + response.Error.Message, true);
+                    return;
+                }
+                if(response.Result.Count == 0) {
+                    _this.FolderId("None");
+                } else {
+                    _this.FolderId(response.Result.Results[0].Id);
+                }
+            });
+        };
+        UserItem.prototype.CreateUsersFolder = function () {
+            var _this = this;
+            CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), true).WithCallback(function (response) {
+                if(response.Error != null) {
+                    _notification.AddNotification("Failed to create users folder: " + response.Error.Message, true);
+                    return;
+                }
+                _this.FolderId(response.Result.Results[0].Id);
+            });
+        };
         return UserItem;
     })(_itemListPage.Item);
     exports.UserItem = UserItem;    

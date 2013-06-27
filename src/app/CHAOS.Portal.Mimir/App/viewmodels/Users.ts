@@ -46,5 +46,44 @@ export class UserItem extends _itemListPage.Item
 {
 	public Guid:KnockoutObservableString = ko.observable("");
 	public Email:KnockoutObservableString = ko.observable("new@user.com");
-	public SystemPermissions:KnockoutObservableNumber = ko.observable(0);
+	public SystemPermissions: KnockoutObservableNumber = ko.observable(0);
+
+	public FolderId:KnockoutObservableString = ko.observable("Loading");
+
+	constructor()
+	{
+	    super();
+
+	    this.Guid.subscribe(() => setTimeout(() => this.GetFolderId(), 200));
+	}
+
+	private GetFolderId(): void
+	{
+	    CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), false).WithCallback(response =>
+	    {
+	        if (response.Error != null)
+	        {
+	            _notification.AddNotification("Failed to get users folder: " + response.Error.Message, true);
+	            return;
+	        }
+
+	        if (response.Result.Count == 0)
+	            this.FolderId("None");
+	        else
+	            this.FolderId(response.Result.Results[0].Id);
+	    });
+	}
+
+	public CreateUsersFolder(): void
+	{
+	    CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), true).WithCallback(response =>
+	    {
+	        if (response.Error != null) {
+	            _notification.AddNotification("Failed to create users folder: " + response.Error.Message, true);
+	            return;
+	        }
+
+	        this.FolderId(response.Result.Results[0].Id);
+	    });
+	}
 }
