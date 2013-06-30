@@ -6,10 +6,10 @@ import _notification = module("Notification");
 
 export class ClientSettings
 {
-	public Guid: KnockoutObservableString = ko.observable("");
-	public DateCreated: KnockoutObservableDate = ko.observable();
-	public Name: KnockoutObservableString = ko.observable("");
-	public Settings: KnockoutObservableString = ko.observable("");
+	public Guid: KnockoutObservable<string> = ko.observable("");
+	public DateCreated: KnockoutObservable<Date> = ko.observable();
+	public Name: KnockoutObservable<string> = ko.observable("");
+	public Settings: KnockoutObservable<string> = ko.observable("");
 
 	public Get():void
 	{

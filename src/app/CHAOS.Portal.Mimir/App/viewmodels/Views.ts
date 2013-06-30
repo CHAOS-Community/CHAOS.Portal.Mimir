@@ -53,5 +53,5 @@ export class Views extends _itemListPage.ViewModel
 
 export class ViewItem extends _itemListPage.Item
 {
-	public Name:KnockoutObservableString = ko.observable("New View");
+	public Name:KnockoutObservable<string> = ko.observable("New View");
 }

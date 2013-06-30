@@ -4,10 +4,10 @@
 
 import _notification = module("Notification");
 
-export class ViewModel
+export class ViewModel<T extends Item>
 {
-	public Items: KnockoutObservableArray = ko.observableArray();
-	public ActiveItem: KnockoutObservableAny = ko.observable();
+	public Items: KnockoutObservableArray<T> = ko.observableArray();
+	public ActiveItem: KnockoutObservable<T> = ko.observable();
 
 	public activate():any
 	{
@@ -24,7 +24,7 @@ export class ViewModel
 		return deferred.promise();
 	}
 
-	public SetActiveItem(item: Item):void
+	public SetActiveItem(item: T):void
 	{
 		this.ActiveItem(item);
 	}
@@ -39,7 +39,7 @@ export class ViewModel
 		this.DeleteItem(this.ActiveItem());
 	}
 
-	public CreateItem(isClientside:bool, setAsActive:bool = false, data:any = null):Item
+	public CreateItem(isClientside:bool, setAsActive:bool = false, data:any = null):T
 	{
 		var item = this.SetCallbacksOnItem(this._CreateItem());
 		item.IsClientsideItem(isClientside);
@@ -60,7 +60,7 @@ export class ViewModel
 		this.CreateItem(true, true);
 	}
 
-	public SaveItem(item:Item):void
+	public SaveItem(item:T):void
 	{
 		if(item.IsClientsideItem())
 			this._SaveNewItem(item).WithCallback(response => this.CreateItemCallback(response, item), this);
@@ -68,7 +68,7 @@ export class ViewModel
 			this._SaveItem(item).WithCallback(this.UpdateItemCallback, this);
 	}
 
-	public DeleteItem(item:Item):void
+	public DeleteItem(item:T):void
 	{
 		this.Items.remove(item);
 
@@ -79,7 +79,7 @@ export class ViewModel
 			this._DeleteItem(item).WithCallback(this.DeleteItemCallback, this);
 	}
 
-	private SetCallbacksOnItem(item:Item):Item
+	private SetCallbacksOnItem(item:T):T
 	{
 		item.Save = () => this.SaveItem(item);
 		item.Delete = () => this.DeleteItem(item);
@@ -87,7 +87,7 @@ export class ViewModel
 		return item;
 	}
 
-	public ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse):void
+	public ItemsGetCompleted(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		if (response.Error != null)
 		{
@@ -102,7 +102,7 @@ export class ViewModel
 			this.SetActiveItem(this.Items()[0]);
 	}
 
-	public CreateItemCallback(response:CHAOS.Portal.Client.IPortalResponse, item:Item):void
+	public CreateItemCallback(response:CHAOS.Portal.Client.IPortalResponse<any>, item:T):void
 	{
 		if(response.Error != null)
 			_notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true);
@@ -113,13 +113,13 @@ export class ViewModel
 		}
 	}
 
-	public UpdateItemCallback(response:CHAOS.Portal.Client.IPortalResponse):void
+	public UpdateItemCallback(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		if(response.Error != null)
 			_notification.AddNotification("Update " + this._ItemTypeName + " failed: " + response.Error.Message, true);
 	}
 
-	public DeleteItemCallback(response:CHAOS.Portal.Client.IPortalResponse):void
+	public DeleteItemCallback(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		if(response.Error != null)
 			_notification.AddNotification("Delete " + this._ItemTypeName + " failed: " + response.Error.Message, true);
@@ -127,41 +127,41 @@ export class ViewModel
 
 	public _ItemTypeName:string = "item";
 
-	public _CreateItem():Item
+	public _CreateItem():T
 	{
 		_notification.AddNotification("CreateItem not implemented", true);
 		throw "CreateItem not implemented";
 		return null;
 	}
 
-	public _ApplyDataToItem(item:Item, data:any):void
+	public _ApplyDataToItem(item:T, data:any):void
 	{
 		_notification.AddNotification("ConvertItem not implemented", true);
 		throw "ConvertItem not implemented";
 	}
 
-	public _GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems():CHAOS.Portal.Client.ICallState<any>
 	{
 		_notification.AddNotification("GetItems not implemented", true);
 		throw "GetItems not implemented";
 		return null;
 	}
 
-	public _SaveItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item:T):CHAOS.Portal.Client.ICallState<any>
 	{
 		_notification.AddNotification("SaveItem not implemented", true);
 		throw "SaveItem not implemented";
 		return null;
 	}
 
-	public _SaveNewItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item:T):CHAOS.Portal.Client.ICallState<any>
 	{
 		_notification.AddNotification("SaveNewItem not implemented", true);
 		throw "SaveNewItem not implemented";
 		return null;
 	}
 
-	public _DeleteItem(item:Item):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item:T):CHAOS.Portal.Client.ICallState<any>
 	{
 		_notification.AddNotification("DeleteItem not implemented", true);
 		throw "DeleteItem not implemented";
@@ -171,7 +171,7 @@ export class ViewModel
 
 export class Item
 {
-	public IsClientsideItem: KnockoutObservableBool = ko.observable(false);
+	public IsClientsideItem: KnockoutObservable<boolean> = ko.observable(false);
 	public Save: () => void;
 	public Delete: () => void;
 	public SetAsActive: () => void;

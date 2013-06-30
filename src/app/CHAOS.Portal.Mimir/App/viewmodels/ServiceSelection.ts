@@ -9,8 +9,8 @@ import _notification = module("Notification");
 
 export class ServiceSelection
 {
-	public ServicePath:KnockoutObservableString = ko.observable("https://");
-	public CanEdit:KnockoutObservableBool = ko.observable(true);
+	public ServicePath:KnockoutObservable<string> = ko.observable("https://");
+	public CanEdit:KnockoutObservable<boolean> = ko.observable(true);
 	
 	public activate(info:any):void
 	{
@@ -35,7 +35,7 @@ export class ServiceSelection
 		CHAOS.Portal.Client.Session.Create().WithCallback(this.SessionCreated, this);
 	}
 
-	public SessionCreated(response:CHAOS.Portal.Client.IPortalResponse):void
+	public SessionCreated(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		if(response.Error != null)
 		{

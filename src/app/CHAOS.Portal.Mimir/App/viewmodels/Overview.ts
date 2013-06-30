@@ -5,8 +5,8 @@ import _portal =  module("Portal");
 
 export class Overview
 {
-	public SessionGuid:KnockoutObservableString = ko.observable("");
-	public UserGuid:KnockoutObservableString = ko.observable("");
+	public SessionGuid:KnockoutObservable<string> = ko.observable("");
+	public UserGuid:KnockoutObservable<string> = ko.observable("");
 
 	public activate():void
 	{

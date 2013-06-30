@@ -12,5 +12,5 @@ define(["require", "exports", "Portal"], function(require, exports, ___portal__)
         };
         return Overview;
     })();
-    exports.Overview = Overview;    
-})
+    exports.Overview = Overview;
+});

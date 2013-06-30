@@ -14,8 +14,8 @@ export function activate():JQueryPromise
 {
     Notifications = _notification;
 
-    Router.guardRoute = GuardRoute;
-	Router.handleInvalidRoute = HandleInvalidRoute;
+    (<any>Router).guardRoute = GuardRoute;
+	(<any>Router).handleInvalidRoute = HandleInvalidRoute;
 
 	return Router.activate('ServiceSelection');
 }

@@ -9,10 +9,10 @@ import _state = module("State");
 
 export class Login
 {
-	public Email: KnockoutObservableString = ko.observable("");
-	public Password: KnockoutObservableString = ko.observable("");
-	public CanEdit:KnockoutObservableBool = ko.observable(true);
-	public InvalidCredentials:KnockoutObservableBool = ko.observable(false);
+	public Email: KnockoutObservable<string> = ko.observable("");
+	public Password: KnockoutObservable<string> = ko.observable("");
+	public CanEdit:KnockoutObservable<boolean> = ko.observable(true);
+	public InvalidCredentials:KnockoutObservable<boolean> = ko.observable(false);
 
 	public activate():void
 	{
@@ -32,7 +32,7 @@ export class Login
 		CHAOS.Portal.Client.EmailPassword.Login(this.Email(), this.Password()).WithCallback(this.SessionAuthenticated, this);
 	}
 
-	private SessionAuthenticated(response:CHAOS.Portal.Client.IPortalResponse):void
+	private SessionAuthenticated(response:CHAOS.Portal.Client.IPortalResponse<any>):void
 	{
 		if(response.Error == null)
 		{

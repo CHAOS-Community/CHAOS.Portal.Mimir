@@ -44,11 +44,11 @@ export class Users extends _itemListPage.ViewModel
 
 export class UserItem extends _itemListPage.Item
 {
-	public Guid:KnockoutObservableString = ko.observable("");
-	public Email:KnockoutObservableString = ko.observable("new@user.com");
-	public SystemPermissions: KnockoutObservableNumber = ko.observable(0);
+	public Guid:KnockoutObservable<string> = ko.observable("");
+	public Email:KnockoutObservable<string> = ko.observable("new@user.com");
+	public SystemPermissions: KnockoutObservable<number> = ko.observable(0);
 
-	public FolderId:KnockoutObservableString = ko.observable("Loading");
+	public FolderId:KnockoutObservable<string> = ko.observable("Loading");
 
 	constructor()
 	{

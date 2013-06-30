@@ -5,6 +5,5 @@ C:\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\obj\Debug\CHAOS.Portal.Mimi
 C:\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\obj\Debug\CHAOS.Portal.Mimir.pdb
 C:\Users\Jacob\Documents\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\bin\CHAOS.Portal.Mimir.dll
 C:\Users\Jacob\Documents\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\bin\CHAOS.Portal.Mimir.pdb
-C:\Users\Jacob\Documents\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\obj\Debug\CHAOS.Portal.Mimir.csprojResolveAssemblyReference.cache
 C:\Users\Jacob\Documents\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\obj\Debug\CHAOS.Portal.Mimir.dll
 C:\Users\Jacob\Documents\Git\CHAOS.Portal.Mimir\src\app\CHAOS.Portal.Mimir\obj\Debug\CHAOS.Portal.Mimir.pdb

@@ -5,7 +5,7 @@
 import _notification = module("Notification");
 import _itemListPage = module("ItemListPage");
 
-export class Formats extends _itemListPage.ViewModel
+export class Formats extends _itemListPage.ViewModel<FormatItem>
 {
 	public _ItemTypeName:string = "format";
 
@@ -47,10 +47,10 @@ export class Formats extends _itemListPage.ViewModel
 
 export class FormatItem extends _itemListPage.Item
 {
-	public ID:KnockoutObservableNumber = ko.observable();
-	public Name:KnockoutObservableString = ko.observable("New Format");
-	public FormatCategoryID:KnockoutObservableNumber = ko.observable();
-	public FormatXml:KnockoutObservableString = ko.observable();
-	public MimeType:KnockoutObservableString = ko.observable();
-	public Extension:KnockoutObservableString = ko.observable();
+	public ID:KnockoutObservable<number> = ko.observable();
+	public Name:KnockoutObservable<string> = ko.observable("New Format");
+	public FormatCategoryID:KnockoutObservable<number> = ko.observable();
+	public FormatXml:KnockoutObservable<string> = ko.observable();
+	public MimeType:KnockoutObservable<string> = ko.observable();
+	public Extension:KnockoutObservable<string> = ko.observable();
 }

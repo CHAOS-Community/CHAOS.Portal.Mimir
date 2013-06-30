@@ -5,7 +5,7 @@
 import _notification = module("Notification");
 import _itemListPage = module("ItemListPage");
 
-export class ObjectTypes extends _itemListPage.ViewModel
+export class ObjectTypes extends _itemListPage.ViewModel<ObjectTypeItem>
 {
 	public _ItemTypeName:string = "object type";
 
@@ -43,6 +43,6 @@ export class ObjectTypes extends _itemListPage.ViewModel
 
 export class ObjectTypeItem extends _itemListPage.Item
 {
-	public ID:KnockoutObservableNumber = ko.observable();
-	public Name:KnockoutObservableString = ko.observable("New Object Type");
+	public ID:KnockoutObservable<number> = ko.observable();
+	public Name:KnockoutObservable<string> = ko.observable("New Object Type");
 }

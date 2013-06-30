@@ -5,7 +5,7 @@
 import _notification = module("Notification");
 import _itemListPage = module("ItemListPage");
 
-export class Groups extends _itemListPage.ViewModel
+export class Groups extends _itemListPage.ViewModel<GroupItem>
 {
 	public _ItemTypeName:string = "group";
 
@@ -45,18 +45,20 @@ export class Groups extends _itemListPage.ViewModel
 
 export class GroupItem extends _itemListPage.Item
 {
-	public Guid:KnockoutObservableString = ko.observable("");
-	public Name:KnockoutObservableString = ko.observable("New Group");
-	public SystemPermissions:KnockoutObservableNumber = ko.observable(0);
-	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
+	public Guid:KnockoutObservable<string> = ko.observable("");
+	public Name:KnockoutObservable<string> = ko.observable("New Group");
+	public SystemPermissions:KnockoutObservable<number> = ko.observable(0);
+	public DateCreated:KnockoutObservable<Date> = ko.observable(new Date(Date.now()));
 
-	public Users: KnockoutObservableArray;
+	public Users: KnockoutObservableArray<any>;
+	public UsersNotInGroup: KnockoutObservableArray<any>;
 
 	constructor()
 	{
 		super();
 
 		this.Users = ko.observableArray();
+		this.UsersNotInGroup = ko.observableArray();
 
 		this.Guid.subscribe(()=>this.GetUsers());
 	}
@@ -83,6 +85,39 @@ export class GroupItem extends _itemListPage.Item
 			{
 				this.Users.push(response.Result.Results[i]);
 			}
+
+			this.GetUsersNotInGroup();
 		});
+	}
+
+	private GetUsersNotInGroup():void
+	{
+		CHAOS.Portal.Client.User.Get().WithCallback(response =>
+		{
+			if (response.Error != null)
+			{
+				_notification.AddNotification("Failed to get all users (for add to group list)", true);
+				return;
+			}
+
+			for (var i: number = 0; i < response.Result.Results.length; i++)
+			{
+				var user = response.Result.Results[0];
+
+				if (!this.IsUserInGroup(user))
+					this.UsersNotInGroup.push(user);
+			}
+		});
+	}
+
+	private IsUserInGroup(user: any): boolean
+	{
+		for (var i: number = 0; i < this.Users().length; i++)
+		{
+			if (this.Users[i].Guid == user.Guid)
+				return true;
+		}
+
+		return false;
 	}
 }

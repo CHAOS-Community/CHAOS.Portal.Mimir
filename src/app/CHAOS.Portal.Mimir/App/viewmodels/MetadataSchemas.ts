@@ -45,8 +45,8 @@ export class MetadataSchemas extends _itemListPage.ViewModel
 
 export class MetadataSchemaItem extends _itemListPage.Item
 {
-	public Guid:KnockoutObservableString = ko.observable("");
-	public Name:KnockoutObservableString = ko.observable("New Schema");
-	public SchemaXml:KnockoutObservableString = ko.observable("");
-	public DateCreated:KnockoutObservableDate = ko.observable(new Date(Date.now()));
+	public Guid:KnockoutObservable<string> = ko.observable("");
+	public Name:KnockoutObservable<string> = ko.observable("New Schema");
+	public SchemaXml:KnockoutObservable<string> = ko.observable("");
+	public DateCreated:KnockoutObservable<Date> = ko.observable(new Date(Date.now()));
 }

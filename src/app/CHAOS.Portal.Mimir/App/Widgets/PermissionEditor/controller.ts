@@ -6,7 +6,7 @@ import _widget = module("durandal/widget");
 export class PermissionEditor
 {
 	public Permissions:Permission[] = [];
-	public Value:KnockoutObservableNumber;
+	public Value:KnockoutObservable<number>;
 
 	constructor(element:HTMLElement, settings:any)
 	{
@@ -23,11 +23,11 @@ export class PermissionEditor
 export class Permission
 {
 	public Name: string;
-	public Value:KnockoutObservableBool = ko.observable();
+	public Value:KnockoutObservable<boolean> = ko.observable();
 	private _bitMask: number;
-	private _permissionsValue: KnockoutObservableNumber;
+	private _permissionsValue: KnockoutObservable<number>;
 
-	constructor(name:string, position:number, permissionsValue:KnockoutObservableNumber)
+	constructor(name:string, position:number, permissionsValue:KnockoutObservable<number>)
 	{
 		this.Name = name;
 		this._bitMask = 1 << position;

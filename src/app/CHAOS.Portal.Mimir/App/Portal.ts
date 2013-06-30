@@ -2,9 +2,9 @@
 /// <reference path="TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="TypeScriptDefinitions/PortalClient.d.ts" />
 
-export var Client:KnockoutObservableAny = ko.observable();
-export var IsAuthenticated:KnockoutObservableBool = ko.observable(false);
-export var HasSession:KnockoutObservableBool = ko.observable(false);
+export var Client:KnockoutObservable<any> = ko.observable();
+export var IsAuthenticated:KnockoutObservable<boolean> = ko.observable(false);
+export var HasSession:KnockoutObservable<boolean> = ko.observable(false);
 
 var authenticationCallback: () => void = null;
 
