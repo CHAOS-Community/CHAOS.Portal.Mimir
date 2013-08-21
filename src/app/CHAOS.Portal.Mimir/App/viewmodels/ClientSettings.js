@@ -12,9 +12,9 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             var _this = this;
             CHAOS.Portal.Client.ClientSettings.Get(this.Guid()).WithCallback(function (response) {
                 if (response.Error != null)
-                    _notification.AddNotification("Error getting client settings: " + response.Error.Message, true); else if (response.Result.Count == 0)
+                    _notification.AddNotification("Error getting client settings: " + response.Error.Message, true); else if (response.Body.Count == 0)
                     _notification.AddNotification("Client settings not found", false); else {
-                    var data = response.Result.Results[0];
+                    var data = response.Body.Results[0];
                     _this.DateCreated(new Date(data.DateCreated * 1000));
                     _this.Name(data.Name);
                     _this.Settings(data.Settings);

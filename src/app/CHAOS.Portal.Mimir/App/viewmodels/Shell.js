@@ -1,7 +1,7 @@
-define(["require", "exports", "durandal/plugins/router", "Portal", "Notification", "State"], function(require, exports, ___router__, ___portal__, ___notification__, ___state__) {
+define(["require", "exports", "durandal/plugins/router", "Notification", "Portal", "State"], function(require, exports, ___router__, ___notification__, ___portal__, ___state__) {
     var _router = ___router__;
-    var _portal = ___portal__;
     var _notification = ___notification__;
+    var _portal = ___portal__;
     var _state = ___state__;
 
     exports.Router = _router;

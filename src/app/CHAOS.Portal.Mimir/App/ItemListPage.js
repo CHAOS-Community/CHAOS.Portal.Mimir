@@ -94,8 +94,8 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
                 return;
             }
 
-            for (var i = 0; i < response.Result.Results.length; i++)
-                this.CreateItem(false, false, response.Result.Results[i]);
+            for (var i = 0; i < response.Body.Results.length; i++)
+                this.CreateItem(false, false, response.Body.Results[i]);
 
             if (this.Items().length > 0)
                 this.SetActiveItem(this.Items()[0]);
@@ -104,7 +104,7 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
         ViewModel.prototype.CreateItemCallback = function (response, item) {
             if (response.Error != null)
                 _notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true); else {
-                this._ApplyDataToItem(item, response.Result.Results[0]);
+                this._ApplyDataToItem(item, response.Body.Results[0]);
                 item.IsClientsideItem(false);
             }
         };

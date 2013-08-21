@@ -79,8 +79,8 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
                     return;
                 }
 
-                for (var i = 0; i < response.Result.Results.length; i++) {
-                    _this.Users.push(response.Result.Results[i]);
+                for (var i = 0; i < response.Body.Results.length; i++) {
+                    _this.Users.push(response.Body.Results[i]);
                 }
 
                 _this.GetUsersNotInGroup();
@@ -95,8 +95,8 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
                     return;
                 }
 
-                for (var i = 0; i < response.Result.Results.length; i++) {
-                    var user = response.Result.Results[0];
+                for (var i = 0; i < response.Body.Results.length; i++) {
+                    var user = response.Body.Results[0];
 
                     if (!_this.IsUserInGroup(user))
                         _this.UsersNotInGroup.push(user);

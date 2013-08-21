@@ -1,9 +1,9 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 
-import _router =  module("durandal/plugins/router");
-import _portal = module("Portal");
+import _router = module("durandal/plugins/router");
 import _notification = module("Notification");
+import _portal = module("Portal");
 import _state = module("State");
 
 export var Router = _router;
@@ -31,7 +31,6 @@ function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any
 	}
 	return true;
 }
-
 
 function HandleInvalidRoute(route: _router.IRouteInfo, params:any):void
 {

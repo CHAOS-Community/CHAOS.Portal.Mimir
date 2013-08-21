@@ -112,6 +112,10 @@
     <Content Include="App\viewmodels\Users.js">
       <DependentUpon>Users.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\viewmodels\Utilities.ts" />
+    <Content Include="App\viewmodels\Utilities.js">
+      <DependentUpon>Utilities.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\Views.js">
       <DependentUpon>Views.ts</DependentUpon>
     </Content>
@@ -127,6 +131,7 @@
     <Content Include="App\views\ServiceSelection.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\Users.html" />
+    <Content Include="App\views\Utilities.html" />
     <Content Include="App\views\Views.html" />
     <Content Include="App\Widgets\PermissionEditor\controller.js" />
     <Content Include="App\Widgets\PermissionEditor\controller.ts" />
@@ -194,6 +199,9 @@
     </Content>
     <Content Include="App\viewmodels\ClientSettings.js.map">
       <DependentUpon>ClientSettings.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Utilities.js.map">
+      <DependentUpon>Utilities.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>

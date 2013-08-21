@@ -1,0 +1,18 @@
+﻿<h2>Utilities</h2>
+<div>
+	<h3>Guid's</h3>
+	<form class="form-horizontal">
+		<div class="control-group">
+			<label class="control-label" for="DotNetGuid">.Net Guid:</label>
+			<div class="controls">
+				<input type="text" id="DotNetGuid" placeholder="00000000-0000-0000-0000-000000000000" class="input-xxlarge" data-bind="value: DotNetGuid, valueUpdate: 'afterkeydown'" pattern="[A-F0-9]{8}(?:-[A-F0-9]{4}){3}-[A-F0-9]{12}" title=".Net formated Guid string"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="MySQLGuid">MySQL Guid:</label>
+			<div class="controls">
+				<input type="text" id="MySQLGuid" placeholder="00000000000000000000000000000000" class="input-xxlarge" data-bind="value: MySQLGuid, valueUpdate: 'afterkeydown'" pattern="[0-9A-F]{32}" title="MySQL formated Guid string"/>
+			</div>
+		</div>
+	</form>
+</div>

@@ -67,9 +67,9 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
                     return;
                 }
 
-                if (response.Result.Count == 0)
+                if (response.Body.Count == 0)
                     _this.FolderId("None"); else
-                    _this.FolderId(response.Result.Results[0].Id);
+                    _this.FolderId(response.Body.Results[0].Id);
             });
         };
 
@@ -81,7 +81,7 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
                     return;
                 }
 
-                _this.FolderId(response.Result.Results[0].Id);
+                _this.FolderId(response.Body.Results[0].Id);
             });
         };
         return UserItem;

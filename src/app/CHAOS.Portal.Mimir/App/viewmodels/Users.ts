@@ -67,10 +67,10 @@ export class UserItem extends _itemListPage.Item
 	            return;
 	        }
 
-	        if (response.Result.Count == 0)
+			if (response.Body.Count == 0)
 	            this.FolderId("None");
 	        else
-	            this.FolderId(response.Result.Results[0].Id);
+	            this.FolderId(response.Body.Results[0].Id);
 	    });
 	}
 
@@ -83,7 +83,7 @@ export class UserItem extends _itemListPage.Item
 	            return;
 	        }
 
-	        this.FolderId(response.Result.Results[0].Id);
+	        this.FolderId(response.Body.Results[0].Id);
 	    });
 	}
 }

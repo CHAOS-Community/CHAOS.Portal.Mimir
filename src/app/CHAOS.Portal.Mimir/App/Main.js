@@ -37,6 +37,7 @@ define(function (require) {
         router.mapNav('Formats');
         router.mapNav('Views');
         router.mapNav('ClientSettings');
+        router.mapNav('Utilities');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
 
         widget.convertKindToModuleId = function (kind) {

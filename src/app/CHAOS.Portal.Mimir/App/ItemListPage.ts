@@ -95,8 +95,8 @@ export class ViewModel<T extends Item>
 			return;
 		}
 
-		for (var i: number = 0; i < response.Result.Results.length; i++)
-			this.CreateItem(false, false, response.Result.Results[i]);
+		for (var i: number = 0; i < response.Body.Results.length; i++)
+			this.CreateItem(false, false, response.Body.Results[i]);
 
 		if (this.Items().length > 0)
 			this.SetActiveItem(this.Items()[0]);
@@ -108,7 +108,7 @@ export class ViewModel<T extends Item>
 			_notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true);
 		else
 		{
-			this._ApplyDataToItem(item, response.Result.Results[0]);
+			this._ApplyDataToItem(item, response.Body.Results[0]);
 			item.IsClientsideItem(false);
 		}
 	}

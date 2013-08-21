@@ -81,9 +81,9 @@ export class GroupItem extends _itemListPage.Item
 				return;
 			}
 
-			for(var i:number = 0; i < response.Result.Results.length; i++)
+			for(var i:number = 0; i < response.Body.Results.length; i++)
 			{
-				this.Users.push(response.Result.Results[i]);
+				this.Users.push(response.Body.Results[i]);
 			}
 
 			this.GetUsersNotInGroup();
@@ -100,9 +100,9 @@ export class GroupItem extends _itemListPage.Item
 				return;
 			}
 
-			for (var i: number = 0; i < response.Result.Results.length; i++)
+			for (var i: number = 0; i < response.Body.Results.length; i++)
 			{
-				var user = response.Result.Results[0];
+				var user = response.Body.Results[0];
 
 				if (!this.IsUserInGroup(user))
 					this.UsersNotInGroup.push(user);
