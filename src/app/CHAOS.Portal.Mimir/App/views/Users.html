@@ -52,6 +52,7 @@
 				</div>
 			</div>
 		</form>
+		<hr/>
 		<div>
 			<div>
 				Users Folder Id: <span data-bind="text: FolderId"></span>
@@ -61,6 +62,11 @@
 			</div>
 			<button data-bind="click: CreateUsersFolder" class="btn">Create Users Folder</button>
 			<button data-bind="click: CreateUserObject" class="btn">Create Users Object</button>
+		</div>
+		<hr/>
+		<div>
+			<input type="text" placeholder="passw0rd" data-bind="value: NewPassword"/>
+			<button data-bind="click: UpdatePassword" class="btn">Update Password</button>
 		</div>
 	</div>
 </div>

@@ -10,6 +10,8 @@ class User extends _itemListPage.Item
 	public FolderId: KnockoutObservable<string> = ko.observable("Loading");
 	public UserObjectCreated: KnockoutObservable<string> = ko.observable("Loading");
 
+	public NewPassword: KnockoutObservable<string> = ko.observable("");
+
 	constructor()
 	{
 		super();
@@ -81,6 +83,23 @@ class User extends _itemListPage.Item
 
 			this.UserObjectCreated(new Date(response.Body.Results[0].DateCreated * 1000).toString());
 			this.GetFolderId();
+		});
+	}
+
+	public UpdatePassword()
+	{
+		if (this.NewPassword() == "")
+			return;
+
+		CHAOS.Portal.Client.EmailPassword.SetPassword(this.Guid(), this.NewPassword()).WithCallback(response =>
+		{
+			if (response.Error != null)
+			{
+				_notification.AddNotification("Failed to set password: " + response.Error.Message, true);
+				return;
+			}
+
+			this.NewPassword("");
 		});
 	}
 }

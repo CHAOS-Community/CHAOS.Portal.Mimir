@@ -18,6 +18,7 @@ define(["require", "exports", "Notification", "viewmodels/ItemListPage"], functi
             this.SystemPermissions = ko.observable(0);
             this.FolderId = ko.observable("Loading");
             this.UserObjectCreated = ko.observable("Loading");
+            this.NewPassword = ko.observable("");
 
             this.Guid.subscribe(function () {
                 return setTimeout(function () {
@@ -78,6 +79,21 @@ else
 
                 _this.UserObjectCreated(new Date(response.Body.Results[0].DateCreated * 1000).toString());
                 _this.GetFolderId();
+            });
+        };
+
+        User.prototype.UpdatePassword = function () {
+            var _this = this;
+            if (this.NewPassword() == "")
+                return;
+
+            CHAOS.Portal.Client.EmailPassword.SetPassword(this.Guid(), this.NewPassword()).WithCallback(function (response) {
+                if (response.Error != null) {
+                    _notification.AddNotification("Failed to set password: " + response.Error.Message, true);
+                    return;
+                }
+
+                _this.NewPassword("");
             });
         };
         return User;
