@@ -52,6 +52,13 @@ class EBUProfile
 	{
 		this.Name($(metadata).find("Name").text());
 		this.Title($(metadata).find("Title").text());
+		this.Organization($(metadata).find("Organization").text());
+		this.About($(metadata).find("About").text());
+		this.Phonenumber($(metadata).find("Phonenumber").text());
+		this.Address($(metadata).find("Address").text());
+		this.City($(metadata).find("City").text());
+		this.Zipcode($(metadata).find("Zipcode").text());
+		this.Country($(metadata).find("Country").text());
 	}
 
 	public Save(): void
