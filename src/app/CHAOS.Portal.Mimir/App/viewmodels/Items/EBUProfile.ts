@@ -10,7 +10,7 @@ class EBUProfile
 
 	public Email: KnockoutObservable<string> = ko.observable("");
 
-	public EditedDate: KnockoutObservable<string> = ko.observable("None");
+	public EditedDate: KnockoutObservable<string> = ko.observable("Never");
 
 	public Name: KnockoutObservable<string> = ko.observable("");
 	public Title: KnockoutObservable<string> = ko.observable("");

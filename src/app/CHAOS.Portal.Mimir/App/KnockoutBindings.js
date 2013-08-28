@@ -57,3 +57,4 @@ else
 
 ko.bindingHandlers.ace = new AceBindingHandler();
 ko.bindingHandlers.typeahead = new TypeAheadBindingHandler();
+//# sourceMappingURL=KnockoutBindings.js.map

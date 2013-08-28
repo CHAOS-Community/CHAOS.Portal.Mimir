@@ -6,7 +6,7 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
     var EBUProfile = (function () {
         function EBUProfile(metadataSchemaGuid, user) {
             this.Email = ko.observable("");
-            this.EditedDate = ko.observable("None");
+            this.EditedDate = ko.observable("Never");
             this.Name = ko.observable("");
             this.Title = ko.observable("");
             this.Organization = ko.observable("");

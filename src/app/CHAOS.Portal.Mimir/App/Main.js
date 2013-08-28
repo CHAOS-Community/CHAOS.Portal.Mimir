@@ -40,3 +40,4 @@ define(["durandal/app", "durandal/system", "durandal/viewLocator", "durandal/plu
         app.setRoot('viewmodels/Shell', 'entrance');
     });
 });
+//# sourceMappingURL=Main.js.map
