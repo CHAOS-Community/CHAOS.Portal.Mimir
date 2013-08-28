@@ -44,7 +44,7 @@ export class Permission
 		this.Value((newValue & this._bitMask) > 0);
 	}
 
-	private ValueChanged(newValue:bool):void
+	private ValueChanged(newValue:boolean):void
 	{
 		if (newValue)
 			this._permissionsValue(this._permissionsValue() | this._bitMask);

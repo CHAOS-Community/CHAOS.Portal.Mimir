@@ -41,8 +41,12 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <TypeScriptCompile Include="App\Main.ts" />
-    <TypeScriptCompile Include="App\ItemListPage.ts" />
-    <Content Include="App\ItemListPage.js">
+    <TypeScriptCompile Include="App\viewmodels\ItemListPage.ts" />
+    <TypeScriptCompile Include="App\viewmodels\EBUProfiles.ts" />
+    <Content Include="App\viewmodels\EBUProfiles.js">
+      <DependentUpon>EBUProfiles.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\ItemListPage.js">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="App\KnockoutBindings.ts" />
@@ -84,6 +88,34 @@
     <Content Include="App\viewmodels\Groups.js">
       <DependentUpon>Groups.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\viewmodels\Items\User.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Items\Format.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Items\EBUProfile.ts" />
+    <Content Include="App\viewmodels\Items\EBUProfile.js">
+      <DependentUpon>EBUProfile.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\Format.js">
+      <DependentUpon>Format.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\Items\Group.ts" />
+    <Content Include="App\viewmodels\Items\Group.js">
+      <DependentUpon>Group.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\Items\MetadataSchema.ts" />
+    <Content Include="App\viewmodels\Items\MetadataSchema.js">
+      <DependentUpon>MetadataSchema.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\Items\ObjectType.ts" />
+    <Content Include="App\viewmodels\Items\ObjectType.js">
+      <DependentUpon>ObjectType.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\User.js">
+      <DependentUpon>User.ts</DependentUpon>
+    </Content>
+    <TypeScriptCompile Include="App\viewmodels\Items\View.ts" />
+    <Content Include="App\viewmodels\Items\View.js">
+      <DependentUpon>View.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\Login.js">
       <DependentUpon>Login.ts</DependentUpon>
     </Content>
@@ -121,6 +153,7 @@
     </Content>
     <Content Include="App\viewmodels\Views.ts" />
     <Content Include="App\views\ClientSettings.html" />
+    <Content Include="App\views\EBUProfiles.html" />
     <Content Include="App\views\Formats.html" />
     <Content Include="App\views\Groups.html" />
     <Content Include="App\views\Login.html" />
@@ -179,7 +212,7 @@
     <Content Include="App\Notification.js.map">
       <DependentUpon>Notification.ts</DependentUpon>
     </Content>
-    <Content Include="App\ItemListPage.js.map">
+    <Content Include="App\viewmodels\ItemListPage.js.map">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\Formats.js.map">
@@ -202,6 +235,30 @@
     </Content>
     <Content Include="App\viewmodels\Utilities.js.map">
       <DependentUpon>Utilities.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\User.js.map">
+      <DependentUpon>User.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\Format.js.map">
+      <DependentUpon>Format.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\ObjectType.js.map">
+      <DependentUpon>ObjectType.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\Group.js.map">
+      <DependentUpon>Group.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\MetadataSchema.js.map">
+      <DependentUpon>MetadataSchema.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\View.js.map">
+      <DependentUpon>View.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\EBUProfiles.js.map">
+      <DependentUpon>EBUProfiles.ts</DependentUpon>
+    </Content>
+    <Content Include="App\viewmodels\Items\EBUProfile.js.map">
+      <DependentUpon>EBUProfile.ts</DependentUpon>
     </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -241,6 +298,8 @@
   </ProjectExtensions>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptSourceMap> --sourcemap</TypeScriptSourceMap>
+    <DefineConstants>
+    </DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>
@@ -249,6 +308,6 @@
   <Target Name="BeforeBuild">
     <Message Text="Compiling TypeScript files" />
     <Message Text="Executing tsc$(TypeScriptSourceMap) @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
-    <Exec Command="tsc$(TypeScriptSourceMap) @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ')" />
+    <Exec Command="tsc$(TypeScriptSourceMap) @(TypeScriptCompile ->'&quot;%(fullpath)&quot;', ' ') --module amd" />
   </Target>
 </Project>

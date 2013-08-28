@@ -2,19 +2,20 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _notification = module("Notification");
-import _itemListPage = module("ItemListPage");
+import _notification = require("Notification");
+import _itemListPage = require("viewmodels/ItemListPage");
+import Format = require("viewmodels/Items/Format");
 
-export class Formats extends _itemListPage.ViewModel<FormatItem>
+class Formats extends _itemListPage.ItemListPage<Format>
 {
 	public _ItemTypeName:string = "format";
 
-	public _CreateItem():FormatItem
+	public _CreateItem(): Format
 	{
-		return new FormatItem();
+		return new Format();
 	}
 
-	public _ApplyDataToItem(item:FormatItem, data:any):void
+	public _ApplyDataToItem(item: Format, data:any):void
 	{
 		item.ID(data.ID);
 		item.Name(data.Name);
@@ -24,33 +25,25 @@ export class Formats extends _itemListPage.ViewModel<FormatItem>
 		item.Extension(data.Extension);
 	}
 
-	public _GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems(): CHAOS.Portal.Client.ICallState<any>
 	{
 		return CHAOS.Portal.Client.Format.Get();
 	}
 
-	public _SaveItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item: Format): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._SaveItem(item);
 	}
 
-	public _SaveNewItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item: Format): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._SaveNewItem(item);
 	}
 
-	public _DeleteItem(item:FormatItem):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item: Format): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._DeleteItem(item);
 	}
 }
 
-export class FormatItem extends _itemListPage.Item
-{
-	public ID:KnockoutObservable<number> = ko.observable();
-	public Name:KnockoutObservable<string> = ko.observable("New Format");
-	public FormatCategoryID:KnockoutObservable<number> = ko.observable();
-	public FormatXml:KnockoutObservable<string> = ko.observable();
-	public MimeType:KnockoutObservable<string> = ko.observable();
-	public Extension:KnockoutObservable<string> = ko.observable();
-}
+export = Formats;

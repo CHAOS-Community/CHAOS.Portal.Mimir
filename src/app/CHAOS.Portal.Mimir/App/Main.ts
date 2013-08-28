@@ -1,21 +1,17 @@
 /// <reference path="TypeScriptDefinitions/require.d.ts" />
 /// <reference path="TypeScriptDefinitions/durandal.d.ts" />
 
+declare var requirejs:any;
+
 requirejs.config({
     paths: {
         'text': 'durandal/amd/text'
     }
 });
 
-define(require =>
+define(["durandal/app", "durandal/system", "durandal/viewLocator", "durandal/plugins/router", "durandal/widget"],
+		(app: any, system: any, viewLocator: any, router: any, widget: any) =>
 {
-	var app = require('durandal/app'),
-		viewLocator = require('durandal/viewLocator'),
-		system = require('durandal/system'),
-		router = require('durandal/plugins/router'),
-		widget = require("durandal/widget"),
-		portal = require("Portal");
-
 	system.debug(true);
 
 	app.title = "Mimir";
@@ -23,19 +19,6 @@ define(require =>
 	app.start().then(() => 
 	{
         viewLocator.useConvention();
-
-		var defaultImplementation = router.getActivatableInstance;
-		router.getActivatableInstance = function (routeInfo, params, module) 
-		{
-			var functionName = routeInfo.name;
-			if (typeof module[functionName] == 'function')
-			{
-				var instance = new module[functionName]();
-				instance.__moduleId__ = module.__moduleId__;
-				return instance;
-			}
-			else return defaultImplementation(routeInfo, params, module);
-		}
         
         router.useConvention();
         router.mapRoute('ServiceSelection', null, null, false);
@@ -50,6 +33,7 @@ define(require =>
 		router.mapNav('Views');
         router.mapNav('ClientSettings');
         router.mapNav('Utilities');
+        router.mapNav('EBUProfiles');
 		router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
 
 		widget.convertKindToModuleId = kind => "Widgets/" + kind + "/controller";

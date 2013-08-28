@@ -2,14 +2,15 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _notification = module("Notification");
-import _itemListPage = module("ItemListPage");
+import _notification = require("Notification");
+import _itemListPage = require("viewmodels/ItemListPage");
+import View = require("viewmodels/Items/View");
 
-export class Views extends _itemListPage.ViewModel
+class Views extends _itemListPage.ItemListPage<View>
 {
     public _ItemTypeName: string = "view";
 
-    public Open(view: ViewItem): void
+	public Open(view: View): void
     {
         var parameters = {};
         parameters["query"] = "";
@@ -20,38 +21,35 @@ export class Views extends _itemListPage.ViewModel
         window.open(CHAOS.Portal.Client.ServiceCallerService.GetDefaultCaller().GetServiceCallUri("View/Get", parameters, true, "xml"), "_blank");
     }
 
-	public _CreateItem():ViewItem
+	public _CreateItem(): View
 	{
-		return new ViewItem();
+		return new View();
 	}
 
-	public _ApplyDataToItem(item: ViewItem, data: any): void
+	public _ApplyDataToItem(item: View, data: any): void
 	{
 		item.Name(data.Name);
 	}
 
-	public _GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems(): CHAOS.Portal.Client.ICallState<any>
 	{
 		return CHAOS.Portal.Client.View.List();
 	}
 
-	public _SaveItem(item:ViewItem):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item: View):CHAOS.Portal.Client.ICallState<any>
 	{
 		throw "Not implemented";
 	}
 
-	public _SaveNewItem(item:ViewItem):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item: View): CHAOS.Portal.Client.ICallState<any>
 	{
 		throw "Not implemented";
 	}
 
-	public _DeleteItem(item:ViewItem):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item: View): CHAOS.Portal.Client.ICallState<any>
 	{
 		throw "Not implemented";
 	}
 }
 
-export class ViewItem extends _itemListPage.Item
-{
-	public Name:KnockoutObservable<string> = ko.observable("New View");
-}
+export = Views;

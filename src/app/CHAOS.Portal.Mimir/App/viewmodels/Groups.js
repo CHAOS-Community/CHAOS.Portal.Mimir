@@ -1,12 +1,16 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "Notification", "ItemListPage"], function(require, exports, ___notification__, ___itemListPage__) {
-    var _notification = ___notification__;
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/Group"], function(require, exports, ___itemListPage__, __Group__) {
+    
     var _itemListPage = ___itemListPage__;
+    var Group = __Group__;
 
     var Groups = (function (_super) {
         __extends(Groups, _super);
@@ -15,7 +19,7 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
             this._ItemTypeName = "group";
         }
         Groups.prototype._CreateItem = function () {
-            return new GroupItem();
+            return new Group();
         };
 
         Groups.prototype._ApplyDataToItem = function (item, data) {
@@ -41,78 +45,9 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
             return CHAOS.Portal.Client.Group.Delete(item.Guid());
         };
         return Groups;
-    })(_itemListPage.ViewModel);
-    exports.Groups = Groups;
+    })(_itemListPage.ItemListPage);
 
-    var GroupItem = (function (_super) {
-        __extends(GroupItem, _super);
-        function GroupItem() {
-            var _this = this;
-            _super.call(this);
-            this.Guid = ko.observable("");
-            this.Name = ko.observable("New Group");
-            this.SystemPermissions = ko.observable(0);
-            this.DateCreated = ko.observable(new Date(Date.now()));
-
-            this.Users = ko.observableArray();
-            this.UsersNotInGroup = ko.observableArray();
-
-            this.Guid.subscribe(function () {
-                return _this.GetUsers();
-            });
-        }
-        GroupItem.prototype.GetUsers = function () {
-            var _this = this;
-            if (this.Guid() == "")
-                return;
-
-            setTimeout(function () {
-                return _this.GetUsersInner();
-            }, 100);
-        };
-
-        GroupItem.prototype.GetUsersInner = function () {
-            var _this = this;
-            CHAOS.Portal.Client.User.Get(null, this.Guid()).WithCallback(function (response) {
-                if (response.Error != null) {
-                    _notification.AddNotification("Failed to get users for group: " + response.Error.Message, true);
-                    return;
-                }
-
-                for (var i = 0; i < response.Body.Results.length; i++) {
-                    _this.Users.push(response.Body.Results[i]);
-                }
-
-                _this.GetUsersNotInGroup();
-            });
-        };
-
-        GroupItem.prototype.GetUsersNotInGroup = function () {
-            var _this = this;
-            CHAOS.Portal.Client.User.Get().WithCallback(function (response) {
-                if (response.Error != null) {
-                    _notification.AddNotification("Failed to get all users (for add to group list)", true);
-                    return;
-                }
-
-                for (var i = 0; i < response.Body.Results.length; i++) {
-                    var user = response.Body.Results[0];
-
-                    if (!_this.IsUserInGroup(user))
-                        _this.UsersNotInGroup.push(user);
-                }
-            });
-        };
-
-        GroupItem.prototype.IsUserInGroup = function (user) {
-            for (var i = 0; i < this.Users().length; i++) {
-                if (this.Users[i].Guid == user.Guid)
-                    return true;
-            }
-
-            return false;
-        };
-        return GroupItem;
-    })(_itemListPage.Item);
-    exports.GroupItem = GroupItem;
+    
+    return Groups;
 });
+//# sourceMappingURL=Groups.js.map

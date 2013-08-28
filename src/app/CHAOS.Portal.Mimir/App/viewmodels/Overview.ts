@@ -1,9 +1,9 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 
-import _portal =  module("Portal");
+import _portal =  require("Portal");
 
-export class Overview
+class Overview
 {
 	public SessionGuid:KnockoutObservable<string> = ko.observable("");
 	public UserGuid:KnockoutObservable<string> = ko.observable("");
@@ -14,3 +14,5 @@ export class Overview
 		this.UserGuid(_portal.Client().GetCurrentSession().UserGuid);
 	}
 }
+
+export = Overview;

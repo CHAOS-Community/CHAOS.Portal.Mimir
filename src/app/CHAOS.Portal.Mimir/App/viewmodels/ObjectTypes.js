@@ -1,12 +1,16 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/ObjectType"], function(require, exports, ___itemListPage__, __ObjectType__) {
     
     var _itemListPage = ___itemListPage__;
+    var ObjectType = __ObjectType__;
 
     var ObjectTypes = (function (_super) {
         __extends(ObjectTypes, _super);
@@ -15,7 +19,7 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             this._ItemTypeName = "object type";
         }
         ObjectTypes.prototype._CreateItem = function () {
-            return new ObjectTypeItem();
+            return new ObjectType();
         };
 
         ObjectTypes.prototype._ApplyDataToItem = function (item, data) {
@@ -39,17 +43,9 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             return _super.prototype._DeleteItem.call(this, item);
         };
         return ObjectTypes;
-    })(_itemListPage.ViewModel);
-    exports.ObjectTypes = ObjectTypes;
+    })(_itemListPage.ItemListPage);
 
-    var ObjectTypeItem = (function (_super) {
-        __extends(ObjectTypeItem, _super);
-        function ObjectTypeItem() {
-            _super.apply(this, arguments);
-            this.ID = ko.observable();
-            this.Name = ko.observable("New Object Type");
-        }
-        return ObjectTypeItem;
-    })(_itemListPage.Item);
-    exports.ObjectTypeItem = ObjectTypeItem;
+    
+    return ObjectTypes;
 });
+//# sourceMappingURL=ObjectTypes.js.map

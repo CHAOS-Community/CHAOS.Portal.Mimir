@@ -1,12 +1,16 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "ItemListPage"], function(require, exports, ___itemListPage__) {
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/Format"], function(require, exports, ___itemListPage__, __Format__) {
     
     var _itemListPage = ___itemListPage__;
+    var Format = __Format__;
 
     var Formats = (function (_super) {
         __extends(Formats, _super);
@@ -15,7 +19,7 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             this._ItemTypeName = "format";
         }
         Formats.prototype._CreateItem = function () {
-            return new FormatItem();
+            return new Format();
         };
 
         Formats.prototype._ApplyDataToItem = function (item, data) {
@@ -43,21 +47,9 @@ define(["require", "exports", "ItemListPage"], function(require, exports, ___ite
             return _super.prototype._DeleteItem.call(this, item);
         };
         return Formats;
-    })(_itemListPage.ViewModel);
-    exports.Formats = Formats;
+    })(_itemListPage.ItemListPage);
 
-    var FormatItem = (function (_super) {
-        __extends(FormatItem, _super);
-        function FormatItem() {
-            _super.apply(this, arguments);
-            this.ID = ko.observable();
-            this.Name = ko.observable("New Format");
-            this.FormatCategoryID = ko.observable();
-            this.FormatXml = ko.observable();
-            this.MimeType = ko.observable();
-            this.Extension = ko.observable();
-        }
-        return FormatItem;
-    })(_itemListPage.Item);
-    exports.FormatItem = FormatItem;
+    
+    return Formats;
 });
+//# sourceMappingURL=Formats.js.map

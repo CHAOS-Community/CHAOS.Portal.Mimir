@@ -1,3 +1,7 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/jquery.cookie.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 define(["require", "exports", "durandal/plugins/router", "State"], function(require, exports, ___router__, ___state__) {
     var _router = ___router__;
     
@@ -31,7 +35,8 @@ define(["require", "exports", "durandal/plugins/router", "State"], function(requ
                 $.cookie("Password", this.Password());
 
                 if (_state.LastRedirectedFromURL() != null)
-                    _router.navigateTo(_state.LastRedirectedFromURL()); else
+                    _router.navigateTo(_state.LastRedirectedFromURL());
+else
                     _router.navigateTo("#/");
             } else {
                 this.InvalidCredentials(true);
@@ -40,5 +45,8 @@ define(["require", "exports", "durandal/plugins/router", "State"], function(requ
         };
         return Login;
     })();
-    exports.Login = Login;
+
+    
+    return Login;
 });
+//# sourceMappingURL=Login.js.map

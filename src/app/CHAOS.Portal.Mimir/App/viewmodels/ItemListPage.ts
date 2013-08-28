@@ -1,10 +1,8 @@
-/// <reference path="TypeScriptDefinitions/require.d.ts" />
-/// <reference path="TypeScriptDefinitions/durandal.d.ts" />
-/// <reference path="TypeScriptDefinitions/PortalClient.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _notification = module("Notification");
+import _notification = require("Notification");
 
-export class ViewModel<T extends Item>
+export class ItemListPage<T extends Item>
 {
 	public Items: KnockoutObservableArray<T> = ko.observableArray();
 	public ActiveItem: KnockoutObservable<T> = ko.observable();
@@ -39,7 +37,7 @@ export class ViewModel<T extends Item>
 		this.DeleteItem(this.ActiveItem());
 	}
 
-	public CreateItem(isClientside:bool, setAsActive:bool = false, data:any = null):T
+	public CreateItem(isClientside:boolean, setAsActive:boolean = false, data:any = null):T
 	{
 		var item = this.SetCallbacksOnItem(this._CreateItem());
 		item.IsClientsideItem(isClientside);

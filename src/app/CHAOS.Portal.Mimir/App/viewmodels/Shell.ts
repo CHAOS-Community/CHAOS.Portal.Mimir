@@ -1,38 +1,41 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 
-import _router = module("durandal/plugins/router");
-import _notification = module("Notification");
-import _portal = module("Portal");
-import _state = module("State");
+import _router = require("durandal/plugins/router");
+import _notification = require("Notification");
+import _portal = require("Portal");
+import _state = require("State");
 
-export var Router = _router;
-export var IsAuthenticated = _portal.IsAuthenticated;
-export var Notifications = null;
-
-export function activate():JQueryPromise
+class Shell
 {
-    Notifications = _notification;
+	public Router:any = <any>_router;
+	public Notifications:any = <any>_notification;
+	public IsAuthenticated:KnockoutObservable<boolean> = _portal.IsAuthenticated;
 
-    (<any>Router).guardRoute = GuardRoute;
-	(<any>Router).handleInvalidRoute = HandleInvalidRoute;
-
-	return Router.activate('ServiceSelection');
-}
-
-function GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance:any):any
-{
-	if(!_portal.HasSession() && routeInfo.name.indexOf("ServiceSelection") == -1 || !IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1)
+	public activate(): JQueryPromise<any>
 	{
-		if(routeInfo.name != "Login")
-			_state.LastRedirectedFromURL("#/" + routeInfo.url);
+		this.Router.guardRoute = (r: _router.IRouteInfo, p: any, i: any) => this.GuardRoute(r, p, i);
+		this.Router.handleInvalidRoute = (r: _router.IRouteInfo, p: any) => this.HandleInvalidRoute(r, p);
 
-		return "#/ServiceSelection";
+		return _router.activate('ServiceSelection');
 	}
-	return true;
+
+	private GuardRoute(routeInfo: _router.IRouteInfo, parameters: any, instance: any): any
+	{
+		if (!_portal.HasSession() && routeInfo.name.indexOf("ServiceSelection") == -1 || !this.IsAuthenticated() && routeInfo.name != "Login" && routeInfo.name.indexOf("ServiceSelection") == -1)
+		{
+			if (routeInfo.name != "Login")
+				_state.LastRedirectedFromURL("#/" + routeInfo.url);
+
+			return "#/ServiceSelection";
+		}
+		return true;
+	}
+
+	private HandleInvalidRoute(route: _router.IRouteInfo, params: any): void
+	{
+		_router.navigateTo("#/NotFound");
+	}
 }
 
-function HandleInvalidRoute(route: _router.IRouteInfo, params:any):void
-{
-	_router.navigateTo("#/NotFound");
-}
+export = Shell;

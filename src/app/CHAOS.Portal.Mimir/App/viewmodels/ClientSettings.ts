@@ -2,9 +2,9 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _notification = module("Notification");
+import _notification = require("Notification");
 
-export class ClientSettings
+class ClientSettings
 {
 	public Guid: KnockoutObservable<string> = ko.observable("");
 	public DateCreated: KnockoutObservable<Date> = ko.observable();
@@ -38,3 +38,5 @@ export class ClientSettings
 		});
 	}
 }
+
+export = ClientSettings;

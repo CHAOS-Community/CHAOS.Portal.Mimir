@@ -3,12 +3,20 @@
 // Definitions by: Boris Yankov <https://github.com/borisyankov/>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
 
+
 /// <reference path="jquery.d.ts"/>
 
 interface ModalOptions {
-    backdrop?: bool;
-    keyboard?: bool;
-    show?: bool;
+    backdrop?: boolean;
+    keyboard?: boolean;
+    show?: boolean;
+    remote?: string;
+}
+
+interface ModalOptionsBackdropString {
+    backdrop?: string; // for "static"
+    keyboard?: boolean;
+    show?: boolean;
     remote?: string;
 }
 
@@ -17,29 +25,31 @@ interface ScrollSpyOptions {
 }
 
 interface TooltipOptions {
-    animation?: bool;
-    html?: bool;
+    animation?: boolean;
+    html?: boolean;
     placement?: any;
     selector?: string;
     title?: any;
     trigger?: string;
     delay?: any;
+    container?: any;
 }
 
 interface PopoverOptions {
-    animation?: bool;
-    html?: bool;
+    animation?: boolean;
+    html?: boolean;
     placement?: any;
     selector?: string;
     trigger?: string;
     title?: any;
     content?: any;
-    delay?: any;   
+    delay?: any;
+    container?: any;
 }
 
 interface CollapseOptions {
     parent?: any;    
-    toggle?: bool;
+    toggle?: boolean;
 }
 
 interface CarouselOptions {
@@ -51,9 +61,10 @@ interface TypeaheadOptions {
     source?: any;
     items?: number;
     minLength?: number;
-    matcher?: () => any;
-    sorter?: () => any;
-    highlighter?: () => any;
+    matcher?: (item: any) => boolean;
+    sorter?: (items: any[]) => any[];
+    updater?: (item: any) => any;
+    highlighter?: (item: any) => string;
 }
 
 interface AffixOptions {
@@ -62,6 +73,7 @@ interface AffixOptions {
 
 interface JQuery {
     modal(options?: ModalOptions): JQuery;
+    modal(options?: ModalOptionsBackdropString): JQuery;
     modal(command: string): JQuery;
 
     dropdown(): JQuery;

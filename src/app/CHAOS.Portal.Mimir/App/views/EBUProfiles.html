@@ -1,0 +1,85 @@
+﻿<h2>Users</h2>
+<br/>
+<br/>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Items">
+		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
+			<a href="#" data-bind="click: function () { $parent.SetActiveItem($data); }">
+				<span data-bind="text: Email"></span>
+			</a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveItem">
+		<h3 data-bind="text: Email"></h3>
+		<form class="form-horizontal" data-bind="submit: Save">
+			<div class="control-group">
+				<label class="control-label">Last Edited:</label>
+				<div class="controls">
+					<p data-bind="text: EditedDate"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="Albert Einstein" data-bind="value: Name" class="input-xlarge"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Title">Title:</label>
+				<div class="controls">
+					<input type="text" id="Title" placeholder="Theoretical physicist" data-bind="value: Title"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Organization">Organization:</label>
+				<div class="controls">
+					<input type="text" id="Organization" placeholder="Swiss Patent Office" data-bind="value: Organization" class="input-xlarge"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="About">About:</label>
+				<div class="controls">
+					<textarea id="About" placeholder="Developed the general theory of relativity" data-bind="value: About" class="input-xxlarge"></textarea>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Phonenumber">Phone Number:</label>
+				<div class="controls">
+					<input type="text" id="Phonenumber" placeholder="0000 0000000000" data-bind="value: Phonenumber"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Address">Address:</label>
+				<div class="controls">
+					<input type="text" id="Address" placeholder="MyStreet 5" data-bind="value: Address" class="input-xlarge"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="City">City:</label>
+				<div class="controls">
+					<input type="text" id="City" placeholder="Bern" data-bind="value: City"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Zipcode">Zip code:</label>
+				<div class="controls">
+					<input type="text" id="Zipcode" placeholder="00000" data-bind="value: Zipcode"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Country">Country:</label>
+				<div class="controls">
+					<input type="text" id="Country" placeholder="Switzerland" data-bind="value: Country"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn btn-primary">
+						<i class="icon-ok-sign icon-white"></i>
+						Update
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

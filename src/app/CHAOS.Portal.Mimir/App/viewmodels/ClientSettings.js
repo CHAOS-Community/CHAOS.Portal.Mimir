@@ -1,3 +1,6 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
     var _notification = ___notification__;
 
@@ -12,8 +15,10 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             var _this = this;
             CHAOS.Portal.Client.ClientSettings.Get(this.Guid()).WithCallback(function (response) {
                 if (response.Error != null)
-                    _notification.AddNotification("Error getting client settings: " + response.Error.Message, true); else if (response.Body.Count == 0)
-                    _notification.AddNotification("Client settings not found", false); else {
+                    _notification.AddNotification("Error getting client settings: " + response.Error.Message, true);
+else if (response.Body.Count == 0)
+                    _notification.AddNotification("Client settings not found", false);
+else {
                     var data = response.Body.Results[0];
                     _this.DateCreated(new Date(data.DateCreated * 1000));
                     _this.Name(data.Name);
@@ -30,5 +35,8 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
         };
         return ClientSettings;
     })();
-    exports.ClientSettings = ClientSettings;
+
+    
+    return ClientSettings;
 });
+//# sourceMappingURL=ClientSettings.js.map

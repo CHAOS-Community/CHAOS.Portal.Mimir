@@ -2,47 +2,44 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _notification = module("Notification");
-import _itemListPage = module("ItemListPage");
+import _notification = require("Notification");
+import _itemListPage = require("viewmodels/ItemListPage");
+import ObjectType = require("viewmodels/Items/ObjectType");
 
-export class ObjectTypes extends _itemListPage.ViewModel<ObjectTypeItem>
+class ObjectTypes extends _itemListPage.ItemListPage<ObjectType>
 {
 	public _ItemTypeName:string = "object type";
 
-	public _CreateItem():ObjectTypeItem
+	public _CreateItem(): ObjectType
 	{
-		return new ObjectTypeItem();
+		return new ObjectType();
 	}
 
-	public _ApplyDataToItem(item:ObjectTypeItem, data:any):void
+	public _ApplyDataToItem(item: ObjectType, data:any):void
 	{
 		item.ID(data.ID);
 		item.Name(data.Name);
 	}
 
-	public _GetItems():CHAOS.Portal.Client.ICallState
+	public _GetItems(): CHAOS.Portal.Client.ICallState<any>
 	{
 		return CHAOS.Portal.Client.ObjectType.Get();
 	}
 
-	public _SaveItem(item:ObjectTypeItem):CHAOS.Portal.Client.ICallState
+	public _SaveItem(item: ObjectType): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._SaveItem(item);
 	}
 
-	public _SaveNewItem(item:ObjectTypeItem):CHAOS.Portal.Client.ICallState
+	public _SaveNewItem(item: ObjectType): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._SaveNewItem(item);
 	}
 
-	public _DeleteItem(item:ObjectTypeItem):CHAOS.Portal.Client.ICallState
+	public _DeleteItem(item: ObjectType): CHAOS.Portal.Client.ICallState<any>
 	{
 		return super._DeleteItem(item);
 	}
 }
 
-export class ObjectTypeItem extends _itemListPage.Item
-{
-	public ID:KnockoutObservable<number> = ko.observable();
-	public Name:KnockoutObservable<string> = ko.observable("New Object Type");
-}
+export = ObjectTypes;

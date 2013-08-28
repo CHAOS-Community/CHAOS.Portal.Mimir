@@ -1,4 +1,7 @@
 define(["require", "exports"], function(require, exports) {
+    /// <reference path="TypeScriptDefinitions/require.d.ts" />
+    /// <reference path="TypeScriptDefinitions/durandal.d.ts" />
+    /// <reference path="TypeScriptDefinitions/PortalClient.d.ts" />
     exports.Client = ko.observable();
     exports.IsAuthenticated = ko.observable(false);
     exports.HasSession = ko.observable(false);
@@ -29,3 +32,4 @@ define(["require", "exports"], function(require, exports) {
         exports.HasSession(true);
     }
 });
+//# sourceMappingURL=Portal.js.map

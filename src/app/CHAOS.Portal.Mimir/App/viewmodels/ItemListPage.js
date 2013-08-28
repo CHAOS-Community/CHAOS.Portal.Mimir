@@ -1,13 +1,14 @@
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
     var _notification = ___notification__;
 
-    var ViewModel = (function () {
-        function ViewModel() {
+    var ItemListPage = (function () {
+        function ItemListPage() {
             this.Items = ko.observableArray();
             this.ActiveItem = ko.observable();
             this._ItemTypeName = "item";
         }
-        ViewModel.prototype.activate = function () {
+        ItemListPage.prototype.activate = function () {
             var _this = this;
             this.ActiveItem(null);
             this.Items.removeAll();
@@ -22,19 +23,19 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             return deferred.promise();
         };
 
-        ViewModel.prototype.SetActiveItem = function (item) {
+        ItemListPage.prototype.SetActiveItem = function (item) {
             this.ActiveItem(item);
         };
 
-        ViewModel.prototype.SaveActiveItem = function () {
+        ItemListPage.prototype.SaveActiveItem = function () {
             this.SaveItem(this.ActiveItem());
         };
 
-        ViewModel.prototype.DeleteActiveItem = function () {
+        ItemListPage.prototype.DeleteActiveItem = function () {
             this.DeleteItem(this.ActiveItem());
         };
 
-        ViewModel.prototype.CreateItem = function (isClientside, setAsActive, data) {
+        ItemListPage.prototype.CreateItem = function (isClientside, setAsActive, data) {
             if (typeof setAsActive === "undefined") { setAsActive = false; }
             if (typeof data === "undefined") { data = null; }
             var item = this.SetCallbacksOnItem(this._CreateItem());
@@ -51,20 +52,21 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             return item;
         };
 
-        ViewModel.prototype.AddNewItem = function () {
+        ItemListPage.prototype.AddNewItem = function () {
             this.CreateItem(true, true);
         };
 
-        ViewModel.prototype.SaveItem = function (item) {
+        ItemListPage.prototype.SaveItem = function (item) {
             var _this = this;
             if (item.IsClientsideItem())
                 this._SaveNewItem(item).WithCallback(function (response) {
                     return _this.CreateItemCallback(response, item);
-                }, this); else
+                }, this);
+else
                 this._SaveItem(item).WithCallback(this.UpdateItemCallback, this);
         };
 
-        ViewModel.prototype.DeleteItem = function (item) {
+        ItemListPage.prototype.DeleteItem = function (item) {
             this.Items.remove(item);
 
             if (this.ActiveItem() == item)
@@ -74,7 +76,7 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
                 this._DeleteItem(item).WithCallback(this.DeleteItemCallback, this);
         };
 
-        ViewModel.prototype.SetCallbacksOnItem = function (item) {
+        ItemListPage.prototype.SetCallbacksOnItem = function (item) {
             var _this = this;
             item.Save = function () {
                 return _this.SaveItem(item);
@@ -88,7 +90,7 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             return item;
         };
 
-        ViewModel.prototype.ItemsGetCompleted = function (response) {
+        ItemListPage.prototype.ItemsGetCompleted = function (response) {
             if (response.Error != null) {
                 _notification.AddNotification("Failed to get " + this._ItemTypeName + "s: " + response.Error.Message, true);
                 return;
@@ -101,61 +103,62 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
                 this.SetActiveItem(this.Items()[0]);
         };
 
-        ViewModel.prototype.CreateItemCallback = function (response, item) {
+        ItemListPage.prototype.CreateItemCallback = function (response, item) {
             if (response.Error != null)
-                _notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true); else {
+                _notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true);
+else {
                 this._ApplyDataToItem(item, response.Body.Results[0]);
                 item.IsClientsideItem(false);
             }
         };
 
-        ViewModel.prototype.UpdateItemCallback = function (response) {
+        ItemListPage.prototype.UpdateItemCallback = function (response) {
             if (response.Error != null)
                 _notification.AddNotification("Update " + this._ItemTypeName + " failed: " + response.Error.Message, true);
         };
 
-        ViewModel.prototype.DeleteItemCallback = function (response) {
+        ItemListPage.prototype.DeleteItemCallback = function (response) {
             if (response.Error != null)
                 _notification.AddNotification("Delete " + this._ItemTypeName + " failed: " + response.Error.Message, true);
         };
 
-        ViewModel.prototype._CreateItem = function () {
+        ItemListPage.prototype._CreateItem = function () {
             _notification.AddNotification("CreateItem not implemented", true);
             throw "CreateItem not implemented";
             return null;
         };
 
-        ViewModel.prototype._ApplyDataToItem = function (item, data) {
+        ItemListPage.prototype._ApplyDataToItem = function (item, data) {
             _notification.AddNotification("ConvertItem not implemented", true);
             throw "ConvertItem not implemented";
         };
 
-        ViewModel.prototype._GetItems = function () {
+        ItemListPage.prototype._GetItems = function () {
             _notification.AddNotification("GetItems not implemented", true);
             throw "GetItems not implemented";
             return null;
         };
 
-        ViewModel.prototype._SaveItem = function (item) {
+        ItemListPage.prototype._SaveItem = function (item) {
             _notification.AddNotification("SaveItem not implemented", true);
             throw "SaveItem not implemented";
             return null;
         };
 
-        ViewModel.prototype._SaveNewItem = function (item) {
+        ItemListPage.prototype._SaveNewItem = function (item) {
             _notification.AddNotification("SaveNewItem not implemented", true);
             throw "SaveNewItem not implemented";
             return null;
         };
 
-        ViewModel.prototype._DeleteItem = function (item) {
+        ItemListPage.prototype._DeleteItem = function (item) {
             _notification.AddNotification("DeleteItem not implemented", true);
             throw "DeleteItem not implemented";
             return null;
         };
-        return ViewModel;
+        return ItemListPage;
     })();
-    exports.ViewModel = ViewModel;
+    exports.ItemListPage = ItemListPage;
 
     var Item = (function () {
         function Item() {
@@ -165,3 +168,4 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
     })();
     exports.Item = Item;
 });
+//# sourceMappingURL=ItemListPage.js.map

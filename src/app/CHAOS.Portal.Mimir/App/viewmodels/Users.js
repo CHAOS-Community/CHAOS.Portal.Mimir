@@ -1,12 +1,16 @@
+/// <reference path="../TypeScriptDefinitions/require.d.ts" />
+/// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
+/// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "Notification", "ItemListPage"], function(require, exports, ___notification__, ___itemListPage__) {
-    var _notification = ___notification__;
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/User"], function(require, exports, ___itemListPage__, __User__) {
+    
     var _itemListPage = ___itemListPage__;
+    var User = __User__;
 
     var Users = (function (_super) {
         __extends(Users, _super);
@@ -15,7 +19,7 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
             this._ItemTypeName = "user";
         }
         Users.prototype._CreateItem = function () {
-            return new UserItem();
+            return new User();
         };
 
         Users.prototype._ApplyDataToItem = function (item, data) {
@@ -40,51 +44,9 @@ define(["require", "exports", "Notification", "ItemListPage"], function(require,
             return CHAOS.Portal.Client.User.Delete(item.Guid());
         };
         return Users;
-    })(_itemListPage.ViewModel);
-    exports.Users = Users;
+    })(_itemListPage.ItemListPage);
 
-    var UserItem = (function (_super) {
-        __extends(UserItem, _super);
-        function UserItem() {
-            var _this = this;
-            _super.call(this);
-            this.Guid = ko.observable("");
-            this.Email = ko.observable("new@user.com");
-            this.SystemPermissions = ko.observable(0);
-            this.FolderId = ko.observable("Loading");
-
-            this.Guid.subscribe(function () {
-                return setTimeout(function () {
-                    return _this.GetFolderId();
-                }, 200);
-            });
-        }
-        UserItem.prototype.GetFolderId = function () {
-            var _this = this;
-            CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), false).WithCallback(function (response) {
-                if (response.Error != null) {
-                    _notification.AddNotification("Failed to get users folder: " + response.Error.Message, true);
-                    return;
-                }
-
-                if (response.Body.Count == 0)
-                    _this.FolderId("None"); else
-                    _this.FolderId(response.Body.Results[0].Id);
-            });
-        };
-
-        UserItem.prototype.CreateUsersFolder = function () {
-            var _this = this;
-            CHAOS.Portal.Client.UserManagement.GetUserFolder(this.Guid(), true).WithCallback(function (response) {
-                if (response.Error != null) {
-                    _notification.AddNotification("Failed to create users folder: " + response.Error.Message, true);
-                    return;
-                }
-
-                _this.FolderId(response.Body.Results[0].Id);
-            });
-        };
-        return UserItem;
-    })(_itemListPage.Item);
-    exports.UserItem = UserItem;
+    
+    return Users;
 });
+//# sourceMappingURL=Users.js.map

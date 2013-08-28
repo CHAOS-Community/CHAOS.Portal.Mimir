@@ -1,0 +1,14 @@
+import _notification = require("Notification");
+import _itemListPage = require("viewmodels/ItemListPage");
+
+class Format extends _itemListPage.Item
+{
+	public ID: KnockoutObservable<number> = ko.observable();
+	public Name: KnockoutObservable<string> = ko.observable("New Format");
+	public FormatCategoryID: KnockoutObservable<number> = ko.observable();
+	public FormatXml: KnockoutObservable<string> = ko.observable();
+	public MimeType: KnockoutObservable<string> = ko.observable();
+	public Extension: KnockoutObservable<string> = ko.observable();
+}
+
+export = Format;

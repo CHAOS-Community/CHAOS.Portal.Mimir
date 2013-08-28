@@ -3,7 +3,7 @@
 
 export var Notifications = ko.observableArray();
 
-export function AddNotification(text:string, isError:bool):void
+export function AddNotification(text:string, isError:boolean):void
 {
 	Notifications.push(new Notification(text, isError));
 }
@@ -16,9 +16,9 @@ export function RemoveNotification(notification:any):void
 class Notification
 {
 	public Text: string;
-	public IsError:bool;
+	public IsError:boolean;
 
-	constructor(text:string, isError:bool)
+	constructor(text:string, isError:boolean)
 	{
 		this.Text = text;
 		this.IsError = isError;

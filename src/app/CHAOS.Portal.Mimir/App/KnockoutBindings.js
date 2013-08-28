@@ -1,3 +1,7 @@
+/// <reference path="TypeScriptDefinitions/jquery.d.ts"/>
+/// <reference path="TypeScriptDefinitions/bootstrap.d.ts"/>
+/// <reference path="TypeScriptDefinitions/knockout.d.ts"/>
+/// <reference path="TypeScriptDefinitions/ace.d.ts"/>
 var AceBindingHandler = (function () {
     function AceBindingHandler() {
     }
@@ -44,7 +48,8 @@ var TypeAheadBindingHandler = (function () {
         var value = ko.utils.unwrapObservable(valueAccessor());
 
         if (value == null)
-            $(element).typeahead(); else
+            $(element).typeahead();
+else
             $(element).typeahead({ source: value });
     };
     return TypeAheadBindingHandler;

@@ -4,26 +4,13 @@ requirejs.config({
     }
 });
 
-define(function (require) {
-    var app = require('durandal/app'), viewLocator = require('durandal/viewLocator'), system = require('durandal/system'), router = require('durandal/plugins/router'), widget = require("durandal/widget"), portal = require("Portal");
-
+define(["durandal/app", "durandal/system", "durandal/viewLocator", "durandal/plugins/router", "durandal/widget"], function (app, system, viewLocator, router, widget) {
     system.debug(true);
 
     app.title = "Mimir";
 
     app.start().then(function () {
         viewLocator.useConvention();
-
-        var defaultImplementation = router.getActivatableInstance;
-        router.getActivatableInstance = function (routeInfo, params, module) {
-            var functionName = routeInfo.name;
-            if (typeof module[functionName] == 'function') {
-                var instance = new module[functionName]();
-                instance.__moduleId__ = module.__moduleId__;
-                return instance;
-            } else
-                return defaultImplementation(routeInfo, params, module);
-        };
 
         router.useConvention();
         router.mapRoute('ServiceSelection', null, null, false);
@@ -38,6 +25,7 @@ define(function (require) {
         router.mapNav('Views');
         router.mapNav('ClientSettings');
         router.mapNav('Utilities');
+        router.mapNav('EBUProfiles');
         router.mapRoute("/", 'viewmodels/Overview', "Overview", false);
 
         widget.convertKindToModuleId = function (kind) {

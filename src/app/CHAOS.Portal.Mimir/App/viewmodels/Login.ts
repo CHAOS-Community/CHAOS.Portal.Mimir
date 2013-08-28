@@ -3,11 +3,11 @@
 /// <reference path="../TypeScriptDefinitions/jquery.cookie.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _router =  module("durandal/plugins/router");
-import _portal =  module("Portal");
-import _state = module("State");
+import _router =  require("durandal/plugins/router");
+import _portal =  require("Portal");
+import _state = require("State");
 
-export class Login
+class Login
 {
 	public Email: KnockoutObservable<string> = ko.observable("");
 	public Password: KnockoutObservable<string> = ko.observable("");
@@ -51,3 +51,5 @@ export class Login
 		}
 	}
 }
+
+export = Login;

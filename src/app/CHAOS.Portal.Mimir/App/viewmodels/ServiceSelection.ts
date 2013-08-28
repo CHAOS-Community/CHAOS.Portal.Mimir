@@ -3,11 +3,11 @@
 /// <reference path="../TypeScriptDefinitions/jquery.cookie.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 
-import _router =  module("durandal/plugins/router");
-import _portal =  module("Portal");
-import _notification = module("Notification");
+import _router =  require("durandal/plugins/router");
+import _portal =  require("Portal");
+import _notification = require("Notification");
 
-export class ServiceSelection
+class ServiceSelection
 {
 	public ServicePath:KnockoutObservable<string> = ko.observable("https://");
 	public CanEdit:KnockoutObservable<boolean> = ko.observable(true);
@@ -49,3 +49,5 @@ export class ServiceSelection
 		}
 	}
 }
+
+export = ServiceSelection;

@@ -1,9 +1,9 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 
-import _notification = module("Notification");
+import _notification = require("Notification");
 
-export class Utilities
+class Utilities
 {
 	public DotNetGuid: KnockoutObservable<string> = ko.observable("");
 	public MySQLGuid: KnockoutObservable<string> = ko.observable("");
@@ -27,7 +27,7 @@ export class Utilities
 			this.MySQLGuid(newValue.substr(6, 2) + newValue.substr(4, 2) + newValue.substr(2, 2) + newValue.substr(0, 2) +
 				newValue.substr(11, 2) + newValue.substr(9, 2) +
 				newValue.substr(16, 2) + newValue.substr(14, 2) +
-				newValue.substr(21, 2) + newValue.substr(19, 2) +
+				newValue.substr(19, 2) + newValue.substr(21, 2) +
 				newValue.substr(24, 12));
 	}
 
@@ -41,7 +41,9 @@ export class Utilities
 			this.DotNetGuid(newValue.substr(6, 2) + newValue.substr(4, 2) + newValue.substr(2, 2) + newValue.substr(0, 2) + "-" +
 							newValue.substr(10, 2) + newValue.substr(8, 2) + "-" +
 							newValue.substr(14, 2) + newValue.substr(12, 2) + "-" +
-							newValue.substr(18, 2) + newValue.substr(16, 2) + "-" +
+							newValue.substr(16, 2) + newValue.substr(18, 2) + "-" +
 							newValue.substr(20, 12));
 	}
 }
+
+export = Utilities;

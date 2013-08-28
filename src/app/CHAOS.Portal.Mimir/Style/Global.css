@@ -10,9 +10,11 @@ body
 	padding: 20px;
 }
 
-textarea
- {
-    resize: none;
+textarea {
+	-moz-resize: none;
+	-ms-resize: none;
+	-o-resize: none;
+	resize: none;
 }
 
 /* Shell */
@@ -70,12 +72,4 @@ div.control-group div.controls p, div.control-group div.controls span
 {
 	width: 800px;
 	height: 300px;
-}
-
-/* Format */
-
-#FormatXml 
-{
-	width: 500px;
-	height: 100px;
 }

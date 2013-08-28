@@ -13,7 +13,7 @@ module AceAjax
 {
 	interface Editor
 	{
-		IsUpdating: bool;
+		IsUpdating: boolean;
 	}
 }
 
