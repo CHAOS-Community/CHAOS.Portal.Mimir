@@ -44,7 +44,7 @@ class ServiceSelection
 		}
 		else
 		{
-			$.cookie("ServicePath", this.ServicePath());
+			$.cookie("ServicePath", this.ServicePath(), { expires: 365 });
 			_router.navigateTo("#/Login");
 		}
 	}

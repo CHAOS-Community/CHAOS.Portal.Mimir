@@ -1,0 +1,40 @@
+﻿<h2>Folders</h2>
+<br/>
+<br/>
+<div class="tabbable tabs-left">
+	<ul class="nav nav-tabs" data-bind="foreach: Folders">
+		<li data-bind="css: { active: $data == $parent.ActiveItem() }">
+			<a href="#" data-bind="click: function (item) { $parent.SetActiveItem(item); }">
+				<i class="icon-folder-close" data-bind="visible: $data != $parent.ActiveItem()"></i>
+				<i class="icon-folder-open" data-bind="visible: $data == $parent.ActiveItem()"></i>
+				<span data-bind="text: Name"></span>
+			</a>
+		</li>
+	</ul>
+	<div class="tab-content" data-bind="with: ActiveItem">
+		<h3 data-bind="text: Name"></h3>
+		<form class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label">ID:</label>
+				<div class="controls">
+					<p data-bind="text: ID"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="ParentID">Parent Folder Id:</label>
+				<div class="controls">
+					<input type="text" id="ParentID" placeholder="0" data-bind="value: ParentID"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="Name">Name:</label>
+				<div class="controls">
+					<input type="text" id="Name" placeholder="My Format" data-bind="value: Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				
+			</div>
+		</form>
+	</div>
+</div>

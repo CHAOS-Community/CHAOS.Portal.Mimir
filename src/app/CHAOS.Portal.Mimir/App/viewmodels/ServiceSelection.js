@@ -35,7 +35,7 @@ define(["require", "exports", "durandal/plugins/router", "Portal", "Notification
                 _notification.AddNotification("Could not create session: " + response.Error.Message, true);
                 this.CanEdit(true);
             } else {
-                $.cookie("ServicePath", this.ServicePath());
+                $.cookie("ServicePath", this.ServicePath(), { expires: 365 });
                 _router.navigateTo("#/Login");
             }
         };

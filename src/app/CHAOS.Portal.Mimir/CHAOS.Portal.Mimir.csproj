@@ -46,6 +46,10 @@
     <Content Include="App\viewmodels\EBUProfiles.js">
       <DependentUpon>EBUProfiles.ts</DependentUpon>
     </Content>
+    <TypeScriptCompile Include="App\viewmodels\Folders.ts" />
+    <Content Include="App\viewmodels\Folders.js">
+      <DependentUpon>Folders.ts</DependentUpon>
+    </Content>
     <Content Include="App\viewmodels\ItemListPage.js">
       <DependentUpon>ItemListPage.ts</DependentUpon>
     </Content>
@@ -154,6 +158,7 @@
     <Content Include="App\viewmodels\Views.ts" />
     <Content Include="App\views\ClientSettings.html" />
     <Content Include="App\views\EBUProfiles.html" />
+    <Content Include="App\views\Folders.html" />
     <Content Include="App\views\Formats.html" />
     <Content Include="App\views\Groups.html" />
     <Content Include="App\views\Login.html" />

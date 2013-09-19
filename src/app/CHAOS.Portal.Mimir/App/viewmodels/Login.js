@@ -31,8 +31,8 @@ define(["require", "exports", "durandal/plugins/router", "State"], function(requ
 
         Login.prototype.SessionAuthenticated = function (response) {
             if (response.Error == null) {
-                $.cookie("Email", this.Email());
-                $.cookie("Password", this.Password());
+                $.cookie("Email", this.Email(), { expires: 365 });
+                $.cookie("Password", this.Password(), { expires: 365 });
 
                 if (_state.LastRedirectedFromURL() != null)
                     _router.navigateTo(_state.LastRedirectedFromURL());

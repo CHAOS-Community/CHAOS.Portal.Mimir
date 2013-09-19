@@ -30,6 +30,7 @@ define(["durandal/app", "durandal/system", "durandal/viewLocator", "durandal/plu
         router.mapNav('MetadataSchemas');
         router.mapNav('ObjectTypes');
         router.mapNav('Formats');
+        router.mapNav('Folders');
 		router.mapNav('Views');
         router.mapNav('ClientSettings');
         router.mapNav('Utilities');
