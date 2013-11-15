@@ -31,6 +31,7 @@ define(["durandal/app", "durandal/system", "durandal/viewLocator", "durandal/plu
         router.mapNav('ObjectTypes');
         router.mapNav('Formats');
         router.mapNav('Folders');
+        router.mapNav('AuthKeys');
 		router.mapNav('Views');
         router.mapNav('ClientSettings');
         router.mapNav('Utilities');

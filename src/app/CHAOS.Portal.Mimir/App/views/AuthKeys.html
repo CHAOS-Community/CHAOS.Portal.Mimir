@@ -1,0 +1,48 @@
+﻿<h2>AuthKeys</h2>
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs" data-bind="foreach: Items">
+        <li data-bind="css: { active: $data == $parent.ActiveItem() }">
+            <a href="#" data-bind="click: SetAsActive">
+                <span data-bind="text: Name"></span>
+                <i class="icon-exclamation-sign" data-bind="visible: IsClientsideItem"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" data-bind="with: ActiveItem">
+        <h3 data-bind="text: Name"></h3>
+        <form class="form-horizontal" data-bind="submit: Delete">
+            <div class="control-group">
+                <div class="controls">
+                    <button type="button" class="btn btn-danger" data-bind="click: Delete">
+                        <i class="icon-remove-sign icon-white"></i>
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr/>
+<h3>Create AuthKey</h3>
+<form class="form-horizontal" data-bind="submit: Create">
+    <div class="control-group">
+        <label class="control-label" for="NewName">Name:</label>
+        <div class="controls">
+            <input type="text" id="NewName" placeholder="My Application" required="" data-bind="value: NewName" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="NewToken">Token:</label>
+        <div class="controls">
+            <input type="text" id="NewToken" placeholder="My secret token" required="" data-bind="value: NewToken" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-success">
+                <i class="icon-plus-sign icon-white"></i>
+                Create
+            </button>
+        </div>
+    </div>
+</form>

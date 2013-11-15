@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,6 +42,7 @@
     <Content Include="App\durandal\viewModelBinder.js" />
     <Content Include="App\durandal\widget.js" />
     <TypeScriptCompile Include="App\Main.ts" />
+    <TypeScriptCompile Include="App\viewmodels\AuthKeys.ts" />
     <TypeScriptCompile Include="App\viewmodels\ItemListPage.ts" />
     <TypeScriptCompile Include="App\viewmodels\EBUProfiles.ts" />
     <Content Include="App\viewmodels\EBUProfiles.js">
@@ -76,6 +78,7 @@
     <Content Include="App\TypeScriptDefinitions\durandal.d.ts" />
     <Content Include="App\TypeScriptDefinitions\jquery.cookie.d.ts" />
     <Content Include="App\TypeScriptDefinitions\require.d.ts" />
+    <TypeScriptCompile Include="App\viewmodels\Items\AuthKey.ts" />
     <TypeScriptCompile Include="App\viewmodels\Shell.ts" />
     <TypeScriptCompile Include="App\viewmodels\Overview.ts" />
     <TypeScriptCompile Include="App\viewmodels\MetadataSchemas.ts" />
@@ -156,6 +159,7 @@
       <DependentUpon>Views.ts</DependentUpon>
     </Content>
     <Content Include="App\viewmodels\Views.ts" />
+    <Content Include="App\views\AuthKeys.html" />
     <Content Include="App\views\ClientSettings.html" />
     <Content Include="App\views\EBUProfiles.html" />
     <Content Include="App\views\Folders.html" />
@@ -281,6 +285,7 @@
     <RootNamespace>CHAOS.Portal.Mimir</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
