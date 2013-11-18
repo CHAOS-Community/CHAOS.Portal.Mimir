@@ -12,6 +12,12 @@
         <h3 data-bind="text: Name"></h3>
         <form class="form-horizontal" data-bind="submit: Delete">
             <div class="control-group">
+                <label class="control-label" for="AuthKeyToken">Token:</label>
+                <div class="controls">
+                    <p id="AuthKeyToken" data-bind="text: Token"></p>
+                </div>
+            </div>
+            <div class="control-group">
                 <div class="controls">
                     <button type="button" class="btn btn-danger" data-bind="click: Delete">
                         <i class="icon-remove-sign icon-white"></i>
@@ -29,12 +35,6 @@
         <label class="control-label" for="NewName">Name:</label>
         <div class="controls">
             <input type="text" id="NewName" placeholder="My Application" required="" data-bind="value: NewName" />
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="NewToken">Token:</label>
-        <div class="controls">
-            <input type="text" id="NewToken" placeholder="My secret token" required="" data-bind="value: NewToken" />
         </div>
     </div>
     <div class="control-group">

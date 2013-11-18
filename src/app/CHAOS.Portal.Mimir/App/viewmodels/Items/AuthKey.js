@@ -13,7 +13,7 @@ define(["require", "exports", "viewmodels/ItemListPage"], function(require, expo
         function AuthKey() {
             _super.apply(this, arguments);
             this.Name = ko.observable("");
-            this.Token = ko.observable();
+            this.Token = ko.observable("Not available");
             this.UserGuid = ko.observable();
         }
         return AuthKey;

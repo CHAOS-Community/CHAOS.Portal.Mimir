@@ -18,7 +18,6 @@ define(["require", "exports", "Notification", "viewmodels/ItemListPage", "viewmo
             _super.apply(this, arguments);
             this._ItemTypeName = "AuthKey";
             this.NewName = ko.observable("");
-            this.NewToken = ko.observable();
         }
         AuthKeys.prototype._CreateItem = function () {
             return new AuthKey();
@@ -48,19 +47,20 @@ define(["require", "exports", "Notification", "viewmodels/ItemListPage", "viewmo
 
         AuthKeys.prototype.Create = function () {
             var _this = this;
-            var newAuthKey = this.CreateItem(true, true, { Name: this.NewName(), Token: this.NewToken() });
+            var newAuthKey = this.CreateItem(true, true, { Name: this.NewName() });
 
-            CHAOS.Portal.Client.AuthKey.Create(this.NewName(), this.NewToken()).WithCallback(function (response) {
+            CHAOS.Portal.Client.AuthKey.Create(this.NewName()).WithCallback(function (response) {
                 if (response.Error != null) {
                     _notification.AddNotification("Failed to create AuthKey: " + response.Error.Message, true);
                     newAuthKey.Delete();
                     return;
                 }
 
+                newAuthKey.Token(response.Body.Results[0].Token);
+
                 newAuthKey.IsClientsideItem(false);
 
                 _this.NewName("");
-                _this.NewToken("");
             });
         };
         return AuthKeys;

@@ -11,7 +11,6 @@ class AuthKeys extends _itemListPage.ItemListPage<AuthKey>
 	public _ItemTypeName: string = "AuthKey";
 
 	public NewName: KnockoutObservable<string> = ko.observable("");
-	public NewToken: KnockoutObservable<string> = ko.observable();
 
 	public _CreateItem(): AuthKey
 	{
@@ -47,9 +46,9 @@ class AuthKeys extends _itemListPage.ItemListPage<AuthKey>
 
 	public Create(): void
 	{
-		var newAuthKey = this.CreateItem(true, true, { Name: this.NewName(), Token: this.NewToken() });
+		var newAuthKey = this.CreateItem(true, true, { Name: this.NewName() });
 
-		CHAOS.Portal.Client.AuthKey.Create(this.NewName(), this.NewToken()).WithCallback(response => 
+		CHAOS.Portal.Client.AuthKey.Create(this.NewName()).WithCallback(response => 
 		{
 			if (response.Error != null)
 			{
@@ -58,10 +57,11 @@ class AuthKeys extends _itemListPage.ItemListPage<AuthKey>
 				return;
 			}
 
+			newAuthKey.Token(response.Body.Results[0].Token);
+
 			newAuthKey.IsClientsideItem(false);
 
 			this.NewName("");
-			this.NewToken("");
 		});
 	}
 }
