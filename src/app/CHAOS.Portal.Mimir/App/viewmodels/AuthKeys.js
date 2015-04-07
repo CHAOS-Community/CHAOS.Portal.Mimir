@@ -7,11 +7,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "Notification", "viewmodels/ItemListPage", "viewmodels/Items/AuthKey"], function(require, exports, ___notification__, ___itemListPage__, __AuthKey__) {
-    var _notification = ___notification__;
-    var _itemListPage = ___itemListPage__;
-    var AuthKey = __AuthKey__;
-
+define(["require", "exports", "Notification", "viewmodels/ItemListPage", "viewmodels/Items/AuthKey"], function(require, exports, _notification, _itemListPage, AuthKey) {
     var AuthKeys = (function (_super) {
         __extends(AuthKeys, _super);
         function AuthKeys() {

@@ -1,9 +1,7 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
-    var _notification = ___notification__;
-
+define(["require", "exports", "Notification"], function(require, exports, _notification) {
     var ClientSettings = (function () {
         function ClientSettings() {
             this.Guid = ko.observable("");
@@ -16,9 +14,9 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
             CHAOS.Portal.Client.ClientSettings.Get(this.Guid()).WithCallback(function (response) {
                 if (response.Error != null)
                     _notification.AddNotification("Error getting client settings: " + response.Error.Message, true);
-else if (response.Body.Count == 0)
+                else if (response.Body.Count == 0)
                     _notification.AddNotification("Client settings not found", false);
-else {
+                else {
                     var data = response.Body.Results[0];
                     _this.DateCreated(new Date(data.DateCreated * 1000));
                     _this.Name(data.Name);

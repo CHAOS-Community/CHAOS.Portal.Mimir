@@ -2,11 +2,7 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/jquery.cookie.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "durandal/plugins/router", "State"], function(require, exports, ___router__, ___state__) {
-    var _router = ___router__;
-    
-    var _state = ___state__;
-
+define(["require", "exports", "durandal/plugins/router", "State"], function(require, exports, _router, _state) {
     var Login = (function () {
         function Login() {
             this.Email = ko.observable("");
@@ -36,7 +32,7 @@ define(["require", "exports", "durandal/plugins/router", "State"], function(requ
 
                 if (_state.LastRedirectedFromURL() != null)
                     _router.navigateTo(_state.LastRedirectedFromURL());
-else
+                else
                     _router.navigateTo("#/");
             } else {
                 this.InvalidCredentials(true);

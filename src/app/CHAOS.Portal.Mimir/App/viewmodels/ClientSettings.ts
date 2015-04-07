@@ -7,7 +7,7 @@ import _notification = require("Notification");
 class ClientSettings
 {
 	public Guid: KnockoutObservable<string> = ko.observable("");
-	public DateCreated: KnockoutObservable<Date> = ko.observable();
+	public DateCreated: KnockoutObservable<Date> = ko.observable<Date>();
 	public Name: KnockoutObservable<string> = ko.observable("");
 	public Settings: KnockoutObservable<string> = ko.observable("");
 

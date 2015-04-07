@@ -1,11 +1,6 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
-define(["require", "exports", "durandal/plugins/router", "Notification", "Portal", "State"], function(require, exports, ___router__, ___notification__, ___portal__, ___state__) {
-    var _router = ___router__;
-    var _notification = ___notification__;
-    var _portal = ___portal__;
-    var _state = ___state__;
-
+define(["require", "exports", "durandal/plugins/router", "Notification", "Portal", "State"], function(require, exports, _router, _notification, _portal, _state) {
     var Shell = (function () {
         function Shell() {
             this.Router = _router;

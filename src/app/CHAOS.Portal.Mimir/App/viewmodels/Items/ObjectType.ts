@@ -3,7 +3,7 @@ import _itemListPage = require("viewmodels/ItemListPage");
 
 class ObjectType extends _itemListPage.Item
 {
-	public ID: KnockoutObservable<number> = ko.observable();
+	public ID: KnockoutObservable<number> = ko.observable<number>();
 	public Name: KnockoutObservable<string> = ko.observable("New Object Type");
 }
 

@@ -1,7 +1,5 @@
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
-    var _notification = ___notification__;
-
+define(["require", "exports", "Notification"], function(require, exports, _notification) {
     var ItemListPage = (function () {
         function ItemListPage() {
             this.Items = ko.observableArray();
@@ -62,7 +60,7 @@ define(["require", "exports", "Notification"], function(require, exports, ___not
                 this._SaveNewItem(item).WithCallback(function (response) {
                     return _this.CreateItemCallback(response, item);
                 }, this);
-else
+            else
                 this._SaveItem(item).WithCallback(this.UpdateItemCallback, this);
         };
 
@@ -106,7 +104,7 @@ else
         ItemListPage.prototype.CreateItemCallback = function (response, item) {
             if (response.Error != null)
                 _notification.AddNotification("Create " + this._ItemTypeName + " failed: " + response.Error.Message, true);
-else {
+            else {
                 this._ApplyDataToItem(item, response.Body.Results[0]);
                 item.IsClientsideItem(false);
             }

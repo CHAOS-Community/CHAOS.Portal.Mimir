@@ -1,10 +1,7 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "Notification", "viewmodels/Items/EBUProfile"], function(require, exports, ___notification__, __EBUProfile__) {
-    var _notification = ___notification__;
-    var EBUProfile = __EBUProfile__;
-
+define(["require", "exports", "Notification", "viewmodels/Items/EBUProfile"], function(require, exports, _notification, EBUProfile) {
     var EBUProfiles = (function () {
         function EBUProfiles() {
             this.MetadataSchemaName = "ESC Profile";

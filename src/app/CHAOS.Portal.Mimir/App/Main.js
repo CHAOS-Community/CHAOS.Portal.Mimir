@@ -1,3 +1,6 @@
+/// <reference path="TypeScriptDefinitions/require.d.ts" />
+/// <reference path="TypeScriptDefinitions/durandal.d.ts" />
+
 requirejs.config({
     paths: {
         'text': 'durandal/amd/text'

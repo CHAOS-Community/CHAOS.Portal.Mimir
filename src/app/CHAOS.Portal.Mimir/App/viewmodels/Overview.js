@@ -1,8 +1,6 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
-define(["require", "exports", "Portal"], function(require, exports, ___portal__) {
-    var _portal = ___portal__;
-
+define(["require", "exports", "Portal"], function(require, exports, _portal) {
     var Overview = (function () {
         function Overview() {
             this.SessionGuid = ko.observable("");

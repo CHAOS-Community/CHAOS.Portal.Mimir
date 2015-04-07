@@ -4,10 +4,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "Notification", "viewmodels/ItemListPage"], function(require, exports, ___notification__, ___itemListPage__) {
-    var _notification = ___notification__;
-    var _itemListPage = ___itemListPage__;
-
+define(["require", "exports", "Notification", "viewmodels/ItemListPage"], function(require, exports, _notification, _itemListPage) {
     var Group = (function (_super) {
         __extends(Group, _super);
         function Group() {

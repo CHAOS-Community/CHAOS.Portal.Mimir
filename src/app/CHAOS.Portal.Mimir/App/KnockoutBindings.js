@@ -2,6 +2,7 @@
 /// <reference path="TypeScriptDefinitions/bootstrap.d.ts"/>
 /// <reference path="TypeScriptDefinitions/knockout.d.ts"/>
 /// <reference path="TypeScriptDefinitions/ace.d.ts"/>
+
 var AceBindingHandler = (function () {
     function AceBindingHandler() {
     }
@@ -49,7 +50,7 @@ var TypeAheadBindingHandler = (function () {
 
         if (value == null)
             $(element).typeahead();
-else
+        else
             $(element).typeahead({ source: value });
     };
     return TypeAheadBindingHandler;

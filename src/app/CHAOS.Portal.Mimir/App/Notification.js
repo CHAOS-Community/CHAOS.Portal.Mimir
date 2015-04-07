@@ -1,6 +1,6 @@
+/// <reference path="TypeScriptDefinitions/require.d.ts" />
+/// <reference path="TypeScriptDefinitions/durandal.d.ts" />
 define(["require", "exports"], function(require, exports) {
-    /// <reference path="TypeScriptDefinitions/require.d.ts" />
-    /// <reference path="TypeScriptDefinitions/durandal.d.ts" />
     exports.Notifications = ko.observableArray();
 
     function AddNotification(text, isError) {

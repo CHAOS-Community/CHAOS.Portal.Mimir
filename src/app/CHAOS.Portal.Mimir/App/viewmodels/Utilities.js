@@ -1,8 +1,6 @@
 /// <reference path="../TypeScriptDefinitions/require.d.ts" />
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 define(["require", "exports"], function(require, exports) {
-    
-
     var Utilities = (function () {
         function Utilities() {
             this.DotNetGuid = ko.observable("");

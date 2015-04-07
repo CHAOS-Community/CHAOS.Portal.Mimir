@@ -22,7 +22,7 @@ class AceBindingHandler implements KnockoutBindingHandler
 {
 	public init(element: any, valueAccessor: () => any, allBindingsAccessor: () => any, viewModel: any, bindingContext: KnockoutBindingContext): void
 	{
-		var editor = ace.edit(element);
+		var editor = <any>ace.edit(element);
 		var value = valueAccessor();
 
 		editor.setTheme(value.theme);
@@ -44,7 +44,7 @@ class AceBindingHandler implements KnockoutBindingHandler
 
 	public update(element: any, valueAccessor: () => any, allBindingsAccessor: () => any, viewModel: any, bindingContext: KnockoutBindingContext): void
 	{
-		var editor = ace.edit(element);
+		var editor = <any>ace.edit(element);
 		var value = valueAccessor();
 
 		if(!editor.IsUpdating)

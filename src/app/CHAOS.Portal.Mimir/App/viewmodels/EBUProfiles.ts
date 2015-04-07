@@ -9,8 +9,8 @@ class EBUProfiles
 {
 	private MetadataSchemaName: string = "ESC Profile";
 
-	public Items: KnockoutObservableArray<EBUProfile> = ko.observableArray();
-	public ActiveItem: KnockoutObservable<EBUProfile> = ko.observable(null);
+	public Items: KnockoutObservableArray<EBUProfile> = ko.observableArray<EBUProfile>();
+	public ActiveItem: KnockoutObservable<EBUProfile> = ko.observable<EBUProfile>(null);
 
 	private _schemaGuid: string;
 

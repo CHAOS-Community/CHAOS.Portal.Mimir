@@ -4,8 +4,8 @@ import _notification = require("Notification");
 
 export class ItemListPage<T extends Item>
 {
-	public Items: KnockoutObservableArray<T> = ko.observableArray();
-	public ActiveItem: KnockoutObservable<T> = ko.observable();
+	public Items: KnockoutObservableArray<T> = ko.observableArray<T>();
+	public ActiveItem: KnockoutObservable<T> = ko.observable<T>();
 
 	public activate():any
 	{

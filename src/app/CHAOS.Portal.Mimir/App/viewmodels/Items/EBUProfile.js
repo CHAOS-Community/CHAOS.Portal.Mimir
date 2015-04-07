@@ -1,8 +1,6 @@
 /// <reference path="../../TypeScriptDefinitions/jquery.d.ts" />
 /// <reference path="../../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
-    var _notification = ___notification__;
-
+define(["require", "exports", "Notification"], function(require, exports, _notification) {
     var EBUProfile = (function () {
         function EBUProfile(metadataSchemaGuid, user) {
             this.Email = ko.observable("");

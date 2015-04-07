@@ -7,11 +7,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/MetadataSchema"], function(require, exports, ___itemListPage__, __MetadataSchema__) {
-    
-    var _itemListPage = ___itemListPage__;
-    var MetadataSchema = __MetadataSchema__;
-
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/MetadataSchema"], function(require, exports, _itemListPage, MetadataSchema) {
     var MetadataSchemas = (function (_super) {
         __extends(MetadataSchemas, _super);
         function MetadataSchemas() {

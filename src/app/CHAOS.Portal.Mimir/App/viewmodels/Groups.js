@@ -7,11 +7,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/Group"], function(require, exports, ___itemListPage__, __Group__) {
-    
-    var _itemListPage = ___itemListPage__;
-    var Group = __Group__;
-
+define(["require", "exports", "viewmodels/ItemListPage", "viewmodels/Items/Group"], function(require, exports, _itemListPage, Group) {
     var Groups = (function (_super) {
         __extends(Groups, _super);
         function Groups() {

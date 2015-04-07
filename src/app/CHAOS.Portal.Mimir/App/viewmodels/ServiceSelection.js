@@ -2,11 +2,7 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/jquery.cookie.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
-define(["require", "exports", "durandal/plugins/router", "Portal", "Notification"], function(require, exports, ___router__, ___portal__, ___notification__) {
-    var _router = ___router__;
-    var _portal = ___portal__;
-    var _notification = ___notification__;
-
+define(["require", "exports", "durandal/plugins/router", "Portal", "Notification"], function(require, exports, _router, _portal, _notification) {
     var ServiceSelection = (function () {
         function ServiceSelection() {
             this.ServicePath = ko.observable("https://");

@@ -2,9 +2,7 @@
 /// <reference path="../TypeScriptDefinitions/durandal.d.ts" />
 /// <reference path="../TypeScriptDefinitions/PortalClient.d.ts" />
 /// <reference path="../TypeScriptDefinitions/knockout.d.ts" />
-define(["require", "exports", "Notification"], function(require, exports, ___notification__) {
-    var _notification = ___notification__;
-
+define(["require", "exports", "Notification"], function(require, exports, _notification) {
     var Folders = (function () {
         function Folders() {
             this.Folders = ko.observableArray();
